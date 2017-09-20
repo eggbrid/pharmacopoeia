@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/width_80px"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_80px"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/text_30px"
+        android:layout_marginLeft="@dimen/width_110px"
+        android:drawableLeft="@drawable/sousuo_xiao"
+        android:drawablePadding="@dimen/width_20px"
+        android:gravity="center_vertical|left" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

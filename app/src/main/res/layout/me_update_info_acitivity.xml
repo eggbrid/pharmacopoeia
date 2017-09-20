@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    android:orientation="vertical">
+
+    <include layout="@layout/comment_head" />
+
+    <RelativeLayout
+        android:id="@+id/nick_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_90px"
+        android:layout_marginTop="@dimen/width_20px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/iv_icon1"
+            android:text="昵称"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/yun_global_item_text_size" />
+
+        <EditText
+            android:id="@+id/nick"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="@dimen/width_20px"
+            android:background="@color/tr"
+            android:gravity="right"
+            android:hint="请输入昵称"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/yun_global_item_text_size" />
+
+        <View
+            style="@style/my_info_parting_line"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/me_item_left_magin"
+            android:layout_marginRight="@dimen/me_item_right_magin"
+            android:paddingLeft="@dimen/me_item_left_magin"
+            android:paddingRight="@dimen/me_item_right_magin" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/city_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_90px">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:layout_toRightOf="@id/iv_icon2"
+            android:text="城市"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/yun_global_item_text_size" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:gravity="right"
+            android:layout_marginRight="@dimen/width_20px"
+            android:hint="请选择地区"
+            android:textColor="@color/c_9c999d"
+            android:textSize="@dimen/yun_global_item_text_size" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_88px"
+        android:layout_marginTop="@dimen/width_80px"
+        android:layout_marginLeft="@dimen/width_40px"
+        android:layout_marginRight="@dimen/width_40px"
+        android:background="@drawable/gray_line_btn"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/width_30px" />
+</LinearLayout>

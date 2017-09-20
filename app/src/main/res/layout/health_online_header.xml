@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/c_ebebeb"
+    android:orientation="vertical">
+
+    <com.pharmacopoeia.view.cycleView.ImageCycleView
+        android:id="@+id/m_image_cycle"
+        android:layout_width="match_parent"
+        android:layout_height="140dip"
+        android:background="@color/white"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_20px"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/width_20px"
+            android:layout_marginTop="@dimen/width_20px"
+            android:text="现场直播" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="@dimen/width_20px">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 android:scaleType="fitXY"
+                android:background="@color/c_9c999d" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/width_20px"
+                android:src="@drawable/huibo" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="#66ffffff">
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width_20px"
+                    android:src="@drawable/default_avatar" />
+
+                <TextView
+                    android:id="@id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width_20px"
+                    android:layout_toRightOf="@+id/avatar"
+                    android:text="兒童藝術" />
+
+                <TextView
+                    android:id="@id/num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/width_20px"
+                    android:drawableLeft="@drawable/online"
+                    android:drawablePadding="@dimen/width_20px"
+                    android:minWidth="40dp"
+                    android:text="2.1万" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_20px"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/width_20px"
+            android:layout_marginLeft="@dimen/width_20px"
+            android:layout_marginTop="@dimen/width_20px"
+            android:text="视频推荐" />
+    </LinearLayout>
+</LinearLayout>

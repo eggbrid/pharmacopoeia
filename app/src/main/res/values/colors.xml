@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="google_red">#d62d20</color>
+    <color name="google_blue">#0057e7</color>
+    <color name="google_green">#008744</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white88">#88ffffff</color>
+    <color name="c_b3b3b3">#b3b3b3</color>
+    <color name="c_3c3c3c">#3c3c3c</color>
+    <color name="c_25c883">#25c883</color>
+    <color name="c_20Af78">#20Af78</color>
+
+    <color name="transblack">#a0636262</color>
+
+    <color name="c_5b6567">#5b6567</color>
+    <color name="c_666666">#666666</color>
+    <color name="c_eeeeee">#eeeeee</color>
+
+    <color name="c_cd0000">#cd0000</color>
+
+    <color name="tr">#00ffffff</color>
+    <color name="bg_6444">#99444444</color>
+    <color name="color_gray">#4d4a4d</color>
+    <color name="red">#ff0000</color>
+    <color name="c_333333">#333333</color>
+
+    <color name="line">#dcdddc</color>
+    <color name="c_ebebeb">#ebebeb</color>
+
+    <color name="c_9c999d">#9c999d</color>
+    <color name="c_999999">#99999d</color>
+    <color name="c_787878">#787878</color>
+    <color name="c_3db584">#3db584</color>
+
+    <color name="btn_green_pressed">#cc3cb583</color>
+    <color name="btn_green_noraml">#3cb583</color>
+    <color name="app_green">#3cb583</color>
+    <color name="app_white">#fefefe</color>
+    <color name="province_line_border">#C7C7C7</color>
+
+
+</resources>

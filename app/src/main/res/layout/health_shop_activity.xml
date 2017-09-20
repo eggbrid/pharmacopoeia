@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="45dp"
+            android:layout_height="45dp">
+
+            <TextView
+                android:id="@+id/left"
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/back_black"
+                android:scaleType="centerInside"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/viewpagertab"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/width_90px"
+            android:layout_centerInParent="true"
+            android:paddingBottom="0dp"
+            app:stl_customTabTextLayoutId="@layout/home_custom_tab"
+            app:stl_customTabTextViewId="@+id/custom_text"
+            app:stl_defaultTabTextColor="@color/line"
+            app:stl_defaultTabTextHorizontalPadding="16dp"
+            app:stl_distributeEvenly="false"
+            app:stl_dividerColor="@color/line"
+            app:stl_dividerThickness="0dp"
+            app:stl_indicatorColor="@color/app_green"
+            app:stl_indicatorCornerRadius="1.5dp"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="2dp"
+            app:stl_indicatorWithoutPadding="false"
+            app:stl_underlineColor="@android:color/transparent"
+             />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/line"
+                android:layout_below="@+id/viewpagertab"
+                android:layout_height="1dp"/>
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vPager"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/title"
+        android:layout_gravity="center" />
+
+</LinearLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/tr">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/width_10px"
+                android:layout_marginTop="@dimen/width_10px"
+                android:layout_toLeftOf="@+id/right"
+                android:layout_toRightOf="@+id/left"
+                android:background="@drawable/yd_shop_comment_ed">
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width_20px"
+                    android:src="@drawable/sousuo" />
+
+                <EditText
+                    android:id="@+id/title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/width_20px"
+                    android:layout_marginRight="@dimen/width_20px"
+                    android:layout_toRightOf="@+id/search"
+                    android:background="@color/tr"
+                    android:gravity="left|center_vertical"
+                    android:hint="请输入所在地区的地址或门店"
+                    android:singleLine="true"
+                    android:textColor="@color/c_333333"
+                    android:textColorHint="@color/c_666666"
+                    android:textSize="@dimen/text_26px" />
+            </RelativeLayout>
+
+            <com.pharmacopoeia.view.PImageButton
+                android:id="@+id/left"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_alignParentLeft="true"
+                android:background="@color/tr"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible" />
+
+            <com.pharmacopoeia.view.PImageButton
+                android:id="@+id/right"
+                android:layout_width="75dp"
+                android:layout_height="45dp"
+                android:layout_alignParentRight="true"
+                android:background="@color/tr"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+
+        android:visibility="gone"
+        android:id="@+id/emp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="暂无数据" />
+
+    <ListView
+        android:id="@+id/list"
+        android:listSelector="@null"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></ListView>
+</LinearLayout>

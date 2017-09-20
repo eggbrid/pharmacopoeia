@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/line" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/xuanzhongyuan"
+        android:drawablePadding="7dp"
+        android:paddingLeft="10dp"
+        android:text="处方来源"
+        android:textColor="@color/c_3db584"
+        android:textSize="@dimen/text_30px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_name"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/text_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:drawablePadding="7dp"
+            android:lineSpacingExtra="@dimen/width_6px"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:text="      《本草纲目》版本颇多，除国外各种全译或节译本外，国内现存约七十二种，大致可分为“一祖三系”，即祖本(金陵本、摄元堂本)及江西本、钱本、张本三个系统。江西本系统，主要为明万历三十一年(1603)夏良心、张鼎思刻本等；钱本系统，主要为明崇祯十三年(1640)钱蔚起杭州六有堂刻本，并改绘药图，以及清顺治十二年(1655)吴毓昌太和堂本，乾隆间《四库全书》本即据此本抄录；"
+            android:textColor="@color/c_666666"
+            android:textSize="@dimen/text_28px"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/image_from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

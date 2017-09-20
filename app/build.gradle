@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion '25.0.0'
+    defaultConfig {
+        applicationId "com.pharmacopoeia"
+        minSdkVersion 19
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+
+        productFlavors {
+            debugsGongsiIP {
+                manifestPlaceholders = [
+                        //此处全部存放debug的key，包括以后的IP
+                        hostIP: "http://123.56.216.53:8080/",
+                        //hostIP       : "http://120.27.40.138:20080/",
+                        name  : "debug",
+                        JPUSH_PKGNAME : "com.pharmacopoeia",
+                        JPUSH_APPKEY : "458c4cee1407d96cac2858df", //JPush上注册的包名对应的appkey.
+                        JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+
+                ]
+            }
+//            debugsJiaIP {
+//                manifestPlaceholders = [
+//                        //此处全部存放debug的key，包括以后的IP
+//                        hostIP: "http://123.56.216.53:8080/",
+//                        name  : "debug",
+//                        JPUSH_PKGNAME : applicationId,
+//                        JPUSH_APPKEY : "你的appkey", //JPush上注册的包名对应的appkey.
+//                        JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+//                ]
+//            }
+//            debugsAliIP {
+//                manifestPlaceholders = [
+//                        //此处全部存放debug的key，包括以后的IP
+//                        hostIP: "http://123.56.216.53:8080/",
+//                        name  : "debug",
+//                        JPUSH_PKGNAME : applicationId,
+//                        JPUSH_APPKEY : "你的appkey", //JPush上注册的包名对应的appkey.
+//                        JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+//                ]
+//            }
+
+        }
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'ya'
+            keyPassword '123456'
+            storeFile file('yd.jks')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile files('libs/universal-image-loader-1.9.5.jar')
+    compile 'com.jph.takephoto:takephoto_library:4.0.0'
+    compile 'com.victor:lib:1.0.4'
+    //特殊view
+    compile 'com.wrapp.floatlabelededittext:library:0.0.6'
+    compile 'com.zhy:mpermission-api:1.0.0'
+    compile files('libs/lite-orm-1.9.2.jar')
+    compile 'fm.jiecao:jiecaovideoplayer:5.5.3'//https://github.com/lipangit/JieCaoVideoPlayer
+    compile 'com.zhy:flowlayout-lib:1.0.3'//https://github.com/hongyangAndroid/FlowLayout
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    //Optional: see how to use the utility.
+    compile 'com.ogaclejapan.smarttablayout:utils-v4:1.6.1@aar'
+    compile files('libs/MobCommons-2017.0412.1554.jar')
+    compile files('libs/MobTools-2017.0412.1554.jar')
+    compile 'cn.jiguang.sdk:jpush:3.0.8'
+    compile 'cn.jiguang.sdk:jcore:1.1.6'  // 此处以JCore 1.1.1 版本为例。
+    compile 'in.srain.cube:grid-view-with-header-footer:1.0.12'
+    compile 'me.grantland:autofittextview:0.2.+'
+    compile 'com.feezu.liuli:timeselector:1.1.3+'
+
+}

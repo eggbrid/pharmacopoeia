@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/comment_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/width_20px"
+                android:drawableLeft="@drawable/recuperate_icon"
+                android:drawablePadding="@dimen/width_16px"
+                android:text="常见问题"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/text_30px" />
+
+            <com.pharmacopoeia.view.CustomGridView
+                android:id="@+id/normal_disease"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/width_20px"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width_20px"
+                android:listSelector="@color/tr"
+                android:numColumns="3"
+                android:layout_marginRight="@dimen/width_20px"
+
+                android:verticalSpacing="@dimen/width_20px" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/width_40px"
+                android:drawableLeft="@drawable/recuperate_icon"
+                android:drawablePadding="@dimen/width_16px"
+                android:text="慢病调养"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/text_30px" />
+
+            <com.pharmacopoeia.view.CustomGridView
+                android:id="@+id/female_maintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width_20px"
+                android:layout_marginLeft="@dimen/width_20px"
+                android:layout_marginRight="@dimen/width_20px"
+                android:listSelector="@color/tr"
+
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/width_20px" />
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/width_40px"
+                android:drawableLeft="@drawable/recuperate_icon"
+                android:drawablePadding="@dimen/width_16px"
+                android:text="小儿疾病"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/text_30px" />
+
+            <com.pharmacopoeia.view.CustomGridView
+                android:id="@+id/child_maintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/width_20px"
+
+                android:listSelector="@color/tr"
+android:layout_marginRight="@dimen/width_20px"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/width_20px" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

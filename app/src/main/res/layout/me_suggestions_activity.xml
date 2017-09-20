@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/comment_head" />
+
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top|left"
+        android:layout_margin="@dimen/width_40px"
+        android:background="@drawable/yd_shop_comment_ed_r"
+        android:padding="@dimen/width_20px"
+        android:minHeight="200dp"
+        android:textColor="@color/color_gray"
+        android:textColorHint="@color/c_999999"
+        android:textSize="@dimen/text_30px" />
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/width_88px"
+        android:layout_marginLeft="@dimen/width_60px"
+        android:layout_marginRight="@dimen/width_60px"
+        android:layout_marginTop="@dimen/width_80px"
+        android:background="@drawable/yd_comment_btn_comment"
+        android:gravity="center"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/width_30px" />
+
+
+</LinearLayout>

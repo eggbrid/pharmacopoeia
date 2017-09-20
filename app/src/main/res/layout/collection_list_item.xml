@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:zhy="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/width_228px"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/text_24px"
+    android:paddingLeft="@dimen/text_24px"
+    android:paddingTop="@dimen/text_24px">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/width_234px"
+        android:layout_height="@dimen/width_180px"
+        android:background="@color/line"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/image"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/text_24px"
+        android:paddingLeft="@dimen/text_24px">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/text_30px" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/flowlayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/use_num"
+            android:layout_below="@+id/name"
+            android:layout_marginBottom="@dimen/width_10px"
+            android:layout_marginTop="@dimen/width_10px"
+            app:auto_select_effect="false"
+
+            zhy:max_select="-1"></com.zhy.view.flowlayout.TagFlowLayout>
+
+        <TextView
+            android:id="@+id/use_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/c_999999"
+            android:textSize="@dimen/text_18px" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/line" />
+</RelativeLayout>

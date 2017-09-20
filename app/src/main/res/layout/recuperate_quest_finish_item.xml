@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/width_120px"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/width_10px">
+    <TextView
+        android:layout_width="800dp"
+
+        android:layout_height="1dp" />
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="@dimen/width_400px"
+        android:layout_height="@dimen/width_90px"
+        android:background="@drawable/btn_green_selector"
+        android:gravity="center"
+        android:text="完成测试"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_30px" />
+
+</LinearLayout>

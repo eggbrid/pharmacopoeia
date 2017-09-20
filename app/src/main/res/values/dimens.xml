@@ -1,0 +1,176 @@
+<resources>
+    <!-- GENERAL -->
+    <dimen name="default_stroke_width">7dp</dimen>
+    <dimen name="default_background_stroke_width">3dp</dimen>
+    <dimen name="other_text_height">44dp</dimen>
+    <dimen name="me_title_left_btn_width">60dp</dimen>
+    <dimen name="me_title_right2_right_btn_width">50dp</dimen>
+    <dimen name="me_item_left_magin">10dp</dimen>
+    <dimen name="me_item_right_magin">10dp</dimen>
+    <dimen name="me_item_top_magin">15dp</dimen>
+    <dimen name="nav_height">44dp</dimen>
+    <dimen name="global_item_height">44dp</dimen>
+    <dimen name="common_vertical_margin">10dp</dimen>
+    <dimen name="common_left_margin">16dp</dimen>
+    <!--朋友圈尺寸定义-->
+    <dimen name="yun_global_left_margin">12dp</dimen>
+    <dimen name="yun_global_right_margin">12dp</dimen>
+    <dimen name="global_item_margin_left">12dp</dimen>
+    <dimen name="global_item_margin_right">12dp</dimen>
+    <dimen name="global_item_normal_text_size">12sp</dimen>
+    <dimen name="yun_global_title_text_size">19sp</dimen>
+    <dimen name="yun_global_item_text_size">15sp</dimen>
+    <dimen name="yun_global_normal_text_size">12sp</dimen>
+    <dimen name="global_title_text_size_small">14sp</dimen>
+    <dimen name="global_text_size">12sp</dimen>
+    <dimen name="job_mesume_margin_left">13dp</dimen><!--我的简历中心，左边的间距-->
+    <dimen name="job_mesume_widthandheight">30dp</dimen><!--我的简历中心，编辑button大小-->
+    <dimen name="job_mesume_margin_right">13dp</dimen><!--我的简历中心，右边的间距-->
+    <dimen name="job_mesume_rightcontext_to_left">10dp</dimen><!--我的简历中心，右边的字体距离左边的字体-->
+    <dimen name="job_mesume_item_height">30dp</dimen><!-- 我的简历中心，每个item的高度-->
+    <dimen name="job_item_context_height">44dp</dimen><!--创建简历，每个item的高度-->
+    <dimen name="job_qianhuise_size">13sp</dimen><!--在约谈的，投递记录，简历被下载  浅灰色字体的大小 -->
+    <dimen name="job_huise_size">14sp</dimen><!--在约谈的，投递记录，简历被下载  灰色字体 和 工资  的大小 -->
+    <dimen name="job_mesume_top_size">14sp</dimen><!-- 我的简历个人信息顶部的字体大小-->
+    <dimen name="job_mesume_left_size">14sp</dimen><!--我的简历中心，左边字体大小-->
+    <dimen name="job_mesume_right_size">14sp</dimen><!---我的简历中心，右边字体大小-->
+    <!--求职-->
+    <dimen name="find_job_text_24px">14sp</dimen>
+    <dimen name="find_job_text_26px">15sp</dimen>
+    <!--审批-->
+    <dimen name="approval_width_100px">50dp</dimen>
+    <!--通用-->
+    <dimen name="text_16px">8sp</dimen>
+
+    <dimen name="text_18px">9sp</dimen>
+    <dimen name="text_20px">10sp</dimen>
+    <dimen name="text_24px">12sp</dimen>
+    <dimen name="text_22px">11sp</dimen>
+
+    <dimen name="text_26px">13sp</dimen>
+    <dimen name="text_28px">14sp</dimen>
+    <dimen name="text_30px">15sp</dimen>
+    <dimen name="text_32px">16sp</dimen>
+    <dimen name="text_34px">17sp</dimen>
+    <dimen name="text_38px">19sp</dimen>
+    <dimen name="text_50px">25sp</dimen>
+    <dimen name="text_46px">23sp</dimen>
+
+    <dimen name="width_68px">34dp</dimen>
+    <dimen name="text_96px">48sp</dimen>
+    <dimen name="width_80px">40dp</dimen>
+    <dimen name="text_36px">18sp</dimen>
+    <dimen name="width_162px">81dp</dimen>
+    <dimen name="text_42px">21sp</dimen>
+    <dimen name="text_64px">32sp</dimen>
+
+
+    <dimen name="width_20px">10dp</dimen>
+    <dimen name="width_280px">140dp</dimen>
+
+    <dimen name="width_22px">11dp</dimen>
+    <dimen name="width_26px">13dp</dimen>
+    <dimen name="width_30px">15dp</dimen>
+    <dimen name="width_34px">17dp</dimen>
+    <dimen name="width_72px">36dp</dimen>
+    <dimen name="width_154px">77dp</dimen>
+    <dimen name="width_4px">2dp</dimen>
+    <dimen name="width_32px">16dp</dimen>
+
+    <dimen name="width_6px">3dp</dimen>
+
+    <dimen name="width_98px">49dp</dimen>
+    <dimen name="width_96px">48dp</dimen>
+    <dimen name="width_24px">12dp</dimen>
+    <dimen name="width_50px">25dp</dimen>
+    <dimen name="width_62px">31dp</dimen>
+
+    <dimen name="width_28px">14dp</dimen>
+    <dimen name="width_18px">9dp</dimen>
+    <dimen name="width_14px">7dp</dimen>
+    <dimen name="width_114px">57dp</dimen>
+
+    <dimen name="width_10px">5dp</dimen>
+    <dimen name="width_16px">8dp</dimen>
+    <dimen name="width_106px">53dp</dimen>
+    <dimen name="width_234px">117dp</dimen>
+
+    <dimen name="width_310px">155dp</dimen>
+    <dimen name="width_8px">4dp</dimen>
+    <dimen name="width_60px">30dp</dimen>
+    <dimen name="width_44px">22dp</dimen>
+    <dimen name="width_54px">27dp</dimen>
+    <dimen name="width_124px">62dp</dimen>
+
+    <dimen name="width_138px">69dp</dimen>
+    <dimen name="width_136px">68dp</dimen>
+    <dimen name="width_12px">6dp</dimen>
+    <dimen name="width_40px">20dp</dimen>
+    <dimen name="width_46px">23dp</dimen>
+    <dimen name="width_84px">42dp</dimen>
+    <dimen name="width_74px">37dp</dimen>
+    <dimen name="width_64px">32dp</dimen>
+    <dimen name="width_100px">50dp</dimen>
+    <dimen name="width_120px">60dp</dimen>
+    <dimen name="width_110px">55dp</dimen>
+
+    <dimen name="width_36px">18dp</dimen>
+    <dimen name="width_118px">59dp</dimen>
+
+    <dimen name="width_66px">33dp</dimen>
+    <dimen name="width_76px">38dp</dimen>
+    <dimen name="width_116px">58dp</dimen>
+    <dimen name="width_58px">29dp</dimen>
+    <dimen name="width_90px">45dp</dimen>
+    <dimen name="width_92px">46dp</dimen>
+    <dimen name="width_190px">95dp</dimen>
+    <dimen name="width_180px">90dp</dimen>
+    <dimen name="width_156px">78dp</dimen>
+    <dimen name="width_208px">104dp</dimen>
+    <dimen name="width_178px">89dp</dimen>
+    <dimen name="width_170px">85dp</dimen>
+    <dimen name="width_278px">139dp</dimen>
+
+    <dimen name="width_220px">110dp</dimen>
+
+    <dimen name="width_150px">75dp</dimen>
+    <dimen name="width_224px">112dp</dimen>
+    <dimen name="width_130px">65dp</dimen>
+
+    <dimen name="width_108px">54dp</dimen>
+
+    <dimen name="width_266px">133dp</dimen>
+    <dimen name="width_112px">56dp</dimen>
+    <dimen name="width_88px">44dp</dimen>
+    <dimen name="width_248px">124dp</dimen>
+    <dimen name="width_160px">80dp</dimen>
+    <dimen name="width_132px">66dp</dimen>
+
+    <dimen name="width_188px">94dp</dimen>
+    <dimen name="width_186px">93dp</dimen>
+    <dimen name="width_184px">92dp</dimen>
+    <dimen name="width_82px">41dp</dimen>
+    <dimen name="width_134px">67dp</dimen>
+
+    <dimen name="width_182px">91dp</dimen>
+    <dimen name="width_276px">138dp</dimen>
+
+    <dimen name="width_200px">100dp</dimen>
+    <dimen name="width_228px">114dp</dimen>
+
+    <dimen name="width_70px">35dp</dimen>
+    <dimen name="width_300px">150dp</dimen>
+    <dimen name="width_350px">175dp</dimen>
+    <dimen name="width_400px">200dp</dimen>
+    <dimen name="width_215dp">215dp</dimen>
+
+    <dimen name="width_600px">300dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!--<dimen name="activity_horizontal_margin">16dp</dimen>-->
+    <!--<dimen name="activity_vertical_margin">16dp</dimen>-->
+    <dimen name="app_bar_height">124dp</dimen>
+
+    <!-- statusbar size is around 24dp. For complex view, you can handle header view height programmatically -->
+
+</resources>

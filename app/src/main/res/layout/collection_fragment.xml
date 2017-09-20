@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/tr">
+                <View
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/line"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="标题"
+                    android:textSize="@dimen/text_32px"
+                    android:textColor="@color/black"/>
+                <com.pharmacopoeia.view.PImageButton
+                    android:id="@+id/left"
+                    android:layout_width="90dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@color/tr"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:visibility="invisible" />
+                <com.pharmacopoeia.view.PImageButton
+                    android:id="@+id/right"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/tr"
+                    android:padding="8dp"
+                    android:scaleType="centerInside"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+        </LinearLayout>
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/width_90px"
+             >
+        <com.ogaclejapan.smarttablayout.SmartTabLayout
+            android:id="@+id/viewpagertab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_90px"
+            android:paddingBottom="0dp"
+            app:stl_customTabTextLayoutId="@layout/home_custom_tab"
+            app:stl_customTabTextViewId="@+id/custom_text"
+            app:stl_defaultTabTextColor="@color/line"
+            app:stl_dividerColor="@color/line"
+            app:stl_dividerThickness="0dp"
+            app:stl_indicatorColor="@color/app_green"
+            app:stl_indicatorCornerRadius="1.5dp"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorWithoutPadding="false"
+            app:stl_underlineThickness="1dp"
+            app:stl_defaultTabTextHorizontalPadding="16dp"
+            app:stl_underlineColor="@color/line"
+            app:stl_indicatorThickness="2dp"
+            app:stl_distributeEvenly="false"
+            />
+             <ImageView
+                 android:layout_width="wrap_content"
+                 android:src="@drawable/zz"
+                 android:scaleType="fitXY"
+                 android:layout_marginBottom="1dp"
+                 android:layout_alignParentRight="true"
+                 android:layout_height="match_parent" />
+         </RelativeLayout>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" />
+    </LinearLayout>
+
+</FrameLayout>

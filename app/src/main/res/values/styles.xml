@@ -1,0 +1,80 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimary">@color/c_b3b3b3</item>
+        <item name="colorPrimaryDark">@color/c_b3b3b3</item>
+        <item name="colorAccent">@color/c_b3b3b3</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="Dialog_FullscreenB">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowBackground">@color/black</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+
+    </style>
+
+    <style name="Dialog_Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowBackground">@color/tr</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+
+    </style>
+    <style name="Dialog_FullscreenC">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowBackground">@color/tr</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">true</item>
+
+    </style>
+    <style name="my_info_parting_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/line</item>
+    </style>
+
+    <style name="AppThemeWelcome" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/welcome</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="myDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 屏幕背景变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style><!-- 透明的样式 -->
+    <style name="transparentFrameWindowStyle" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="main_menu_animstyle">
+        <item name="android:windowEnterAnimation">@anim/poppup_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/poppup_out_anim</item>
+    </style><!-- 弹出框动画 由下至上 -->
+    <style name="dialogstyle" parent="@android:style/Animation.Dialog">
+        <item name="@android:windowEnterAnimation">@anim/poppup_in_anim</item>
+        <!-- 进入时的动画 -->
+        <item name="@android:windowExitAnimation">@anim/poppup_out_anim</item>
+        <!-- 退出时的动画 -->
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+
+    </style>
+</resources>

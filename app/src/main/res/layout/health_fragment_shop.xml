@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:zhy="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@+id/relative">
+
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="北京看看看看行啊实北京看看看看行啊实打实的打北京看看看看行啊实打实的打打实的打"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/flowlayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_name"
+            android:layout_marginBottom="@dimen/width_10px"
+            android:layout_marginTop="@dimen/width_10px"
+            app:auto_select_effect="false"
+            zhy:max_select="-1"></com.zhy.view.flowlayout.TagFlowLayout>
+
+        <LinearLayout
+            android:id="@+id/line3"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="@color/c_cd0000"
+                android:textSize="@dimen/text_26px" />
+
+            <TextView
+                android:id="@+id/text_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="306"
+                android:textColor="@color/c_cd0000"
+                android:textSize="@dimen/text_36px" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp"
+            android:layout_toRightOf="@+id/line3"
+            android:text="52够买"
+            android:textColor="@color/c_999999"
+            android:textSize="@dimen/text_24px" />
+        <!--            android:layout_marginLeft="15dp"
+-->
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_avatar" />
+
+        <TextView
+            android:layout_alignLeft="@+id/image"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/banjiaotouming"
+            android:layout_marginLeft="5dp"
+            android:layout_alignTop="@+id/image"
+            android:layout_width="wrap_content"
+            android:paddingLeft="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingRight="4dp"
+            android:textSize="@dimen/text_22px"
+            android:textColor="@color/white"
+            android:text="商品"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/line" />
+</RelativeLayout>

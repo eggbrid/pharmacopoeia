@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/green_conner_btn_comment" android:state_enabled="true" android:state_pressed="false"></item>
+    <item android:drawable="@drawable/green_conner_btn_press_comment" android:state_enabled="true" android:state_pressed="true"></item>
+
+    <item android:drawable="@drawable/gray_line_btn_comment" android:state_enabled="false"></item>
+
+</selector>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/tr">
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line"
+            />
+
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="标题"
+            android:textSize="@dimen/text_32px"
+            android:textColor="@color/black"/>
+
+        <com.pharmacopoeia.view.PImageButton
+            android:id="@+id/left"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:background="@color/tr"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:visibility="invisible" />
+        <com.pharmacopoeia.view.PImageButton
+            android:id="@+id/right"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/tr"
+            android:padding="8dp"
+            android:scaleType="centerInside"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</LinearLayout>

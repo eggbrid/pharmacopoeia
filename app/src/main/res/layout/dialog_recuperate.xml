@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/white_conner_btn"
+        android:padding="20dp">
+
+        <me.grantland.widget.AutofitTextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/taiji"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="您已经确诊高血压或在静息（安静状态下）,非药物状态下测量血压,2次或2次以上,收缩压（高压）≥140mmHg和（或）舒张压（低压）≥90mmHg"
+            android:textColor="@color/c_333333"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/no"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/icon_white_point"
+                android:gravity="center"
+                android:text="否"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/text_30px" />
+
+            <TextView
+                android:id="@+id/yes"
+                android:layout_width="51dp"
+                android:layout_height="51dp"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/green_point_btn"
+                android:gravity="center"
+                android:text="是"
+                android:textColor="@color/black_white_txt"
+                android:textSize="@dimen/text_30px" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>
