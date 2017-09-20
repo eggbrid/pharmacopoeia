@@ -1,7 +1,6 @@
 package com.pharmacopoeia.interfaces.adapter;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pharmacopoeia.R;
-import com.pharmacopoeia.TestData;
 import com.pharmacopoeia.base.BaseViewHolder;
 import com.pharmacopoeia.bean.model.Commentbean;
 import com.pharmacopoeia.bean.model.HealthContentArticleBean;
 import com.pharmacopoeia.bean.model.HealthContentShopBean;
-import com.pharmacopoeia.bean.model.HealthContentVideoBean;
 import com.pharmacopoeia.bean.model.Item;
-import com.pharmacopoeia.bean.model.ShopCommentModel;
-import com.pharmacopoeia.bean.model.VideoDetailModel;
 import com.pharmacopoeia.bean.reponse.VideoDetailResponse;
 import com.pharmacopoeia.util.ImageLoaderUtil;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -29,9 +24,6 @@ import com.zhy.view.flowlayout.TagFlowLayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by 52243 on 2017/7/27.
@@ -43,6 +35,26 @@ public class VideoDetailAdapter extends BaseAdapter {
     private VideoDetailResponse videoDetailModel;
     private List<Item> items;//这个才是真正显示的list
 
+    public VideoDetailResponse getVideoDetailModel() {
+        if (videoDetailModel == null) {
+            videoDetailModel = new VideoDetailResponse();
+        }
+        return videoDetailModel;
+
+    }
+
+    public void setConment(Commentbean commentbean) {
+        if (videoDetailModel.getComments() == null) {
+            List<Commentbean> list = new ArrayList<>();
+            videoDetailModel.setComments(list);
+        }
+        videoDetailModel.getComments().add(commentbean);
+
+        Item item = new Item(Item.COMMENT, null);
+        item.setObject(commentbean);
+        items.add(item);
+        notifyDataSetChanged();
+    }
 
     public void setVideoDetailModel(VideoDetailResponse videoDetailModel) {
         this.videoDetailModel = videoDetailModel;
@@ -195,12 +207,13 @@ public class VideoDetailAdapter extends BaseAdapter {
 
         return convertView;
     }
+
     public void setFlowlayout(final TagFlowLayout flowlayout, String tage) {
-        if (!TextUtils.isEmpty(tage)){
+        if (!TextUtils.isEmpty(tage)) {
             flowlayout.setVisibility(View.VISIBLE);
 
-            ArrayList<String> list=new ArrayList<String>();
-            Collections.addAll(list,tage.split(","));
+            ArrayList<String> list = new ArrayList<String>();
+            Collections.addAll(list, tage.split(","));
             flowlayout.setAdapter(new TagAdapter<String>(list) {
                 @Override
                 public View getView(FlowLayout parent, int position, String s) {
@@ -209,10 +222,11 @@ public class VideoDetailAdapter extends BaseAdapter {
                     return tv;
                 }
             });
-        }else{
+        } else {
             flowlayout.setVisibility(View.GONE);
         }
     }
+
     public void setFlowlayout(final TagFlowLayout flowlayout, List<String> list) {
         flowlayout.setAdapter(new TagAdapter<String>(list) {
             @Override

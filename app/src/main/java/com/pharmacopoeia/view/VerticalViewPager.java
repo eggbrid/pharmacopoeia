@@ -31,7 +31,7 @@ public class VerticalViewPager extends ViewPager {
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
-    private class VerticalPageTransformer implements ViewPager.PageTransformer {
+    private class VerticalPageTransformer implements PageTransformer {
 
         @Override
         public void transformPage(View view, float position) {
@@ -85,7 +85,9 @@ public class VerticalViewPager extends ViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
 
-
+        if(!isMove){
+            return false;
+        }
         boolean intercepted = super.onInterceptTouchEvent(swapXY(ev));
         swapXY(ev); // return touch coordinates to original reference frame for any child views
 

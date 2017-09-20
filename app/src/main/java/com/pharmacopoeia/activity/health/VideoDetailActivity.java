@@ -2,6 +2,7 @@ package com.pharmacopoeia.activity.health;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,6 +32,7 @@ import com.pharmacopoeia.util.T;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
+import com.pharmacopoeia.util.share.ShareUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +57,9 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
 
     private ImageView image;
     private TextView text_video_name, text_collent, text_comment, text_share, text_play, text_shoucang, text_user, text_select;
-
+    private VideoDetailResponse videoDetailResponse;
     private EditText ed_comment;
+
     @Override
     public int setContentView() {
 
@@ -67,7 +70,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
     public void initView() throws Exception {
         list = (ListView) findViewById(R.id.list);
         findViewById(R.id.send_button).setOnClickListener(this);
-        ed_comment=(EditText) findViewById(R.id.ed_comment);
+        ed_comment = (EditText) findViewById(R.id.ed_comment);
         initData();
     }
 
@@ -96,7 +99,8 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         text_video_name = (TextView) view.findViewById(R.id.text_video_name);
         image = (ImageView) view.findViewById(R.id.image);
 
-
+        text_collent.setOnClickListener(this);
+        text_share.setOnClickListener(this);
         videoplayer = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer);
         list.addHeaderView(view);
         JCVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
@@ -107,15 +111,17 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
     }
 
     public void setData(VideoDetailResponse videoDetailResponse) {
-
+        this.videoDetailResponse = videoDetailResponse;
         videoDetailAdapter.setVideoDetailModel(videoDetailResponse);
         videoDetailAdapter.notifyDataSetChanged();
         text_video_name.setText(videoDetailResponse.getVideoTitle());
         text_collent.setText(videoDetailResponse.getCollectNum());
         text_comment.setText(videoDetailResponse.getCommentNum());
+
         text_share.setText(videoDetailResponse.getShareNum());
         text_play.setText(videoDetailResponse.getPlayNum() + "次播放");
         text_user.setText(videoDetailResponse.getAuthorName());
+        setConllection();
 
         if ("false".equals(videoDetailResponse.getConcerned())) {
             text_shoucang.setText("关注");
@@ -125,6 +131,19 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         videoplayer.setUp(videoDetailResponse.getVideoUrl()
                 , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
         ImageLoaderUtil.getInstance().loadNomalImage(videoDetailResponse.getVideoPic(), videoplayer.thumbImageView);
+    }
+
+
+    public void setConllection() {
+        if ("false".equals(videoDetailResponse.getCollection())) {
+            Drawable drawable = getResources().getDrawable(R.drawable.shoucang);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            text_collent.setCompoundDrawables(drawable, null, null, null);
+        } else {
+            Drawable drawable = getResources().getDrawable(R.drawable.shoucang_nomal);
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            text_collent.setCompoundDrawables(drawable, null, null, null);
+        }
     }
 
     @Override
@@ -167,37 +186,63 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
                 }
                 addComent(ed_comment.getText().toString());
                 break;
+            case R.id.text_collent:
+                addCollection();
+                break;
+            case R.id.text_share:
+                ShareUtils.showShare(this, view);
+                break;
+        }
+    }
+
+    public void addCollection() {
+
+        if (APP.isLogin(this)) {
+            Map<String, String> map = OkHttpUtil.getFromMap(this);
+            map.put("contentId", videoId);
+            map.put("contentType", "video");
+            map.put("userCode", APP.getUser(this).getUserCode());
+            OkHttpUtil.doPost(this, UrlUtil.COLLECTION, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+
+                    if ("false".equals(videoDetailResponse.getCollection())) {
+                        videoDetailResponse.setCollection("true");
+                    } else {
+                        videoDetailResponse.setCollection("false");
+                    }
+                    setConllection();
+                }
+
+                @Override
+                public void onError(String s) {
+
+                }
+            }, NUllValueResponse.class);
         }
     }
 
     public void addComent(final String commentContent) {
 
         if (APP.isLogin(this)) {
-//            Map<String, String> map = OkHttpUtil.getFromMap(getActivity());
-//            map.put("videoId", videoId);
-//            map.put("commentContent", commentContent);
-//            map.put("userId", APP.getUser(mContext).getUserCode());
-//            Log.e("userId", APP.getUser(mContext).getUserCode());
-//            OkHttpUtil.doPost(getActivity(), UrlUtil.SHOPDETAILCOMMENTINSERT, map, new CallBack() {
-//                @Override
-//                public void onSuccess(Object o) {
-//                    Commentbean commentbean = new Commentbean();
-//                    commentbean.setNickName(APP.getUser(mContext).getName());
-//                    commentbean.setCommentContent(commentContent);
-//                    List<Commentbean> list = shopDetailCommentAdapter.getList();
-//                    if (list == null) {
-//                        list = new ArrayList<Commentbean>();
-//                    }
-//                    list.add(commentbean);
-//                    shopDetailCommentAdapter.setList(list);
-//                    shopDetailCommentAdapter.notifyDataSetChanged();
-//                }
-//
-//                @Override
-//                public void onError(String s) {
-//
-//                }
-//            }, NUllValueResponse.class);
+            Map<String, String> map = OkHttpUtil.getFromMap(this);
+            map.put("videoId", videoId);
+            map.put("commentContent", commentContent);
+            map.put("userId", APP.getUser(this).getUserId());
+            OkHttpUtil.doPost(this, UrlUtil.VIDEODETAILCOMMENTINSERT, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+                    Commentbean commentbean = new Commentbean();
+                    commentbean.setNickName(APP.getUser(VideoDetailActivity.this).getName());
+                    commentbean.setCommentContent(commentContent);
+                    videoDetailAdapter.setConment(commentbean);
+                }
+
+                @Override
+                public void onError(String s) {
+
+                }
+            }, NUllValueResponse.class);
         }
     }
 

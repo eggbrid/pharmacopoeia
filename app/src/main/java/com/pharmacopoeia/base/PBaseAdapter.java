@@ -37,6 +37,9 @@ public abstract class PBaseAdapter<M, ViewHodler extends BaseViewHolder> extends
 
     @Override
     public int getCount() {
+        if (list == null) {
+            return 0;
+        }
         return list.size();
     }
 
@@ -55,8 +58,8 @@ public abstract class PBaseAdapter<M, ViewHodler extends BaseViewHolder> extends
         ViewHodler holder;
         if (view == null) {
             view = getLayoutView(i, LayoutInflater.from(context), viewGroup);
-            holder = setViewHolder(view,i);
-            if (holder==null){
+            holder = setViewHolder(view, i);
+            if (holder == null) {
 
             }
             view.setTag(holder);
@@ -65,9 +68,10 @@ public abstract class PBaseAdapter<M, ViewHodler extends BaseViewHolder> extends
         }
         return getView(i, view, viewGroup, holder);
     }
+
     public abstract View getView(int i, View view, ViewGroup viewGroup, ViewHodler viewHodler);
 
-    public abstract <ViewHodler extends BaseViewHolder> ViewHodler setViewHolder(View view,int pos);
+    public abstract <ViewHodler extends BaseViewHolder> ViewHodler setViewHolder(View view, int pos);
 
     public abstract View getLayoutView(int i, LayoutInflater inflater, ViewGroup viewGroup);
 }

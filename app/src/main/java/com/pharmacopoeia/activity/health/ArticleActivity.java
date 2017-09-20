@@ -408,7 +408,7 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
             Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
             map.put("contentId", id);
             map.put("contentType", type);
-            OkHttpUtil.doPost(this, UrlUtil.COLLECTIONADD, map, new CallBack() {
+            OkHttpUtil.doPost(this, UrlUtil.COLLECTION, map, new CallBack() {
                 @Override
                 public void onSuccess(Object o) {
                     dissPross();

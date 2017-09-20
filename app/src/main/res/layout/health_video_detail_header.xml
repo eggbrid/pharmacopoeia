@@ -52,7 +52,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:orientation="horizontal">
 
         <TextView
@@ -62,6 +62,8 @@
             android:layout_marginRight="13dp"
             android:drawableLeft="@drawable/shoucang"
             android:drawablePadding="5dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
             android:text="345"
             android:textColor="@color/c_999999"
             android:textSize="@dimen/text_24px" />
@@ -74,6 +76,8 @@
             android:layout_toRightOf="@+id/text_collent"
             android:drawableLeft="@drawable/comment"
             android:drawablePadding="5dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
             android:text="532"
             android:textColor="@color/c_999999"
             android:textSize="@dimen/text_24px" />
@@ -85,6 +89,8 @@
             android:layout_toRightOf="@+id/text_comment"
             android:drawableLeft="@drawable/share"
             android:drawablePadding="5dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
             android:text="45"
             android:textColor="@color/c_999999"
             android:textSize="@dimen/text_24px" />
@@ -95,6 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:drawablePadding="5dp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
             android:text="45次播放"
             android:textColor="@color/c_999999"
             android:textSize="@dimen/text_24px" />
@@ -106,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="7dp">
 
         <ImageView
             android:id="@+id/image"

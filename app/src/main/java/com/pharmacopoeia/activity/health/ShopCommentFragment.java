@@ -85,7 +85,8 @@ public class ShopCommentFragment extends BaseLazyFragment implements RefreshList
             Map<String, String> map = OkHttpUtil.getFromMap(getActivity());
             map.put("itemId", itemId);
             map.put("commentContent", commentContent);
-            map.put("userId", "11");
+            map.put("userId",APP.getUser(mContext).getUserId());
+            Log.e("APP.getUser().()",APP.getUser(mContext).getUserId()+"{}{}{}}{");
             OkHttpUtil.doPost(getActivity(), UrlUtil.SHOPDETAILCOMMENTINSERT, map, new CallBack() {
                 @Override
                 public void onSuccess(Object o) {
@@ -136,6 +137,7 @@ public class ShopCommentFragment extends BaseLazyFragment implements RefreshList
                     cursor = commentbean.getCommentId();
                 }
                 if ("0".equals(cursor) && list.size() <= 0) {
+                    cursor="0";
                     refresh.setVisibility(View.GONE);
                     no_data.setVisibility(View.VISIBLE);
                     return;

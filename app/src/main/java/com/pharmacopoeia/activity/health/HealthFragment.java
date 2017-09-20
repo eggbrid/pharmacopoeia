@@ -35,7 +35,6 @@ import com.pharmacopoeia.util.Utils;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
-import com.pharmacopoeia.util.share.ShareUtils;
 import com.pharmacopoeia.view.PinnedSectionListView;
 import com.pharmacopoeia.view.VerticalViewPager;
 import com.pharmacopoeia.view.xlistview.XListView;
@@ -262,7 +261,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
             @Override
             public void onSuccess(Object o) {
                 if (refre) {
-                    pageNum = 0;
+                    pageNum = 1;
                 }
 
                 List<HealthResponse> res = (ArrayList<HealthResponse>) o;
