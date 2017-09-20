@@ -63,8 +63,10 @@ public class UrlUtil {
     public static String GETLASTANSWER= getUrl() + "/trt_service/wj/getLastAnswer";//获取我的调养
     public static String ADDUSER= getUrl() + "/trt_service/wj/adduser";//添加子用户
     public static String ANSWER= getUrl() + "/trt_service/wj/answer";//添加提交问卷
-    public static String GETRESULTITEMBYID= getUrl() + "/trt_service/wj/getResultItemById";//添加提交问卷
-
+    public static String GETRESULTITEMBYID= getUrl() + "/trt_service/wj/getResultItemById";//我的問卷結果查詢
+    public static String ALIVEQUERY= getUrl() + "/trt_service/alive/aliveQuery";//視頻直播查詢
+    public static String COLLECTIONADD= getUrl() + "/trt_service/collection/collectionAdd";//收藏
+    public static String COLLECTIONCANCEL= getUrl() + "/trt_service/collection/collectionCancel";//收藏
 
 
 

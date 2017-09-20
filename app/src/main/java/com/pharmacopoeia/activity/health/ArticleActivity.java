@@ -35,6 +35,8 @@ import com.pharmacopoeia.bean.reponse.ActicleDetailResponse;
 import com.pharmacopoeia.bean.reponse.NUllValueResponse;
 import com.pharmacopoeia.bean.reponse.VideoListResponse;
 import com.pharmacopoeia.util.DateUtil;
+import com.pharmacopoeia.util.ImageLoaderUtil;
+import com.pharmacopoeia.util.SharedUtil;
 import com.pharmacopoeia.util.T;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
@@ -103,6 +105,8 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         num = (TextView) findViewById(R.id.num);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         no_data = (ImageView) findViewById(R.id.no_data);
+        String url = SharedUtil.getString("app_bottom_pic", "");
+        ImageLoaderUtil.getInstance().loadNomalImage(url, no_data, R.drawable.no_more);
         send_button = (Button) findViewById(R.id.send_button);
         ed_comment = (EditText) findViewById(R.id.ed_comment);
         send_button.setOnClickListener(this);
@@ -164,7 +168,7 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         title.setText(acticleDetailResponse.getArticleTitle());
         name.setText(acticleDetailResponse.getAuthorName());
         num.setText(acticleDetailResponse.getArticleView());
-        getData(id,"0");
+        getData(id, "0");
     }
 
     private void initWebviewString(String html) {
@@ -287,12 +291,14 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-
         if (view.getId() == R.id.left) {
             this.finish();
-
         } else if (view.getId() == R.id.right) {
-
+            if (true) {
+                shoucang(id, "article");
+            } else {
+                quxiaoshoucang(id, "article");
+            }
         } else if (view.getId() == R.id.right2) {
             ShareUtils.showShare(this, view);
         } else if (view.getId() == R.id.send_button) {
@@ -302,7 +308,6 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
             }
             addComent(ed_comment.getText().toString());
         }
-
     }
 
     class JavascriptHandler {
@@ -352,7 +357,7 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
                     Commentbean commentbean = new Commentbean();
                     commentbean.setNickName(APP.getUser(ArticleActivity.this).getName());
                     commentbean.setCommentContent(commentContent);
-                    commentbean.setCreateTime(DateUtil.getInstance().simY_M_D_H_M(new Date().getTime()+""));
+                    commentbean.setCreateTime(DateUtil.getInstance().simY_M_D_H_M(new Date().getTime() + ""));
                     List<Commentbean> list = adapterComment.getList();
                     if (list == null) {
                         list = new ArrayList<Commentbean>();
@@ -397,5 +402,54 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         }, Commentbean.class);
     }
 
+    public void shoucang(String id, String type) {
+        if (APP.isLogin(this)) {
+            showPross("正在收藏");
+            Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
+            map.put("contentId", id);
+            map.put("contentType", type);
+            OkHttpUtil.doPost(this, UrlUtil.COLLECTIONADD, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+                    dissPross();
+
+                    T.show(ArticleActivity.this, "收藏成功");
+                    right1.setImageResource(R.drawable.shoucang_nomal);
+                }
+
+                @Override
+                public void onError(String s) {
+                    dissPross();
+
+                    T.show(ArticleActivity.this, s);
+                }
+            }, Commentbean.class);
+        }
+    }
+
+    public void quxiaoshoucang(String ids, String type) {
+        if (APP.isLogin(this)) {
+            showPross("正在收藏");
+            Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
+            map.put("contentIds", id);
+            map.put("contentType", type);
+            OkHttpUtil.doPost(this, UrlUtil.COLLECTIONCANCEL, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+                    dissPross();
+
+                    T.show(ArticleActivity.this, "取消收藏成功");
+                    right1.setImageResource(R.drawable.shoucang);
+                }
+
+                @Override
+                public void onError(String s) {
+                    dissPross();
+
+                    T.show(ArticleActivity.this, s);
+                }
+            }, Commentbean.class);
+        }
+    }
 
 }

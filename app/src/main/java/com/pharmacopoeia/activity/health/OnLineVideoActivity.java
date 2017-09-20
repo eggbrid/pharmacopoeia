@@ -16,7 +16,8 @@ import com.pharmacopoeia.activity.health.adapter.OnLineAdapter;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.bean.model.WebBeanModel;
-import com.pharmacopoeia.bean.reponse.VideoListResponse;
+import com.pharmacopoeia.bean.reponse.AliveListResponse;
+import com.pharmacopoeia.bean.reponse.CarouselResponse;
 import com.pharmacopoeia.interfaces.views.RefreshListener;
 import com.pharmacopoeia.util.ImageLoaderUtil;
 import com.pharmacopoeia.util.IntentUtils;
@@ -40,7 +41,7 @@ import in.srain.cube.views.GridViewWithHeaderAndFooter;
 public class OnLineVideoActivity extends CommentActivity implements RefreshListener {
     protected GridViewWithHeaderAndFooter list;
     private OnLineAdapter adapter;
-    private List<VideoListResponse> lists = new ArrayList<>();
+    private List<AliveListResponse> lists = new ArrayList<>();
     private ImageCycleView m_image_cycle;
     private ImageView image;
     private ImageView avatar;
@@ -79,18 +80,18 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
             }
         });
         setCommentTitleView("直播");
-        startImageCycle(m_image_cycle, TestData.getListWeb());
         getData("0");
+        getDataLunBo();
     }
 
-    public void startImageCycle(ImageCycleView mImageCycle, final List<WebBeanModel> webBeanModelList) {
+    public void startImageCycle(ImageCycleView mImageCycle, final List<CarouselResponse> webBeanModelList) {
         ArrayList<String> imageDescList = new ArrayList<>();
         /**装在数据的集合  图片地址*/
         ArrayList<String> urlList = new ArrayList<>();
         int size = webBeanModelList.size();
         for (int i = 0; i < size; i++) {
-            imageDescList.add("北京");
-            urlList.add(webBeanModelList.get(i).getPic());
+            urlList.add(webBeanModelList.get(i).getFileUrl());
+            imageDescList.add(webBeanModelList.get(i).getFileUrl());
         }
         mImageCycle.setImageResources(imageDescList, urlList, new ImageCycleView.ImageCycleViewListener() {
             @Override
@@ -118,14 +119,14 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
             map.put("cursor", id);
         }
         map.put("pageSize", "20");
-        OkHttpUtil.doPost(this, UrlUtil.VIDEOLIST, map, new CallBack() {
+        OkHttpUtil.doPost(this, UrlUtil.ALIVEQUERY, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
-                List<VideoListResponse> list = (List<VideoListResponse>) o;
+                List<AliveListResponse> list = (List<AliveListResponse>) o;
                 lists.addAll(list);
                 adapter.setList(lists);
                 adapter.notifyDataSetChanged();
-                ImageLoaderUtil.getInstance().loadNomalImage(list.get(0).getVideoPic(), image, R.drawable.gray_conner_btn_pcomment);
+                ImageLoaderUtil.getInstance().loadNomalImage(list.get(0).getAlivePic(), image, R.drawable.gray_conner_btn_pcomment);
                 ImageLoaderUtil.getInstance().loadNomalImage("", avatar, R.drawable.default_avatar);
                 name.setText(list.get(0).getAuthorName());
                 num.setText(list.get(0).getPlayNum() + "人");
@@ -134,18 +135,36 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
             @Override
             public void onError(String s) {
             }
-        }, VideoListResponse.class);
+        }, AliveListResponse.class);
     }
 
     @Override
     public void onLoadMore() {
-        List<VideoListResponse> l = adapter.getList();
-        getData(l.get(l.size() - 1).getVideoId());
+        List<AliveListResponse> l = adapter.getList();
+        getData(l.get(l.size() - 1).getAliveId());
     }
 
     @Override
     public void onRefresh() {
         lists.clear();
         getData("0");
+    }
+
+
+    private void getDataLunBo() {
+
+        Map<String, String> map = OkHttpUtil.getFromMap(this);
+        OkHttpUtil.doGet(this, UrlUtil.CAROUSEL, map, new CallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                List<CarouselResponse> list = (ArrayList<CarouselResponse>) o;
+                startImageCycle(m_image_cycle, list);
+            }
+
+            @Override
+            public void onError(String s) {
+
+            }
+        }, CarouselResponse.class);
     }
 }

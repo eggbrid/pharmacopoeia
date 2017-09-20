@@ -30,10 +30,12 @@ import com.pharmacopoeia.bean.reponse.HealthResponse;
 import com.pharmacopoeia.bean.reponse.ShopDetailResponse;
 import com.pharmacopoeia.interfaces.adapter.HealthAdapter;
 import com.pharmacopoeia.util.DateUtil;
+import com.pharmacopoeia.util.SharedUtil;
 import com.pharmacopoeia.util.Utils;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
+import com.pharmacopoeia.util.share.ShareUtils;
 import com.pharmacopoeia.view.PinnedSectionListView;
 import com.pharmacopoeia.view.VerticalViewPager;
 import com.pharmacopoeia.view.xlistview.XListView;
@@ -284,6 +286,8 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
                     mPullRefreshListView.setPullLoadEnable(false);
                     if(OkHttpUtil.getHomeBottomModel()!=null) {
                         mPullRefreshListView.setBottom(OkHttpUtil.getHomeBottomModel().getBottomPic());
+                        SharedUtil.saveString("app_bottom_pic",OkHttpUtil.getHomeBottomModel().getBottomPic());
+
                     }
                 }
             }

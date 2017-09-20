@@ -97,7 +97,6 @@ public class MainActivity extends CommentActivity implements View.OnClickListene
         adapter = new MainFragmentPageAdapter(getSupportFragmentManager());
         mainViewpager.setAdapter(adapter);
         initFragments();
-        getData();
     }
 
     public void setViewPagerFragment(int count) {
@@ -202,19 +201,5 @@ public class MainActivity extends CommentActivity implements View.OnClickListene
         JCVideoPlayer.releaseAllVideos();
     }
 
-    public void getData() {
-        Map<String, String> map = new HashMap<>();
-        OkHttpUtil.doPost(this, UrlUtil.TEST, map, new CallBack() {
-            @Override
-            public void onSuccess(Object o) {
-
-            }
-
-            @Override
-            public void onError(String s) {
-
-            }
-        }, Object.class);
-    }
 }
 

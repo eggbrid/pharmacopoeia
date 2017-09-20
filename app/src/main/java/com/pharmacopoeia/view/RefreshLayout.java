@@ -8,9 +8,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.pharmacopoeia.R;
+import com.pharmacopoeia.util.ImageLoaderUtil;
+import com.pharmacopoeia.util.SharedUtil;
+import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 
 
 public class RefreshLayout extends SwipeRefreshLayout {
@@ -54,6 +58,9 @@ public class RefreshLayout extends SwipeRefreshLayout {
                 if (view_footer != null) {
                     mListView.removeFooterView(view_footer);
                     view_footera = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.listview_sw_footer_nodata, null);
+                    ImageView text_more = (ImageView) view_footera.findViewById(R.id.text_more);
+                    String url = SharedUtil.getString("app_bottom_pic", "");
+                    ImageLoaderUtil.getInstance().loadNomalImage(url, text_more, R.drawable.no_more);
                     mListView.addFooterView(view_footera);
                 }
             }

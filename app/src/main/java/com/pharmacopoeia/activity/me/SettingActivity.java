@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.activity.main.LoginActivity;
+import com.pharmacopoeia.activity.main.MainActivity;
 import com.pharmacopoeia.activity.main.WebActivity;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.util.FileUtil;
 import com.pharmacopoeia.util.IntentUtils;
+import com.pharmacopoeia.util.T;
 import com.pharmacopoeia.util.db.DBUtil;
 import com.pharmacopoeia.util.share.ShareUtils;
 
@@ -46,7 +48,6 @@ public class SettingActivity extends CommentActivity implements View.OnClickList
         login_out = (Button) findViewById(R.id.login_out);
         login_out.setOnClickListener(this);
         cache.setText(FileUtil.getCacheSize());
-
     }
 
 
@@ -57,31 +58,39 @@ public class SettingActivity extends CommentActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.my_collection:
                 //分享
-                ShareUtils.showShare(this,v);
+                ShareUtils.showShare(this, v);
                 break;
             case R.id.cache_layout:
                 clearCacheConfirm();
                 break;
             case R.id.login_out:
                 DBUtil.getInstance(this).loginOut();
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_from_right, R.anim.slide_out_to_left);
-                 finish();
+                finish();
                 break;
         }
     }
 
 
     private void clearCacheConfirm() {
+        showPross("正在清除");
         new Thread(new Runnable() {
             @Override
             public void run() {
                 FileUtil.deleteCache();
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        cache.setText("0KB");
+                        dissPross();
+                        T.show(SettingActivity.this, "已成功清理");
+                    }
+                });
             }
         }).start();
-        cache.setText("0KB");
+
     }
 
 
