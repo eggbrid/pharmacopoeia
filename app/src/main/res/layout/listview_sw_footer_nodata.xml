@@ -4,10 +4,12 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 
-    <TextView
+    <ImageView
         android:id="@+id/text_more"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/width_20px"
+        android:src="@drawable/no_more"
         android:layout_gravity="center|top"
         android:gravity="center"
         android:textSize="12sp" />
