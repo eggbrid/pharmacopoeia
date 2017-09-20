@@ -12,5 +12,6 @@
         android:src="@drawable/no_more"
         android:layout_gravity="center|top"
         android:gravity="center"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
+
 </FrameLayout>
