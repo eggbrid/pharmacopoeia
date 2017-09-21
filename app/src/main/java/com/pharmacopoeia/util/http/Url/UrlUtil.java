@@ -69,5 +69,11 @@ public class UrlUtil {
     public static String COLLECTION = getUrl() + "/trt_service/collection/collectionAdd";//收藏
 
     public static String ALIVEQUERY= getUrl() + "/trt_service/alive/aliveQuery";//視頻直播查詢
-    public static String COLLECTIONCANCEL= getUrl() + "/trt_service/collection/collectionCancel";//收藏
+    public static String COLLECTIONCANCEL= getUrl() + "/trt_service/collection/collectionCancel";//取消收藏
+    public static String FOLLOWPUBLISHER= getUrl() + "/trt_service/user/follow/publisher";//关注发布者
+    public static String ALIVEDETAIL = getUrl() + "/trt_service/alive/aliveDetail";//直播详情
+    public static String ALIVECOMMENTINSERT = getUrl() + "/trt_service/alive/commentInsert";//直播详情
+    public static String VIDEOUPDATE = getUrl() + "/trt_service/video/videoUpdate";//直播详情
+
+
 }

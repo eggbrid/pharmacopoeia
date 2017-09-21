@@ -168,6 +168,9 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         title.setText(acticleDetailResponse.getArticleTitle());
         name.setText(acticleDetailResponse.getAuthorName());
         num.setText(acticleDetailResponse.getArticleView());
+
+        right1.setImageResource("true".equals(acticleDetailResponse.getCollection()) ? R.drawable.shoucang_nomal : R.drawable.shoucang);
+
         getData(id, "0");
     }
 
@@ -294,10 +297,10 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         if (view.getId() == R.id.left) {
             this.finish();
         } else if (view.getId() == R.id.right) {
-            if (true) {
-                shoucang(id, "article");
-            } else {
+            if ("true".equals(acticleDetailResponse.getCollection())) {
                 quxiaoshoucang(id, "article");
+            } else {
+                shoucang(id, "article");
             }
         } else if (view.getId() == R.id.right2) {
             ShareUtils.showShare(this, view);
@@ -412,15 +415,15 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
                 @Override
                 public void onSuccess(Object o) {
                     dissPross();
-
                     T.show(ArticleActivity.this, "收藏成功");
                     right1.setImageResource(R.drawable.shoucang_nomal);
+                    acticleDetailResponse.setCollection("true");
+
                 }
 
                 @Override
                 public void onError(String s) {
                     dissPross();
-
                     T.show(ArticleActivity.this, s);
                 }
             }, Commentbean.class);
@@ -437,7 +440,7 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
                 @Override
                 public void onSuccess(Object o) {
                     dissPross();
-
+                    acticleDetailResponse.setCollection("false");
                     T.show(ArticleActivity.this, "取消收藏成功");
                     right1.setImageResource(R.drawable.shoucang);
                 }

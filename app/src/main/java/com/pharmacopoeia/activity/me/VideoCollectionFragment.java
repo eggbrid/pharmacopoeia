@@ -102,7 +102,7 @@ public class VideoCollectionFragment extends BaseLazyFragment implements Refresh
         Map<String, String> map = OkHttpUtil.getFromMap(getActivity());
         if (APP.getInstance().getUser(getActivity()) != null) {
             User user = APP.getInstance().getUser(getActivity());
-//            map.put("userCode", user.getUserCode());
+            map.put("userCode", user.getUserCode());
         }
         if (TextUtils.isEmpty(id) || id.equals("0")) {
             map.put("cursor", "0");

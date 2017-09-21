@@ -1,5 +1,6 @@
 package com.pharmacopoeia.activity.health;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +17,11 @@ import com.pharmacopoeia.base.BaseActivity;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.bean.model.HealthContentVideoBean;
+import com.pharmacopoeia.bean.reponse.NUllValueResponse;
 import com.pharmacopoeia.bean.reponse.VideoListResponse;
 import com.pharmacopoeia.interfaces.views.RefreshListener;
+import com.pharmacopoeia.util.IntentUtils;
+import com.pharmacopoeia.util.T;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
@@ -32,7 +36,7 @@ import java.util.Map;
  * Created by xus on 2017/8/4.
  */
 
-public class ComActivity extends CommentActivity implements View.OnClickListener , RefreshListener,AdapterView.OnItemClickListener {
+public class ComActivity extends CommentActivity implements View.OnClickListener, RefreshListener, AdapterView.OnItemClickListener {
     protected ListView list;
     protected RefreshLayout refresh;
     protected ImageView left_;
@@ -42,6 +46,8 @@ public class ComActivity extends CommentActivity implements View.OnClickListener
     protected TextView info;
     protected ComVideoAdapter adapter;
     private List<VideoListResponse> lists = new ArrayList<>();
+    private String authorId;
+    private String isFollow = "false";
 
     @Override
     public int setContentView() {
@@ -50,11 +56,12 @@ public class ComActivity extends CommentActivity implements View.OnClickListener
 
     @Override
     public void initView() throws Exception {
+        authorId = getIntent().getStringExtra("id");
+        isFollow = getIntent().getStringExtra("isFollow");
 
         left_ = (ImageView) findViewById(R.id.left);
         right_ = (TextView) findViewById(R.id.right);
         list = (ListView) findViewById(R.id.list);
-
 
         list.setOnItemClickListener(ComActivity.this);
         left_.setOnClickListener(this);
@@ -76,13 +83,18 @@ public class ComActivity extends CommentActivity implements View.OnClickListener
         if (view.getId() == R.id.left) {
             this.finish();
         } else if (view.getId() == R.id.right) {
-
+            if ("false".equals(isFollow)) {
+                addFollow();
+            }
         }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("videoId", lists.get(position).getVideoId());
+        bundle.putString("authorId", lists.get(position).getAuthorId());
+        IntentUtils.openActivity(this, VideoDetailActivity.class, bundle);
     }
 
     @Override
@@ -100,7 +112,7 @@ public class ComActivity extends CommentActivity implements View.OnClickListener
 
     public void getData(String id) {
         Map<String, String> map = OkHttpUtil.getFromMap(this);
-            map.put("authorId", "10000");
+        map.put("authorId", authorId);
         if (TextUtils.isEmpty(id) || id.equals("0")) {
             map.put("cursor", "0");
             lists.clear();
@@ -122,6 +134,7 @@ public class ComActivity extends CommentActivity implements View.OnClickListener
                 }
 
             }
+
             @Override
             public void onError(String s) {
                 stopRefresh(refresh, true);
@@ -129,4 +142,27 @@ public class ComActivity extends CommentActivity implements View.OnClickListener
             }
         }, VideoListResponse.class);
     }
+
+
+    public void addFollow() {
+        if (APP.isLogin(this)) {
+            Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
+            map.put("publisherId", authorId);
+            OkHttpUtil.doPost(this, UrlUtil.FOLLOWPUBLISHER, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+                    T.show(ComActivity.this, "关注成功");
+                    right_.setText("已关注");
+                }
+
+                @Override
+                public void onError(String s) {
+                    T.show(ComActivity.this, s);
+                }
+            }, NUllValueResponse.class);
+        }
+
+
+    }
+
 }

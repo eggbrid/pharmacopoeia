@@ -1,5 +1,6 @@
 package com.pharmacopoeia.activity.health;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,8 +63,10 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentUtils.openActivity(OnLineVideoActivity.this, OnLineDetailActivity.class);
-
+                Bundle bundle = new Bundle();
+                bundle.putString("videoId", lists.get(0).getAliveId());
+                bundle.putString("authorId", lists.get(0).getAuthorId());
+                IntentUtils.openActivity(OnLineVideoActivity.this, OnLineDetailActivity.class, bundle);
             }
         });
         avatar = (ImageView) view.findViewById(R.id.avatar);
@@ -75,8 +78,10 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                IntentUtils.openActivity(OnLineVideoActivity.this, OnLineDetailActivity.class);
-
+                Bundle bundle = new Bundle();
+                bundle.putString("videoId", lists.get(position).getAliveId());
+                bundle.putString("authorId", lists.get(position).getAuthorId());
+                IntentUtils.openActivity(OnLineVideoActivity.this, OnLineDetailActivity.class, bundle);
             }
         });
         setCommentTitleView("直播");

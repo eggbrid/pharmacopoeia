@@ -21,6 +21,24 @@ public class ActicleDetailResponse {
     private String createTime;//2017-07-13 23:30
     private String lastTime;//2017-08-29 01:46:17private String
     private List<Commentbean> commentList;
+    private String concerned;
+    private String collection;
+
+    public String getConcerned() {
+        return concerned;
+    }
+
+    public void setConcerned(String concerned) {
+        this.concerned = concerned;
+    }
+
+    public String getCollection() {
+        return collection;
+    }
+
+    public void setCollection(String collection) {
+        this.collection = collection;
+    }
 
     public String getArticleId() {
         return articleId;

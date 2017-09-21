@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -34,13 +35,13 @@ import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
 import com.pharmacopoeia.util.share.ShareUtils;
+import com.pharmacopoeia.view.MyJCVideoPlayerStandard;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
-import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 /**
  * Created by 52243 on 2017/7/27.
@@ -51,7 +52,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
     private VideoDetailAdapter videoDetailAdapter;
     private ListView list;
     private List<VideoCommentModel> lists = new ArrayList<>();
-    private JCVideoPlayerStandard videoplayer;
+    private MyJCVideoPlayerStandard videoplayer;
 
     private String authorId;
     private String videoId;
@@ -61,6 +62,8 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
     private VideoDetailResponse videoDetailResponse;
     private EditText ed_comment;
     private ImageView image_collent;
+    private LinearLayout line4;
+    private String isFollow = "false";
 
     @Override
     public int setContentView() {
@@ -101,15 +104,21 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         text_video_name = (TextView) view.findViewById(R.id.text_video_name);
         image_collent = (ImageView) view.findViewById(R.id.image_collent);
         image = (ImageView) view.findViewById(R.id.image);
+        line4 = (LinearLayout) view.findViewById(R.id.line4);
+        line4.setOnClickListener(this);
         view.findViewById(R.id.line3).setOnClickListener(this);
         text_share.setOnClickListener(this);
-        videoplayer = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer);
+        videoplayer = (MyJCVideoPlayerStandard) view.findViewById(R.id.videoplayer);
         list.addHeaderView(view);
         JCVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-
         list.setOnItemClickListener(this);
+        videoplayer.setOnStart(new MyJCVideoPlayerStandard.OnStart() {
+            @Override
+            public void onStartVideo() {
+                addNum();
+            }
+        });
         getData();
-
     }
 
     public void setData(VideoDetailResponse videoDetailResponse) {
@@ -124,14 +133,17 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         text_play.setText(videoDetailResponse.getPlayNum() + "次播放");
         text_user.setText(videoDetailResponse.getAuthorName());
         setConllection();
-
         if ("false".equals(videoDetailResponse.getConcerned())) {
             text_shoucang.setText("关注");
+            isFollow = "false";
+
         } else {
+            isFollow = "true";
+
             text_shoucang.setText("已关注");
         }
         videoplayer.setUp(videoDetailResponse.getVideoUrl()
-                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+                , MyJCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
         ImageLoaderUtil.getInstance().loadNomalImage(videoDetailResponse.getVideoPic(), videoplayer.thumbImageView);
     }
 
@@ -174,7 +186,12 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         int id = view.getId();
         switch (id) {
             case R.id.com_layout:
-                IntentUtils.openActivity(this, ComActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", authorId);
+                bundle.putString("isFollow", isFollow);
+
+
+                IntentUtils.openActivity(this, ComActivity.class, bundle);
                 break;
             case R.id.relative:
                 finish();
@@ -189,6 +206,13 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
             case R.id.line3:
                 addCollection();
                 break;
+            case R.id.line4:
+                if ("false".equals(isFollow)) {
+                    addFollow();
+                }
+                break;
+
+
             case R.id.text_share:
                 ShareUtils.showShare(this, view);
                 break;
@@ -200,16 +224,16 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         if (APP.isLogin(this)) {
             Map<String, String> map = OkHttpUtil.getFromMap(this);
             map.put("contentId", videoId);
-            String url=UrlUtil.COLLECTION;
+            String url = UrlUtil.COLLECTION;
             map.put("contentType", "video");
             if ("false".equals(videoDetailResponse.getCollection())) {
                 map.put("contentId", videoId);
-            }else{
+            } else {
                 map.put("contentIds", videoId);
-                url=UrlUtil.COLLECTIONCANCEL;
+                url = UrlUtil.COLLECTIONCANCEL;
             }
             map.put("userCode", APP.getUser(this).getUserCode());
-            OkHttpUtil.doPost(this,url , map, new CallBack() {
+            OkHttpUtil.doPost(this, url, map, new CallBack() {
                 @Override
                 public void onSuccess(Object o) {
                     dissPross();
@@ -223,7 +247,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
 
                 @Override
                 public void onError(String s) {
-                    T.show(VideoDetailActivity.this,s);
+                    T.show(VideoDetailActivity.this, s);
                 }
             }, NUllValueResponse.class);
         }
@@ -292,4 +316,43 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
             }
         }, VideoDetailResponse.class);
     }
+
+    public void addFollow() {
+        if (APP.isLogin(this)) {
+            Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
+            map.put("publisherId", authorId);
+            OkHttpUtil.doPost(this, UrlUtil.FOLLOWPUBLISHER, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+                    T.show(VideoDetailActivity.this, "关注成功");
+                    text_shoucang.setText("已关注");
+                }
+
+                @Override
+                public void onError(String s) {
+                    T.show(VideoDetailActivity.this, s);
+                }
+            }, NUllValueResponse.class);
+        }
+
+
+    }
+
+    public void addNum() {
+        Map<String, String> map = OkHttpUtil.getFromMap(this);
+        map.put("playNum", "1");
+        map.put("videoId", videoId);
+        OkHttpUtil.doPost(this, UrlUtil.VIDEOUPDATE, map, new CallBack() {
+            @Override
+            public void onSuccess(Object o) {
+            }
+
+            @Override
+            public void onError(String s) {
+            }
+        }, NUllValueResponse.class);
+
+
+    }
+
 }
