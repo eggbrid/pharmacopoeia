@@ -55,25 +55,40 @@
         android:layout_marginTop="7dp"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/text_collent"
+
+        <LinearLayout
+            android:id="@+id/line3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="13dp"
-            android:drawableLeft="@drawable/shoucang"
-            android:drawablePadding="5dp"
-            android:paddingBottom="3dp"
-            android:paddingTop="3dp"
-            android:text="345"
-            android:textColor="@color/c_999999"
-            android:textSize="@dimen/text_24px" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_collent"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/shoucang" />
+
+
+            <TextView
+                android:id="@+id/text_collent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="13dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
+                android:text="345"
+                android:textColor="@color/c_999999"
+                android:textSize="@dimen/text_24px" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/text_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="13dp"
-            android:layout_toRightOf="@+id/text_collent"
+            android:layout_toRightOf="@+id/line3"
             android:drawableLeft="@drawable/comment"
             android:drawablePadding="5dp"
             android:paddingBottom="3dp"

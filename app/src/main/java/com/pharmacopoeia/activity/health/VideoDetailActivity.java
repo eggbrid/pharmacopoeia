@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.pharmacopoeia.APP;
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.TestData;
+import com.pharmacopoeia.activity.main.ResetPasswordActivity;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.bean.model.Commentbean;
@@ -59,6 +60,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
     private TextView text_video_name, text_collent, text_comment, text_share, text_play, text_shoucang, text_user, text_select;
     private VideoDetailResponse videoDetailResponse;
     private EditText ed_comment;
+    private ImageView image_collent;
 
     @Override
     public int setContentView() {
@@ -97,9 +99,9 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         text_user = (TextView) view.findViewById(R.id.text_user);
         text_select = (TextView) view.findViewById(R.id.text_select);
         text_video_name = (TextView) view.findViewById(R.id.text_video_name);
+        image_collent = (ImageView) view.findViewById(R.id.image_collent);
         image = (ImageView) view.findViewById(R.id.image);
-
-        text_collent.setOnClickListener(this);
+        view.findViewById(R.id.line3).setOnClickListener(this);
         text_share.setOnClickListener(this);
         videoplayer = (JCVideoPlayerStandard) view.findViewById(R.id.videoplayer);
         list.addHeaderView(view);
@@ -136,13 +138,11 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
 
     public void setConllection() {
         if ("false".equals(videoDetailResponse.getCollection())) {
-            Drawable drawable = getResources().getDrawable(R.drawable.shoucang);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            text_collent.setCompoundDrawables(drawable, null, null, null);
+
+            image_collent.setBackgroundResource(R.drawable.shoucang);
         } else {
-            Drawable drawable = getResources().getDrawable(R.drawable.shoucang_nomal);
-            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-            text_collent.setCompoundDrawables(drawable, null, null, null);
+
+            image_collent.setBackgroundResource(R.drawable.shoucang_nomal);
         }
     }
 
@@ -186,7 +186,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
                 }
                 addComent(ed_comment.getText().toString());
                 break;
-            case R.id.text_collent:
+            case R.id.line3:
                 addCollection();
                 break;
             case R.id.text_share:
@@ -200,12 +200,19 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
         if (APP.isLogin(this)) {
             Map<String, String> map = OkHttpUtil.getFromMap(this);
             map.put("contentId", videoId);
+            String url=UrlUtil.COLLECTION;
             map.put("contentType", "video");
+            if ("false".equals(videoDetailResponse.getCollection())) {
+                map.put("contentId", videoId);
+            }else{
+                map.put("contentIds", videoId);
+                url=UrlUtil.COLLECTIONCANCEL;
+            }
             map.put("userCode", APP.getUser(this).getUserCode());
-            OkHttpUtil.doPost(this, UrlUtil.COLLECTION, map, new CallBack() {
+            OkHttpUtil.doPost(this,url , map, new CallBack() {
                 @Override
                 public void onSuccess(Object o) {
-
+                    dissPross();
                     if ("false".equals(videoDetailResponse.getCollection())) {
                         videoDetailResponse.setCollection("true");
                     } else {
@@ -216,7 +223,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
 
                 @Override
                 public void onError(String s) {
-
+                    T.show(VideoDetailActivity.this,s);
                 }
             }, NUllValueResponse.class);
         }
