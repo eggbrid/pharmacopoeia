@@ -21,10 +21,12 @@ import com.pharmacopoeia.activity.me.adapter.ActicleAdapter;
 import com.pharmacopoeia.base.BaseFragment;
 import com.pharmacopoeia.base.BaseLazyFragment;
 import com.pharmacopoeia.bean.cache.User;
+import com.pharmacopoeia.bean.model.Commentbean;
 import com.pharmacopoeia.bean.model.HealthContentArticleBean;
 import com.pharmacopoeia.bean.reponse.VideoListResponse;
 import com.pharmacopoeia.interfaces.views.RefreshListener;
 import com.pharmacopoeia.util.IntentUtils;
+import com.pharmacopoeia.util.T;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
@@ -73,6 +75,26 @@ public class ActicleCollectionFragment extends BaseLazyFragment implements Refre
         btn_delete = (TextView) rootView.findViewById(R.id.btn_delete);
         list.setOnItemClickListener(this);
         refresh = (RefreshLayout) rootView.findViewById(R.id.refresh);
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s="";
+                for (HealthContentArticleBean healthContentArticleBean:lists){
+                    if (healthContentArticleBean.isChecked()){
+                        s=s+healthContentArticleBean.getArticleId()+",";
+                    }
+                }
+                if (!TextUtils.isEmpty(s)){
+                    s=  s.substring(0,s.length()-1);
+                    quxiaoshoucang(s, "article");
+
+                }else{
+                    adapter.setDelete();
+                    btn_delete.setVisibility(adapter.isDelete() ? View.VISIBLE : View.GONE);
+                }
+
+            }
+        });
     }
 
 
@@ -137,5 +159,27 @@ public class ActicleCollectionFragment extends BaseLazyFragment implements Refre
                 }
             }
         }, HealthContentArticleBean.class);
+    }
+
+
+    public void quxiaoshoucang(String ids, String type) {
+        if (APP.isLogin(getActivity())) {
+            Map<String, String> map = OkHttpUtil.getLoginFromMap(getActivity());
+            map.put("contentIds", ids);
+            map.put("contentType", type);
+            OkHttpUtil.doPost(getActivity(), UrlUtil.COLLECTIONCANCEL, map, new CallBack() {
+                @Override
+                public void onSuccess(Object o) {
+                    T.show(getActivity(), "取消收藏成功");
+                    onRefresh();
+                }
+
+                @Override
+                public void onError(String s) {
+
+                    T.show(getActivity(), s);
+                }
+            }, Commentbean.class);
+        }
     }
 }

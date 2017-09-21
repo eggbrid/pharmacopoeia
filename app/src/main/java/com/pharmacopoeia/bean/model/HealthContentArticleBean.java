@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class HealthContentArticleBean {
 
-//    private String id;
+    //    private String id;
 //    private String name;
     private String url;
 //    private String userName;
@@ -24,6 +24,15 @@ public class HealthContentArticleBean {
     private String articleView;// 0,
     private String createTime;//2017-07-13 23:30
     private String lastTime;//2017-08-29 01:46:17 private String
+    private boolean isChecked;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 
     public String getPicUrl() {
         return picUrl;

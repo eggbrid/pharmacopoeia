@@ -23,6 +23,15 @@ public class VideoListResponse {
     private String concerned;// false,
     private String createTime;//2017-8-14 15:23:53
     private String lastTime;//2017-8-14 15:23:53private String
+    private boolean isChecked;
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
 
     public String getVideoId() {
         return videoId;

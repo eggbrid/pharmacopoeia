@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,22 +45,31 @@ public class ActicleAdapter extends PBaseAdapter<HealthContentArticleBean, Actic
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup, final ViewHolder viewHolder) {
+    public View getView(final int i, View view, ViewGroup viewGroup, final ViewHolder viewHolder) {
         HealthContentArticleBean healthContentArticleBean = list.get(i);
         viewHolder.textName.setText(healthContentArticleBean.getArticleTitle());
         viewHolder.textUser.setText(healthContentArticleBean.getAuthorName());
         viewHolder.textSelect.setText(healthContentArticleBean.getArticleView());
         ImageLoaderUtil.getInstance().loadNomalImage(healthContentArticleBean.getPicUrl(), viewHolder.image);
         setFlowlayout(viewHolder.tagFlowLayout, healthContentArticleBean.getTags());
-        viewHolder.delete.setVisibility(isDelete?View.VISIBLE:View.GONE);
+        viewHolder.delete.setVisibility(isDelete ? View.VISIBLE : View.GONE);
+        viewHolder.delete.setChecked(list.get(i).isChecked());
+        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.get(i).setChecked(!list.get(i).isChecked());
+                notifyDataSetChanged();
+            }
+        });
         return view;
     }
+
     public void setFlowlayout(final TagFlowLayout flowlayout, String tage) {
-        if (!TextUtils.isEmpty(tage)){
+        if (!TextUtils.isEmpty(tage)) {
             flowlayout.setVisibility(View.VISIBLE);
 
-            ArrayList<String> list=new ArrayList<String>();
-            Collections.addAll(list,tage.split(","));
+            ArrayList<String> list = new ArrayList<String>();
+            Collections.addAll(list, tage.split(","));
             flowlayout.setAdapter(new TagAdapter<String>(list) {
                 @Override
                 public View getView(FlowLayout parent, int position, String s) {
@@ -68,12 +78,13 @@ public class ActicleAdapter extends PBaseAdapter<HealthContentArticleBean, Actic
                     return tv;
                 }
             });
-        }else{
+        } else {
             flowlayout.setVisibility(View.GONE);
         }
     }
+
     @Override
-    public ActicleAdapter.ViewHolder setViewHolder(View view,int pos) {
+    public ActicleAdapter.ViewHolder setViewHolder(View view, int pos) {
         return new ViewHolder(view);
     }
 

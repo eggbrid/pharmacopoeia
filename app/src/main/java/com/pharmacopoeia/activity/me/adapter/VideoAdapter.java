@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class VideoAdapter extends PBaseAdapter<VideoListResponse, VideoAdapter.V
     public VideoAdapter(Context context, List<VideoListResponse> list) {
         super(context, list);
     }
+
     public boolean isDelete() {
         return isDelete;
     }
@@ -38,23 +40,30 @@ public class VideoAdapter extends PBaseAdapter<VideoListResponse, VideoAdapter.V
         notifyDataSetChanged();
     }
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup, ViewHolder viewHolder) {
+    public View getView(final int i, View view, ViewGroup viewGroup, ViewHolder viewHolder) {
         VideoListResponse healthContentVideoBean = list.get(i);
         viewHolder.textUser.setText(healthContentVideoBean.getAuthorName());
-        viewHolder.playNum.setText(healthContentVideoBean.getPlayNum()+"次播放");
+        viewHolder.playNum.setText(healthContentVideoBean.getPlayNum() + "次播放");
         viewHolder.videoplayer.setUp(healthContentVideoBean.getVideoUrl()
                 , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, healthContentVideoBean.getVideoTitle());
         ImageLoaderUtil.getInstance().loadNomalImage(healthContentVideoBean.getVideoPic(), viewHolder.videoplayer.thumbImageView);
-        viewHolder.delete.setVisibility(isDelete?View.VISIBLE:View.GONE);
+        viewHolder.delete.setVisibility(isDelete ? View.VISIBLE : View.GONE);
         viewHolder.collectNum.setText(healthContentVideoBean.getCollectNum());
         viewHolder.commentNum.setText(healthContentVideoBean.getCommentNum());
         viewHolder.shareNum.setText(healthContentVideoBean.getShareNum());
-
+            viewHolder.delete.setChecked(list.get(i).isChecked());
+        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.get(i).setChecked(!list.get(i).isChecked());
+                notifyDataSetChanged();
+            }
+        });
         return view;
     }
 
     @Override
-    public ViewHolder setViewHolder(View view,int pos) {
+    public ViewHolder setViewHolder(View view, int pos) {
         return new ViewHolder(view);
     }
 
@@ -69,7 +78,7 @@ public class VideoAdapter extends PBaseAdapter<VideoListResponse, VideoAdapter.V
         private ImageView image;
         private JCVideoPlayerStandard videoplayer;
         private CheckBox delete;
-        private TextView collectNum, commentNum,shareNum;
+        private TextView collectNum, commentNum, shareNum;
 
         public ViewHolder(View root) {
             super(root);
