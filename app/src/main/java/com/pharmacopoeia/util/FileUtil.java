@@ -29,7 +29,7 @@ public class FileUtil {
 
     public static String getCacheSize() {
         String size = "0k";
-        size = getFormatSize(getFolderSize(new File(SDCardUtils.getSDCardPath())));
+        size = getFormatSize(getFolderSize(new File("Android/data/com.com.pharmacopoeia/files/cache/img/")));
         return size;
     }
 

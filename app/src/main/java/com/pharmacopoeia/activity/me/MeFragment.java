@@ -186,7 +186,7 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
                 IntentUtils.openActivity(getActivity(), AddressListActivity.class);
                 break;
             case R.id.my_about:
-//                IntentUtils.openActivity(getActivity(), SymptomResultActivity.class);
+                IntentUtils.openActivity(getActivity(), AboutActivity.class);
                 break;
         }
 

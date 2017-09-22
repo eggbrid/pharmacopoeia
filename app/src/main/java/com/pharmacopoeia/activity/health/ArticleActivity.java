@@ -329,7 +329,7 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
     }
 
     public void getData() {
-        Map<String, String> map = OkHttpUtil.getFromMap(this);
+        Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
         map.put("articleId", id);
         OkHttpUtil.doPost(this, UrlUtil.ARTICLEDETAIL, map, new CallBack() {
             @Override

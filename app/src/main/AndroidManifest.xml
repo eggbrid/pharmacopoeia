@@ -134,14 +134,20 @@
         <activity
             android:name=".activity.health.OnLineDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.recuperate.InfoEditActivity"
+        <activity
+            android:name=".activity.recuperate.InfoEditActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.recuperate.QuestionnaireActivity"
+        <activity
+            android:name=".activity.recuperate.QuestionnaireActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.WebViewActivity"
+        <activity
+            android:name=".activity.WebViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.me.AddressListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.me.AboutActivity"
             android:screenOrientation="portrait" />
 
         <!-- Required SDK 核心功能-->
