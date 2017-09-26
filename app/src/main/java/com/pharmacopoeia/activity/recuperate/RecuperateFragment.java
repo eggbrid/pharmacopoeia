@@ -88,7 +88,7 @@ public class RecuperateFragment extends BaseLazyFragment {
 
                     if (TextUtils.isEmpty(women.getItem(position).getContent())) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("id", women.getItem(position).getId());
+                        bundle.putString("id", women.getItem(position).getOid());
                         IntentUtils.openActivity(getActivity(), InfoEditActivity.class, bundle);
                     } else {
                         new RecuperateDialog(getActivity(), women.getItem(position).getContent(), women.getItem(position).getId()).show();
@@ -102,7 +102,7 @@ public class RecuperateFragment extends BaseLazyFragment {
                 if (APP.isLogin(getActivity())) {
                     if (TextUtils.isEmpty(child.getItem(position).getContent())) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("id", women.getItem(position).getId());
+                        bundle.putString("id", women.getItem(position).getOid());
                         IntentUtils.openActivity(getActivity(), InfoEditActivity.class, bundle);
                     } else {
                         new RecuperateDialog(getActivity(), child.getItem(position).getContent(), child.getItem(position).getId()).show();
