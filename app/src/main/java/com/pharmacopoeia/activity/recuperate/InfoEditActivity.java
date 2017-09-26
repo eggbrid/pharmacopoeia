@@ -19,6 +19,7 @@ import com.pharmacopoeia.R;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.reponse.LoginResponse;
 import com.pharmacopoeia.bean.reponse.QuestionResponse;
+import com.pharmacopoeia.bean.reponse.RegisterResponse;
 import com.pharmacopoeia.util.IntentUtils;
 import com.pharmacopoeia.util.NomalWheel;
 import com.pharmacopoeia.util.NomalWheelUtil;
@@ -221,9 +222,12 @@ public class InfoEditActivity extends CommentActivity implements View.OnClickLis
         OkHttpUtil.doPost(this, UrlUtil.ADDUSER, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
+                RegisterResponse registerResponse=(RegisterResponse)o;
                 dissPross();
                 Bundle bundle = new Bundle();
                 bundle.putString("id", id);
+                bundle.putString("userCode", registerResponse.getUserCode());
+
                 IntentUtils.openActivity(InfoEditActivity.this, QuestionnaireActivity.class, bundle);
                 InfoEditActivity.this.finish();
             }
@@ -233,7 +237,7 @@ public class InfoEditActivity extends CommentActivity implements View.OnClickLis
                 dissPross();
                 T.show(InfoEditActivity.this, s);
             }
-        }, LoginResponse.class);
+        }, RegisterResponse.class);
 
 
     }

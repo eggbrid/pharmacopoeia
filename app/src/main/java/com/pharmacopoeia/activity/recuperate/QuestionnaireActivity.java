@@ -50,7 +50,7 @@ public class QuestionnaireActivity extends CommentActivity {
     private QuestionResponse questionResponse;
     private String id;
     private TextView next;
-
+private String userCode;
     @Override
     public int setContentView() {
         return R.layout.recuperate_questionnaire_activity;
@@ -59,6 +59,7 @@ public class QuestionnaireActivity extends CommentActivity {
     @Override
     public void initView() throws Exception {
         id = getIntent().getStringExtra("id");
+        userCode= getIntent().getStringExtra("userCode");
         list = (CustomListView) findViewById(R.id.list);
         view = (LinearLayout) findViewById(R.id.view);
         scroll = (ScrollView) findViewById(R.id.scroll);
@@ -71,6 +72,10 @@ public class QuestionnaireActivity extends CommentActivity {
                 Bundle bundle=new Bundle();
                 bundle.putString("oid",id);
                 bundle.putString("answerJson",answerJson);
+                bundle.putString("userCode",userCode);
+
+
+
                 IntentUtils.openActivity(QuestionnaireActivity.this, SymptomResultActivity.class,bundle);
             }
         });

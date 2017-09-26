@@ -6,9 +6,19 @@ package com.pharmacopoeia.bean.model;
 
 public class RecuperateModel {
     private String id;
+    private String oid;
+
     private String type2Name;
     private String type2LogoUrl;
     private String content;
+
+    public String getOid() {
+        return oid;
+    }
+
+    public void setOid(String oid) {
+        this.oid = oid;
+    }
 
     public String getContent() {
         return content;

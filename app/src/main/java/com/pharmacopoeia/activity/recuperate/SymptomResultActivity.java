@@ -35,7 +35,7 @@ public class SymptomResultActivity extends CommentActivity {
 
     private ScrollView scrollView;
     private TextView text_name, text_symptom;
-
+    private String    userCode;
     private CustomListView list;
 
     @Override
@@ -51,6 +51,7 @@ public class SymptomResultActivity extends CommentActivity {
             resultId = getIntent().getStringExtra("resultId");
         } else {
             isHistoty = false;
+            userCode=getIntent().getStringExtra("userCode");
             oid = getIntent().getStringExtra("oid");
             answerJson = getIntent().getStringExtra("answerJson");
 
@@ -80,8 +81,7 @@ public class SymptomResultActivity extends CommentActivity {
         Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
         map.put("oid", oid);
         map.put("answerJson", answerJson);
-
-
+        map.put("userCode", userCode);
         OkHttpUtil.doPost(this, UrlUtil.ANSWER, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {

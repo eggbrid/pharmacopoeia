@@ -72,7 +72,7 @@ public class RecuperateFragment extends BaseLazyFragment {
 
                     if (TextUtils.isEmpty(normal.getItem(position).getContent())) {
                         Bundle bundle = new Bundle();
-                        bundle.putString("id", women.getItem(position).getId());
+                        bundle.putString("id", women.getItem(position).getOid());
                         IntentUtils.openActivity(getActivity(), InfoEditActivity.class, bundle);
                     } else {
                         new RecuperateDialog(getActivity(), normal.getItem(position).getContent(), normal.getItem(position).getId()).show();
