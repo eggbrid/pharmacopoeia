@@ -192,6 +192,7 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
                 viewHolder.cq2.setOnCheckedChangeListener(onCheckedChangeListener4);
                 viewHolder.cq3.setOnCheckedChangeListener(onCheckedChangeListener4);
                 viewHolder.cq4.setOnCheckedChangeListener(onCheckedChangeListener4);
+
                 break;
             case RADIOQ1:
                 viewHolder.rq1.setText(questionnaireModel.getQ1());
