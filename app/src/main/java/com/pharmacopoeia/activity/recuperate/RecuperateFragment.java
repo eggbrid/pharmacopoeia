@@ -75,7 +75,7 @@ public class RecuperateFragment extends BaseLazyFragment {
                         bundle.putString("id", women.getItem(position).getOid());
                         IntentUtils.openActivity(getActivity(), InfoEditActivity.class, bundle);
                     } else {
-                        new RecuperateDialog(getActivity(), normal.getItem(position).getContent(), normal.getItem(position).getId()).show();
+                        new RecuperateDialog(getActivity(), normal.getItem(position).getContent(), normal.getItem(position).getOid()).show();
 
                     }
                 }
@@ -91,7 +91,7 @@ public class RecuperateFragment extends BaseLazyFragment {
                         bundle.putString("id", women.getItem(position).getOid());
                         IntentUtils.openActivity(getActivity(), InfoEditActivity.class, bundle);
                     } else {
-                        new RecuperateDialog(getActivity(), women.getItem(position).getContent(), women.getItem(position).getId()).show();
+                        new RecuperateDialog(getActivity(), women.getItem(position).getContent(), women.getItem(position).getOid()).show();
                     }
                 }
             }
@@ -105,7 +105,7 @@ public class RecuperateFragment extends BaseLazyFragment {
                         bundle.putString("id", women.getItem(position).getOid());
                         IntentUtils.openActivity(getActivity(), InfoEditActivity.class, bundle);
                     } else {
-                        new RecuperateDialog(getActivity(), child.getItem(position).getContent(), child.getItem(position).getId()).show();
+                        new RecuperateDialog(getActivity(), child.getItem(position).getContent(), child.getItem(position).getOid()).show();
                     }
                 }
             }

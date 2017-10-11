@@ -160,7 +160,7 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
                     }else{
                         Bundle bundle2=new Bundle();
                         bundle2.putString("resultId",myRecuperateID);
-                        IntentUtils.openActivity(getActivity(),SymptomResultActivity.class);
+                        IntentUtils.openActivity(getActivity(),SymptomResultActivity.class,bundle2);
 
                     }
                 }
@@ -172,8 +172,8 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
                         IntentUtils.openActivity(getActivity(),RecuperateActivity.class);
                     }else{
                         Bundle bundle2=new Bundle();
-                        bundle2.putString("resultId",myRecuperateID);
-                        IntentUtils.openActivity(getActivity(),SymptomResultActivity.class);
+                        bundle2.putString("resultId",myManageID);
+                        IntentUtils.openActivity(getActivity(),SymptomResultActivity.class,bundle2);
                     }
                 }
                 break;

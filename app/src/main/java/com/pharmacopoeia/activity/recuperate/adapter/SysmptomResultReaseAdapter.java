@@ -1,6 +1,8 @@
 package com.pharmacopoeia.activity.recuperate.adapter;
 
 import android.content.Context;
+import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +34,12 @@ public class SysmptomResultReaseAdapter extends PBaseAdapter<ResultTabBean, Sysm
         if (!resultTabBean.isSelect()) {
             viewHolder.image_res.setBackgroundResource(R.drawable.up_icon);
             viewHolder.text_comment.setVisibility(View.VISIBLE);
-            viewHolder.text_comment.setText(resultTabBean.getTabContent());
+            if (!TextUtils.isEmpty(resultTabBean.getTabContent())){
+                viewHolder.text_comment.setText(Html.fromHtml(resultTabBean.getTabContent()));
+            }else{
+                viewHolder.text_comment.setText("");
+
+            }
         } else {
             viewHolder.image_res.setBackgroundResource(R.drawable.down_icon);
             viewHolder.text_comment.setVisibility(View.GONE);

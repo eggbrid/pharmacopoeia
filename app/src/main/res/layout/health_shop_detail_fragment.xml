@@ -110,6 +110,7 @@
                 android:background="@color/line" />
 
             <TextView
+                android:id="@+id/p_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -129,15 +130,29 @@
                 android:dividerHeight="0dp"></com.pharmacopoeia.view.CustomListView>
 
 
-            <include layout="@layout/health_shop_detail_from_fragment_item" />
+            <include
+                android:id="@+id/health_shop_detail_from_fragment_item"
+                layout="@layout/health_shop_detail_from_fragment_item" />
 
-            <include layout="@layout/health_shop_detail_method_fragment_item" />
+            <include
+                android:id="@+id/health_shop_detail_method_fragment_item"
 
-            <include layout="@layout/health_shop_detail_element_fragment_item" />
+                layout="@layout/health_shop_detail_method_fragment_item" />
 
-            <include layout="@layout/health_shop_detail_people_fragment_item" />
+            <include
+                android:id="@+id/health_shop_detail_element_fragment_item"
 
-            <include layout="@layout/health_shop_detail_video_fragment_item" />
+                layout="@layout/health_shop_detail_element_fragment_item" />
+
+            <include
+                android:id="@+id/health_shop_detail_people_fragment_item"
+
+                layout="@layout/health_shop_detail_people_fragment_item" />
+
+            <include
+                android:id="@+id/health_shop_detail_video_fragment_item"
+
+                layout="@layout/health_shop_detail_video_fragment_item" />
 
         </LinearLayout>
     </ScrollView>

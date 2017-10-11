@@ -30,6 +30,24 @@ public class ShopDetailResponse {
     private String lastTime;
     private List<ShopPropertiesModel> properties;
     private List<Commentbean> commentList;
+    private String videoUrl;
+    private String videoPic;
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getVideoPic() {
+        return videoPic;
+    }
+
+    public void setVideoPic(String videoPic) {
+        this.videoPic = videoPic;
+    }
 
     public List<Commentbean> getCommentList() {
         return commentList;

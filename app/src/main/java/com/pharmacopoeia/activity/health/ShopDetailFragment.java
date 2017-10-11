@@ -2,6 +2,7 @@ package com.pharmacopoeia.activity.health;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,9 +44,10 @@ public class ShopDetailFragment extends BaseLazyFragment {
     private CustomListView list;
     private CustomGridView grid_view;
     private ImageView shop_image, image_user, image_from, image_element, image_people, image_method;//商品照片,评论用户头像，处方来源,成分，适用人群,视频照片 食用方法
+    private View health_shop_detail_from_fragment_item, health_shop_detail_method_fragment_item, health_shop_detail_element_fragment_item, health_shop_detail_people_fragment_item, health_shop_detail_video_fragment_item;//商品照片,评论用户头像，处方来源,成分，适用人群,视频照片 食用方法
 
 
-    private TextView text_name, text_comment, time;//評論人,评论内容,时间
+    private TextView text_name, text_comment, time,p_info;//評論人,评论内容,时间
 
     private JCVideoPlayerStandard videoplayer;
     private ShopDetailMethodAdapter shopDetailMethodAdapter;
@@ -72,13 +74,20 @@ public class ShopDetailFragment extends BaseLazyFragment {
         shop_name = (TextView) mView.findViewById(R.id.shop_name);
         image_method = (ImageView) mView.findViewById(R.id.image_method);
         lin_com = mView.findViewById(R.id.lin_com);
-
+        p_info= (TextView) mView.findViewById(R.id.p_info);
         text_name = (TextView) mView.findViewById(R.id.text_name);
         text_comment = (TextView) mView.findViewById(R.id.text_comment);
         time = (TextView) mView.findViewById(R.id.time);
 
         text_tags = (TextView) mView.findViewById(R.id.text_tags);
         videoplayer = (JCVideoPlayerStandard) mView.findViewById(R.id.videoplayer);
+
+        health_shop_detail_from_fragment_item = mView.findViewById(R.id.health_shop_detail_from_fragment_item);
+        health_shop_detail_method_fragment_item = mView.findViewById(R.id.health_shop_detail_method_fragment_item);
+        health_shop_detail_element_fragment_item = mView.findViewById(R.id.health_shop_detail_element_fragment_item);
+        health_shop_detail_people_fragment_item = mView.findViewById(R.id.health_shop_detail_people_fragment_item);
+        health_shop_detail_video_fragment_item = mView.findViewById(R.id.health_shop_detail_video_fragment_item);
+
         return mView;
 
     }
@@ -116,7 +125,8 @@ public class ShopDetailFragment extends BaseLazyFragment {
         ImageLoaderUtil.getInstance().loadNomalImage(res.getItemPic(), shop_image);
 
         if (res.getCommentList() != null && res.getCommentList().size() != 0) {
-            ImageLoaderUtil.getInstance().loadCircleImage("http://img2.imgtn.bdimg.com/it/u=1573684747,549798751&fm=26&gp=0.jpg", image_user);
+//            ImageLoaderUtil.getInstance().loadCircleImage("", image_user);
+            image_user.setImageResource(R.drawable.default_avatar);
             lin_com.setVisibility(View.VISIBLE);
             Commentbean commentbean = res.getCommentList().get(0);
             text_name.setText(commentbean.getNickName());
@@ -126,16 +136,47 @@ public class ShopDetailFragment extends BaseLazyFragment {
             lin_com.setVisibility(View.GONE);
         }
 
+        if (TextUtils.isEmpty(res.getPresSourcePic())) {
+            health_shop_detail_from_fragment_item.setVisibility(View.GONE);
+        } else {
+            health_shop_detail_from_fragment_item.setVisibility(View.VISIBLE);
+            ImageLoaderUtil.getInstance().loadNomalImage(res.getPresSourcePic(), image_from);
+        }
+        health_shop_detail_people_fragment_item = mView.findViewById(R.id.health_shop_detail_people_fragment_item);
+        if (TextUtils.isEmpty(res.getConstituentPic())) {
+            health_shop_detail_method_fragment_item.setVisibility(View.GONE);
+        } else {
+            health_shop_detail_method_fragment_item.setVisibility(View.VISIBLE);
+            ImageLoaderUtil.getInstance().loadNomalImage(res.getConstituentPic(), image_element);
+        }
+        if (TextUtils.isEmpty(res.getEdibleMethodPic())) {
+            health_shop_detail_element_fragment_item.setVisibility(View.GONE);
+        } else {
+            health_shop_detail_element_fragment_item.setVisibility(View.VISIBLE);
+            ImageLoaderUtil.getInstance().loadNomalImage(res.getEdibleMethodPic(), image_method);
+        }
+        if (TextUtils.isEmpty(res.getForPeoplePic())) {
+            health_shop_detail_people_fragment_item.setVisibility(View.GONE);
+        } else {
+            health_shop_detail_people_fragment_item.setVisibility(View.VISIBLE);
+            ImageLoaderUtil.getInstance().loadNomalImage(res.getForPeoplePic(), image_people);
+        }
+        if (TextUtils.isEmpty(res.getVideoUrl())) {
 
-        ImageLoaderUtil.getInstance().loadNomalImage(res.getPresSourcePic(), image_from);
-        ImageLoaderUtil.getInstance().loadNomalImage(res.getConstituentPic(), image_element);
-        ImageLoaderUtil.getInstance().loadNomalImage(res.getForPeoplePic(), image_people);
-        ImageLoaderUtil.getInstance().loadNomalImage(res.getEdibleMethodPic(), image_method);
+            health_shop_detail_video_fragment_item.setVisibility(View.GONE);
+        } else {
+            videoplayer.setUp(res.getVideoUrl()
+                    , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+            JCVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+            ImageLoaderUtil.getInstance().loadNomalImage(res.getVideoPic(), videoplayer.thumbImageView);
+            health_shop_detail_video_fragment_item.setVisibility(View.VISIBLE);
+        }
 
-        videoplayer.setUp("http://mvideo.spriteapp.cn/video/2017/0629/d5c26b9c-5c92-11e7-a4e7-1866daeb0df1cut_wpc.mp4"
-                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
-        JCVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
-        ImageLoaderUtil.getInstance().loadNomalImage("http://img1.imgtn.bdimg.com/it/u=3070256308,1996322359&fm=11&gp=0.jpg", videoplayer.thumbImageView);
+
+//        videoplayer.setUp("http://mvideo.spriteapp.cn/video/2017/0629/d5c26b9c-5c92-11e7-a4e7-1866daeb0df1cut_wpc.mp4"
+//                , JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL, "");
+//        JCVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
+//        ImageLoaderUtil.getInstance().loadNomalImage("http://img1.imgtn.bdimg.com/it/u=3070256308,1996322359&fm=11&gp=0.jpg", videoplayer.thumbImageView);
 
 //        setGridView();
         setExplain(res);
@@ -147,16 +188,16 @@ public class ShopDetailFragment extends BaseLazyFragment {
         getData();
     }
 
-    public void setGridView() {
-        shopDetailMethodAdapter = new ShopDetailMethodAdapter(getContext(), null);
-        grid_view.setAdapter(shopDetailMethodAdapter);
-        List<String> arrayList = new ArrayList<>();
-        arrayList.add("http://img1.imgtn.bdimg.com/it/u=3070256308,1996322359&fm=11&gp=0.jpg");
-        arrayList.add("http://img4.imgtn.bdimg.com/it/u=2391873113,657542441&fm=26&gp=0.jpg");
-        arrayList.add("http://img4.imgtn.bdimg.com/it/u=2581142571,991828975&fm=26&gp=0.jpg");
-        shopDetailMethodAdapter.setList(arrayList);
-        shopDetailMethodAdapter.notifyDataSetChanged();
-    }
+//    public void setGridView() {
+//        shopDetailMethodAdapter = new ShopDetailMethodAdapter(getContext(), null);
+//        grid_view.setAdapter(shopDetailMethodAdapter);
+//        List<String> arrayList = new ArrayList<>();
+//        arrayList.add("http://img1.imgtn.bdimg.com/it/u=3070256308,1996322359&fm=11&gp=0.jpg");
+//        arrayList.add("http://img4.imgtn.bdimg.com/it/u=2391873113,657542441&fm=26&gp=0.jpg");
+//        arrayList.add("http://img4.imgtn.bdimg.com/it/u=2581142571,991828975&fm=26&gp=0.jpg");
+//        shopDetailMethodAdapter.setList(arrayList);
+//        shopDetailMethodAdapter.notifyDataSetChanged();
+//    }
 
 
     public void setExplain(ShopDetailResponse res) {
@@ -184,6 +225,11 @@ public class ShopDetailFragment extends BaseLazyFragment {
             }
             shopDetailExplainAdapter.setList(arrList);
             shopDetailExplainAdapter.notifyDataSetChanged();
+            p_info.setVisibility(View.VISIBLE);
+            list.setVisibility(View.VISIBLE);
+        }else{
+            p_info.setVisibility(View.GONE);
+            list.setVisibility(View.GONE);
         }
     }
 
