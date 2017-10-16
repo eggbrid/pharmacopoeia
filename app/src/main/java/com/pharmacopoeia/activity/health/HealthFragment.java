@@ -253,6 +253,9 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
     }
 
     private void getData(final boolean refre) {
+        if (refre) {
+            pageNum = 1;
+        }
 
         Map<String, String> map = OkHttpUtil.getFromMap(mContext);
         map.put("pageNum", pageNum + "");
@@ -260,9 +263,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
         OkHttpUtil.doPost(getActivity(), UrlUtil.HOME, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
-                if (refre) {
-                    pageNum = 1;
-                }
+
 
                 List<HealthResponse> res = (ArrayList<HealthResponse>) o;
 
@@ -288,6 +289,9 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
                         SharedUtil.saveString("app_bottom_pic",OkHttpUtil.getHomeBottomModel().getBottomPic());
 
                     }
+                }else{
+                    mPullRefreshListView.setPullLoadEnable(true);
+
                 }
             }
 

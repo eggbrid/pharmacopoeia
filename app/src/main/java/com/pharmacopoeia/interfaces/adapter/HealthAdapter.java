@@ -198,7 +198,7 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
         if (view == null) {
             // 说明当前这一行不是重用的
             // 加载行布局文件，产生具体的一行
-            view = setView(type, view);
+            view = setView(type, view,parent);
             // 创建存储一行控件的对象
             switch (type) {
                 case Item.SECTION:
@@ -412,22 +412,30 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
         });
     }
 
-    public View setView(int type, View view) {
+    public View setView(int type, View view,ViewGroup parent) {
         switch (type) {
             case Item.SECTION:
-                view = View.inflate(context, R.layout.health_fragment_item, null);
+                view = LayoutInflater.from(context).inflate(R.layout.health_fragment_item, parent,false);
                 break;
             case Item.ITEM:
-                view = View.inflate(context, R.layout.health_fragment_content, null);
+                view = LayoutInflater.from(context).inflate(R.layout.health_fragment_content, parent,false);
+
+//                view = View.inflate(context, R.layout.health_fragment_content, null);
                 break;
             case Item.CAROUSEL:
-                view = View.inflate(context, R.layout.health_fragment_carousel, null);
+                view = LayoutInflater.from(context).inflate(R.layout.health_fragment_carousel, parent,false);
+
+//                view = View.inflate(context, R.layout.health_fragment_carousel, null);
                 break;
             case Item.VIDEO:
-                view = View.inflate(context, R.layout.health_fragment_video, null);
+                view = LayoutInflater.from(context).inflate(R.layout.health_fragment_video, parent,false);
+
+//                view = View.inflate(context, R.layout.health_fragment_video, null);
                 break;
             case Item.SHOP:
-                view = View.inflate(context, R.layout.health_fragment_shop, null);
+                view = LayoutInflater.from(context).inflate(R.layout.health_fragment_shop, parent,false);
+
+//                view = View.inflate(context, R.layout.health_fragment_shop, null);
                 break;
         }
         return view;
