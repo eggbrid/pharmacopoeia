@@ -367,6 +367,8 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
                     rg = (RadioGroup) root.findViewById(R.id.rg);
                     title = (TextView) root.findViewById(R.id.title);
                     cq1 = (CheckBox) root.findViewById(R.id.q1);
+                    cq2 = (CheckBox) root.findViewById(R.id.q2);
+
                     break;
                 case CHECKBOXQ3:
                     rg = (RadioGroup) root.findViewById(R.id.rg);
