@@ -22,7 +22,7 @@ android {
                         //hostIP       : "http://120.27.40.138:20080/",
                         name  : "debug",
                         JPUSH_PKGNAME : "com.pharmacopoeia",
-                        JPUSH_APPKEY : "458c4cee1407d96cac2858df", //JPush上注册的包名对应的appkey.
+                        JPUSH_APPKEY : "1df7b5699f09794d27508ee6", //JPush上注册的包名对应的appkey.
                         JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
 
                 ]
