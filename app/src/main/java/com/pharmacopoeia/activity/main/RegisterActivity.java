@@ -20,6 +20,7 @@ import com.pharmacopoeia.R;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.Setting;
 import com.pharmacopoeia.bean.cache.User;
+import com.pharmacopoeia.bean.reponse.NUllValueResponse;
 import com.pharmacopoeia.bean.reponse.RegisterResponse;
 import com.pharmacopoeia.util.IntentUtils;
 import com.pharmacopoeia.util.MD5Util;
@@ -219,7 +220,7 @@ public class RegisterActivity extends CommentActivity {
 
     public void getVerification() {
         showPross("正在获取验证码");
-        String mobiles = mobile.getText().toString();
+        final String mobiles = mobile.getText().toString();
         Map<String,String> map=OkHttpUtil.getFromMap(this);
         map.put("mobile",mobiles);
 
@@ -229,7 +230,7 @@ public class RegisterActivity extends CommentActivity {
             public void onSuccess(Object o) {
                 dissPross();
                 String s=(String)o;
-                T.show(RegisterActivity.this,"验证码已发送到"+s+"上");
+                T.show(RegisterActivity.this,"验证码已发送到"+mobiles+"上");
 
             }
 
@@ -238,7 +239,7 @@ public class RegisterActivity extends CommentActivity {
                 dissPross();
                 T.show(RegisterActivity.this,s);
             }
-        },String.class);
+        },NUllValueResponse.class);
     }
 
     public void register() {
