@@ -25,8 +25,10 @@ import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 
 import java.io.File;
 import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -79,6 +81,11 @@ public class APP extends Application {
         initTypeface();
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+        if(getUser(this) != null){
+            Set<String> strings=new HashSet<>();
+            strings.add(getUser(this).getUserCode());
+            JPushInterface.addTags(this,1,strings);
+        }
     }
 
     private void initTypeface() {

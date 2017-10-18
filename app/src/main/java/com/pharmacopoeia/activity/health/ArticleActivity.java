@@ -160,7 +160,9 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
             }
         });
         initWebviewString(acticleDetailResponse.getArticleContent());
-        lists.add(collectionBean);
+        if(collectionBean!=null){
+            lists.add(collectionBean);
+        }
         adapter = new CollectionAdapter(this, lists);
         apply.setAdapter(adapter);
         adapterComment = new CommentAdapter(ArticleActivity.this, list);
@@ -195,7 +197,13 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         } else {
             web.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
         }
-
+//
+//        String css = "<style type=\"text/css\"> img {" +
+//                "width:90%;" +
+//                "height:auto;" +
+//                "}" +   "</style>";
+//         html = "<html><header>" + css + "</header><body>" + html + "</body></html>";
+        html = html.replace("<img", "<img style='max-width:90%;height:auto;'");
         web.loadData(html, "text/html; charset=UTF-8", null);
         web.setWebViewClient(new WebViewClient() {
             // url拦截

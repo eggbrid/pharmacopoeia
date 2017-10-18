@@ -48,13 +48,13 @@ public class TestData {
 
                 HealthTimeBean healthTimeBean = new HealthTimeBean();
                 HealthResponse healthResponse = res.get(i);
-                Date date = DateUtil.getInstance().parseY_M_D_H_M_S(healthResponse.getCreateTime());
+                Date date = DateUtil.getInstance().parseY_M_D_H_M_S(healthResponse.getLastTime());
 
                 healthTimeBean.setTime(DateUtil.getInstance().simDD_SMM_SYY(date));
 
                 if (time == null) {
 
-                    time = getTime(healthResponse.getCreateTime());
+                    time = getTime(healthResponse.getLastTime());
 
                     healthResponses = new ArrayList<>();
                     healthResponses.add(healthResponse);
@@ -62,7 +62,7 @@ public class TestData {
                     list.add(healthTimeBean);
 
                 } else {
-                    String t = getTime(healthResponse.getCreateTime());
+                    String t = getTime(healthResponse.getLastTime());
                     if (time.equals(t)) {
                         healthResponses.add(healthResponse);
                     } else {

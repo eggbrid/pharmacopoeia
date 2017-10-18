@@ -8,6 +8,8 @@ import com.pharmacopoeia.bean.cache.Setting;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.util.IntentUtils;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by xus on 2017/7/13.
  */
@@ -79,6 +81,9 @@ public class DBUtil {
     }
 
     public void loginOut() {
+
+        JPushInterface.cleanTags(APP.getInstance(),1);
+
         Setting setting = getSetting();
         setting.setIsLogin(0);
         setting.setMobile(-1);

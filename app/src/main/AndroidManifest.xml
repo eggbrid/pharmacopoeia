@@ -275,7 +275,7 @@
         <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="458c4cee1407d96cac2858df" />
+            android:value="1df7b5699f09794d27508ee6" />
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

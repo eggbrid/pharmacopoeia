@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.pharmacopoeia.APP;
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.User;
@@ -28,7 +29,11 @@ import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
 import com.pharmacopoeia.view.CircleImageView;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by xus on 2017/7/13.
@@ -177,6 +182,9 @@ public class LoginActivity extends CommentActivity {
                 user.setAuthToken(s.getToken());
                 user.setUserId(s.getUserId());
                 DBUtil.getInstance(LoginActivity.this).login(user);
+                Set<String> strings=new HashSet<>();
+                strings.add(APP.getInstance().getUser(APP.getInstance()).getUserCode());
+                JPushInterface.addTags(APP.getInstance(),1,strings);
                 LoginActivity.this.finish();
             }
 

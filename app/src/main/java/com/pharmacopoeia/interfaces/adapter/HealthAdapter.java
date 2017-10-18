@@ -352,8 +352,8 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
                 break;
             case Item.VIDEO:
 
-                viewVideoHolder.textVideoName.setText("快来了解中医师傅是怎么煎药的,你煎对药了吗?");
                 HealthResponse healthContentVideoBean = (HealthResponse) item.getObject();
+                viewVideoHolder.textVideoName.setText(healthContentVideoBean.getVideoTitle());
 
                 viewVideoHolder.textUser.setText(healthContentVideoBean.getAuthorName());
                 ImageLoaderUtil.getInstance().loadNomalImage("", viewVideoHolder.image);

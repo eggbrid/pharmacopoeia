@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">pharmacopoeia</string>
+    <string name="app_name">药典</string>
     <color name="red_light">#ffff4444</color>
     <color name="green_light">#ff99cc00</color>
     <color name="orange_light">#ffffbb33</color>
