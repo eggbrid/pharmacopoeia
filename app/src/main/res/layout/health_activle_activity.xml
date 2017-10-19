@@ -72,7 +72,6 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/width_20px"
                 android:layout_marginTop="@dimen/width_20px"
-                android:text="我是文章标题"
                 android:textColor="@color/c_666666"
                 android:textSize="@dimen/text_30px" />
 
@@ -98,7 +97,6 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="2dp"
-                    android:text="李医生"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/text_22px" />
 
@@ -111,7 +109,6 @@
                     android:layout_toRightOf="@+id/text_user"
                     android:drawableLeft="@drawable/eye"
                     android:drawablePadding="5dp"
-                    android:text="52"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/text_24px" />
             </LinearLayout>
@@ -144,6 +141,7 @@
 
             <ImageView
                 android:id="@+id/no_data"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/no_more" />

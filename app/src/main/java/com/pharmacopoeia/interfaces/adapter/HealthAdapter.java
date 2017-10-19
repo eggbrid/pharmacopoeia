@@ -374,7 +374,7 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
                 ImageLoaderUtil.getInstance().loadNomalImage(healthContentShopBean.getItemPic(), viewShopHolder.image);
                 viewShopHolder.textName.setText(healthContentShopBean.getItemName());
                 viewShopHolder.textMoney.setText("100");
-                viewShopHolder.textBuy.setText("100"+"购买");
+                viewShopHolder.textBuy.setText("100"+"人购买");
                 setFlowlayout(viewShopHolder.tagFlowLayout, healthContentShopBean.getTags());
                 break;
         }

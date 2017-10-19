@@ -66,6 +66,7 @@
             android:id="@+id/viewpagertab"
             android:layout_width="match_parent"
             android:layout_height="@dimen/width_90px"
+
             android:paddingBottom="0dp"
             app:stl_customTabTextLayoutId="@layout/home_custom_tab"
             app:stl_customTabTextViewId="@+id/custom_text"
@@ -75,6 +76,7 @@
             app:stl_indicatorColor="@color/app_green"
             app:stl_indicatorCornerRadius="1.5dp"
             app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorWidth="50dp"
             app:stl_indicatorWithoutPadding="false"
             app:stl_underlineThickness="1dp"
             app:stl_defaultTabTextHorizontalPadding="16dp"

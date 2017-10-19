@@ -23,7 +23,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="溜达"
             android:textColor="@color/c_333333"
             android:textSize="@dimen/text_26px" />
 
@@ -41,7 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="地黄丸功力不错不错，很牛逼的样子"
             android:textColor="@color/c_666666"
             android:textSize="@dimen/text_26px" />
 
@@ -50,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/width_12px"
-            android:text="1个小时前"
             android:textColor="@color/c_999999"
             android:textSize="@dimen/text_22px" />
     </LinearLayout>

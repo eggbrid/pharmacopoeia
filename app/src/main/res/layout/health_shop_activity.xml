@@ -9,23 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="46dp">
 
-        <RelativeLayout
-            android:id="@+id/relative"
-            android:layout_width="45dp"
-            android:layout_height="45dp">
-
-            <TextView
-                android:id="@+id/left"
-                android:layout_width="10dp"
-                android:layout_height="18dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/back_black"
-                android:scaleType="centerInside"
-                android:visibility="visible" />
-        </RelativeLayout>
-
         <com.ogaclejapan.smarttablayout.SmartTabLayout
             android:id="@+id/viewpagertab"
+
             android:layout_width="wrap_content"
             android:layout_height="@dimen/width_90px"
             android:layout_centerInParent="true"
@@ -49,6 +35,23 @@
                 android:background="@color/line"
                 android:layout_below="@+id/viewpagertab"
                 android:layout_height="1dp"/>
+
+
+        <RelativeLayout
+            android:id="@+id/relative"
+            android:layout_width="45dp"
+            android:layout_height="45dp">
+
+            <TextView
+                android:id="@+id/left"
+                android:layout_width="10dp"
+                android:layout_height="18dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/back_black"
+                android:scaleType="centerInside"
+                android:visibility="visible" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <android.support.v4.view.ViewPager
