@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
@@ -37,6 +38,7 @@ import java.util.Map;
 public class CollectionFragment extends BaseLazyFragment {
     protected SmartTabLayout viewpagertab;
     protected ViewPager viewPager;
+    private RelativeLayout tab;
 //    String s[] = {"全部", "美颜", "疏肝", "养胃", "养气血", "滋补", "养生", "舒筋活骨", "补肾", "减肥", "降三高", "好睡眠", "通便", "好身材"};
 
     @Override
@@ -51,23 +53,32 @@ public class CollectionFragment extends BaseLazyFragment {
     }
 
     private void initView(View rootView) {
+        initTitleView();
+        left.setText("典藏说明");
+
         FragmentPagerItems.Creator item = FragmentPagerItems.with(getActivity());
         viewpagertab = (SmartTabLayout) rootView.findViewById(R.id.viewpagertab);
         viewPager = (ViewPager) rootView.findViewById(R.id.view_pager);
+        tab = (RelativeLayout) rootView.findViewById(R.id.tab);
+        titleText.setText("典藏");
+
         List<ShopType> list = LiteOrmDBUtil.getInstance(getActivity()).getQueryAll(ShopType.class);
         for (int i = 0; i < list.size(); i++) {
             Bundle args =new Bundle();
             args.putString("id",list.get(i).getCateId());
             item = item.add(list.get(i).getCateName(), CollectionListFragment.class,args);
         }
+        if (list!=null&&list.size()>0){
+            tab.setVisibility(View.VISIBLE);
+        }else{
+            tab.setVisibility(View.GONE);
+
+        }
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getChildFragmentManager(), item.create());
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(3);
         viewpagertab.setViewPager(viewPager);
-        initTitleView();
-        titleText.setText("典藏");
-        left.setText("典藏说明");
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

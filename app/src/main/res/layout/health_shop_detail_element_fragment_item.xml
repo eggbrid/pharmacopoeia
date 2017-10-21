@@ -20,7 +20,7 @@
         android:drawableLeft="@drawable/xuanzhongyuan"
         android:drawablePadding="7dp"
         android:paddingLeft="10dp"
-        android:text="成份"
+        android:text="主要成份"
         android:textSize="@dimen/text_30px"
         android:textColor="@color/c_3db584" />
 

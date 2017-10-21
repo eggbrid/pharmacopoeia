@@ -7,8 +7,8 @@ import com.pharmacopoeia.R;
  */
 
 public enum QuestType {
-    RADIOQ1(R.layout.recuperate_quest_radio_one_item, "R1"),RADIOQ2(R.layout.recuperate_quest_radio_two_item, "R2"),RADIOQ3(R.layout.recuperate_quest_radio_three_item, "R3"),RADIOQ4(R.layout.recuperate_quest_radio_four_item, "R4")
-    ,CHECKBOXQ1(R.layout.recuperate_quest_checkbox_one_item, "C1") ,CHECKBOXQ2(R.layout.recuperate_quest_checkbox_two_item, "C2") ,CHECKBOXQ3(R.layout.recuperate_quest_checkbox_three_item, "C3"),CHECKBOXQ4(R.layout.recuperate_quest_checkbox_four_item, "C4"),FINISH(R.layout.recuperate_quest_finish_item, "F");
+    RADIOQ1(R.layout.recuperate_quest_radio_one_item, "R1"),RADIOQ2(R.layout.recuperate_quest_radio_two_item, "R2"),RADIOQ3(R.layout.recuperate_quest_radio_three_item, "R3"),RADIOQ4(R.layout.recuperate_quest_radio_four_item, "R4"),RADIOQ5(R.layout.recuperate_quest_radio_five_item, "R")
+    ,CHECKBOXQ1(R.layout.recuperate_quest_checkbox_one_item, "C1") ,CHECKBOXQ2(R.layout.recuperate_quest_checkbox_two_item, "C2") ,CHECKBOXQ3(R.layout.recuperate_quest_checkbox_three_item, "C3"),CHECKBOXQ4(R.layout.recuperate_quest_checkbox_four_item, "C4"),CHECKBOXQ5(R.layout.recuperate_quest_radio_five_item, "C"),FINISH(R.layout.recuperate_quest_finish_item, "F");
     private int layout;
     private String type;
 
@@ -38,12 +38,16 @@ public enum QuestType {
     }
 
     public static QuestType getEnum(String type,int size) {
+//        if (size>4){
+//            size=5;
+//        }
         String value="";
         if ("1".equals(type)){
             value="C"+size;
+            return getEnum("C");
+
         }else{
-            value="R"+size;
+            return getEnum("R");
         }
-        return getEnum(value);
     }
 }

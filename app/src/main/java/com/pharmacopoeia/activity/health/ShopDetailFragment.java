@@ -122,7 +122,7 @@ public class ShopDetailFragment extends BaseLazyFragment {
 
         shop_name.setText(res.getItemName());
         text_tags.setText(res.getTags());
-        ImageLoaderUtil.getInstance().loadNomalImage(res.getItemPic(), shop_image);
+        ImageLoaderUtil.getInstance().loadNomalImage(res.getDetailPics(), shop_image);
 
         if (res.getCommentList() != null && res.getCommentList().size() != 0) {
 //            ImageLoaderUtil.getInstance().loadCircleImage("", image_user);

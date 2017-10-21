@@ -20,6 +20,7 @@ import com.pharmacopoeia.base.PBaseHoTagAdapter;
 import com.pharmacopoeia.bean.model.QuestionnaireModel;
 import com.pharmacopoeia.interfaces.enums.QuestType;
 import com.pharmacopoeia.util.IntentUtils;
+import com.pharmacopoeia.view.CustomListView;
 
 import java.util.List;
 
@@ -194,6 +195,30 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
                 viewHolder.cq4.setOnCheckedChangeListener(onCheckedChangeListener4);
 
                 break;
+
+            case CHECKBOXQ5:
+                viewHolder.title.setText(questionnaireModel.getTitle());
+                CItemadapter cItemadapter = new CItemadapter(context, questionnaireModel.getQm(), new CItemadapter.OnValueChange() {
+                    @Override
+                    public void onChange(List<Boolean> values) {
+                        String value = "";
+
+                        for (int i=0;i<values.size();i++){
+                            if (values.get(i)){
+                                value = questionnaireModel.getQv().get(i) + ",";
+                            }
+                        }
+                        if (!TextUtils.isEmpty(value)){
+                            value=value.substring(0,value.length()-1);
+                        }
+                        questionnaireModel.setValue(value);
+                        setIsMain(questionnaireModel);
+                        setFinish();
+                    }
+                },questionnaireModel.getValue(),questionnaireModel.getQv());
+                viewHolder.list.setAdapter(cItemadapter);
+                cItemadapter.notifyDataSetChanged();
+                break;
             case RADIOQ1:
                 viewHolder.rq1.setText(questionnaireModel.getQ1());
                 if (!TextUtils.isEmpty(questionnaireModel.getValue())) {
@@ -322,6 +347,19 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
                 });
                 break;
 
+            case RADIOQ5:
+                viewHolder.title.setText(questionnaireModel.getTitle());
+                RItemadapter rItemadapter = new RItemadapter(context, questionnaireModel.getQm(), new RItemadapter.OnValueChange() {
+                    @Override
+                    public void onChange(int i) {
+                        questionnaireModel.setValue(questionnaireModel.getQv().get(i));
+                        setIsMain(questionnaireModel);
+                        setFinish();
+                    }
+                },questionnaireModel.getValue(),questionnaireModel.getQv());
+                viewHolder.list.setAdapter(rItemadapter);
+                rItemadapter.notifyDataSetChanged();
+                break;
         }
         return view;
     }
@@ -344,6 +382,8 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
         private RadioGroup rg;
         private TextView title;
         private QuestType questType;
+
+        private CustomListView list;
 
         public ViewHolder(View root) {
             super(root);
@@ -385,6 +425,10 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
                     cq3 = (CheckBox) root.findViewById(R.id.q3);
                     cq4 = (CheckBox) root.findViewById(R.id.q4);
                     break;
+                case CHECKBOXQ5:
+                    title = (TextView) root.findViewById(R.id.title);
+                    list = (CustomListView) root.findViewById(R.id.list);
+                    break;
                 case RADIOQ1:
                     rg = (RadioGroup) root.findViewById(R.id.rg);
                     title = (TextView) root.findViewById(R.id.title);
@@ -410,6 +454,10 @@ public class QuestionnaireAdapter extends PBaseHoTagAdapter<QuestionnaireModel, 
                     rq2 = (RadioButton) root.findViewById(R.id.q2);
                     rq3 = (RadioButton) root.findViewById(R.id.q3);
                     rq4 = (RadioButton) root.findViewById(R.id.q4);
+                    break;
+                case RADIOQ5:
+                    title = (TextView) root.findViewById(R.id.title);
+                    list = (CustomListView) root.findViewById(R.id.list);
                     break;
             }
 

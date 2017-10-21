@@ -2,6 +2,9 @@ package com.pharmacopoeia.bean.model;
 
 import com.pharmacopoeia.interfaces.enums.QuestType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by xus on 2017/8/30.
  */
@@ -16,44 +19,58 @@ public class QuestionnaireModel {
         this.type = QuestType.getEnum(question.getQtype(), question.getSelList().size()).getType();
         this.title = question.getContent();
         this.value = value;
-        if (question.getSelList() != null && question.getSelList().size() > 0) {
-            this.q1 = question.getSelList().get(0).getContent();
-            this.v1 = question.getSelList().get(0).getSelseq();
-        }
-        if (question.getSelList() != null && question.getSelList().size() > 1) {
-            this.q2 = question.getSelList().get(1).getContent();
-            this.v2 = question.getSelList().get(1).getSelseq();
-        }
-        if (question.getSelList() != null && question.getSelList().size() > 2) {
-            this.q3 = question.getSelList().get(2).getContent();
-            this.v3 = question.getSelList().get(2).getSelseq();
-        }
-        if (question.getSelList() != null && question.getSelList().size() > 3) {
-            this.q4 = question.getSelList().get(3).getContent();
-            this.v4 = question.getSelList().get(3).getSelseq();
-        }
+//        if (question.getSelList() != null && question.getSelList().size() > 0) {
+//            this.q1 = question.getSelList().get(0).getContent();
+//            this.v1 = question.getSelList().get(0).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 1) {
+//            this.q2 = question.getSelList().get(1).getContent();
+//            this.v2 = question.getSelList().get(1).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 2) {
+//            this.q3 = question.getSelList().get(2).getContent();
+//            this.v3 = question.getSelList().get(2).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 3) {
+//            this.q4 = question.getSelList().get(3).getContent();
+//            this.v4 = question.getSelList().get(3).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 4) {
+        if (question!=null&&question.getSelList()!=null)
+            for(MainSelList selList:question.getSelList()){
+                qm.add(selList.getContent());
+                qv.add(selList.getSelseq());
+            }
+//        }
     }
 
     public QuestionnaireModel(AssistQuestion question) {
         this.isMainQuest = false;
         this.type = QuestType.getEnum(question.getQtype(), question.getSelList().size()).getType();
         this.title = question.getContent();
-        if (question.getSelList() != null && question.getSelList().size() > 0) {
-            this.q1 = question.getSelList().get(0).getContent();
-            this.v1 = question.getSelList().get(0).getSelseq();
-        }
-        if (question.getSelList() != null && question.getSelList().size() > 1) {
-            this.q2 = question.getSelList().get(1).getContent();
-            this.v2 = question.getSelList().get(1).getSelseq();
-        }
-        if (question.getSelList() != null && question.getSelList().size() > 2) {
-            this.q3 = question.getSelList().get(2).getContent();
-            this.v3 = question.getSelList().get(2).getSelseq();
-        }
-        if (question.getSelList() != null && question.getSelList().size() > 3) {
-            this.q4 = question.getSelList().get(3).getContent();
-            this.v4 = question.getSelList().get(3).getSelseq();
-        }
+//        if (question.getSelList() != null && question.getSelList().size() > 0) {
+//            this.q1 = question.getSelList().get(0).getContent();
+//            this.v1 = question.getSelList().get(0).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 1) {
+//            this.q2 = question.getSelList().get(1).getContent();
+//            this.v2 = question.getSelList().get(1).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 2) {
+//            this.q3 = question.getSelList().get(2).getContent();
+//            this.v3 = question.getSelList().get(2).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 3) {
+//            this.q4 = question.getSelList().get(3).getContent();
+//            this.v4 = question.getSelList().get(3).getSelseq();
+//        }
+//        if (question.getSelList() != null && question.getSelList().size() > 4) {
+        if (question!=null&&question.getSelList()!=null)
+            for(SelList selList:question.getSelList()){
+                qm.add(selList.getContent());
+                qv.add(selList.getSelseq());
+            }
+//        }
         this.pValue=question.getMain_selseq();
         this.seq=question.getSeq();
     }
@@ -72,6 +89,24 @@ public class QuestionnaireModel {
     private String v3;
     private String q4;
     private String v4;
+
+    private List<String> qm=new ArrayList<String>();
+    private List<String> qv=new ArrayList<String>();
+    public List<String> getQm() {
+        return qm;
+    }
+
+    public void setQm(List<String> qm) {
+        this.qm = qm;
+    }
+
+    public List<String> getQv() {
+        return qv;
+    }
+
+    public void setQv(List<String> qv) {
+        this.qv = qv;
+    }
 
     public String getSeq() {
         return seq;

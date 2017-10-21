@@ -269,6 +269,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
 
                 healthAdapter.setData(TestData.getHealthTimeBeanList(res), refre);
                 healthAdapter.notifyDataSetChanged();
+                healthAdapter.notifyDataSetChanged();
 
                 if (!refre) {
                     mPullRefreshListView.stopLoadMore();

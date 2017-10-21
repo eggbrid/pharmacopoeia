@@ -124,6 +124,8 @@ public class WelComActivity extends CommentActivity {
                     Open open = new Open();
                     open.setFileUrl(carouselResponse.get(0).getFileUrl());
                     LiteOrmDBUtil.getInstance(WelComActivity.this).insert(open);
+                }else{
+                    LiteOrmDBUtil.getInstance(WelComActivity.this).deleteAll(Open.class);
                 }
 
             }
