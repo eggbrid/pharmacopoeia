@@ -22,6 +22,7 @@ public class XListViewFooter extends LinearLayout {
     public final static int STATE_READY = 1;
     public final static int STATE_LOADING = 2;
     public final static int NO_DATA = 3;
+    public final static int FRIST = 4;
 
     private ImageView image1;
     private Context mContext;
@@ -46,6 +47,8 @@ public class XListViewFooter extends LinearLayout {
         mProgressBar.setVisibility(View.INVISIBLE);
         mHintView.setVisibility(View.INVISIBLE);
         if (state == STATE_READY) {
+            mContentView.setVisibility(VISIBLE);
+
             image1.setVisibility(GONE);
             mHintView.setVisibility(View.VISIBLE);
             mHintView.setText(R.string.xlistview_footer_hint_ready);
@@ -53,18 +56,27 @@ public class XListViewFooter extends LinearLayout {
             mHintView.setBackgroundResource(R.color.tr);
 
         } else if (state == STATE_LOADING) {
+            mContentView.setVisibility(VISIBLE);
+
             image1.setVisibility(GONE);
             mProgressBar.setVisibility(View.VISIBLE);
 //            mHintView.setBackgroundColor(getResources().getColor(R.color.tr));
             mHintView.setBackgroundResource(R.color.tr);
 
+        }else if (state == FRIST) {
+            mContentView.setVisibility(GONE);
+
         }else if (state == STATE_NORMAL) {
+            mContentView.setVisibility(VISIBLE);
+
             image1.setVisibility(GONE);
             mHintView.setVisibility(View.VISIBLE);
             mHintView.setText(R.string.xlistview_footer_hint_normal);
             mHintView.setBackgroundResource(R.color.tr);
 
         }  else {
+            mContentView.setVisibility(VISIBLE);
+
             mHintView.setVisibility(View.GONE);
             image1.setVisibility(VISIBLE);
         }

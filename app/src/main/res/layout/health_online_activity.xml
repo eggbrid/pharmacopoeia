@@ -14,4 +14,11 @@
             android:numColumns="2"
             android:horizontalSpacing="-10dp"
             android:scrollbars="none"></in.srain.cube.views.GridViewWithHeaderAndFooter>
+    <TextView
+        android:id="@+id/no_data"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="暂无数据" />
 </LinearLayout>

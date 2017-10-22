@@ -35,6 +35,7 @@ import com.pharmacopoeia.view.dialog.CityDialog;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.darsh.multipleimageselect.helpers.Constants.limit;
@@ -61,6 +62,8 @@ public class InfoEditActivity extends CommentActivity implements View.OnClickLis
 
     private String id;
 
+    private Map<String, String> oidMap = new HashMap<>();
+
 
     @Override
     public int setContentView() {
@@ -70,6 +73,16 @@ public class InfoEditActivity extends CommentActivity implements View.OnClickLis
     @Override
     public void initView() throws Exception {
         id = getIntent().getStringExtra("id");
+        if (TextUtils.isEmpty(id)) {
+            this.finish();
+            T.show(this, "该问卷没有oid");
+            return;
+        }
+        String[] ids = id.split("#");
+        for (String s : ids) {
+            oidMap.put(s.split(":")[1], s.split(":")[0]);
+        }
+
         titleText = (TextView) findViewById(R.id.title_text);
         left = (PImageButton) findViewById(R.id.left);
         right = (PImageButton) findViewById(R.id.right);
@@ -222,9 +235,20 @@ public class InfoEditActivity extends CommentActivity implements View.OnClickLis
         OkHttpUtil.doPost(this, UrlUtil.ADDUSER, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
-                RegisterResponse registerResponse=(RegisterResponse)o;
+                RegisterResponse registerResponse = (RegisterResponse) o;
                 dissPross();
                 Bundle bundle = new Bundle();
+
+
+                if (oidMap.containsKey("0")) {
+                    id = oidMap.get("0");
+                } else {
+                    if (sexCode.equals("0")) {
+                        id = oidMap.get("1");
+                    } else {
+                        id = oidMap.get("2");
+                    }
+                }
                 bundle.putString("id", id);
                 bundle.putString("userCode", registerResponse.getUserCode());
 

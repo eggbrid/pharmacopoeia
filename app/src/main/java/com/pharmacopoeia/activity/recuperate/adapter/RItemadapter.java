@@ -30,6 +30,9 @@ public class RItemadapter extends PBaseAdapter<String, RItemadapter.ViewHolder> 
 
     public RItemadapter(Context context, List<String> list, OnValueChange onValueChange,String mvalue,List<String> vlist) {
         super(context, list);
+        if(TextUtils.isEmpty(mvalue)){
+            mvalue="";
+        }
         value = new ArrayList<>();
         this.onValueChange = onValueChange;
         for (int j = 0; j < list.size(); j++) {

@@ -183,7 +183,11 @@ public class XListView extends ListView implements OnScrollListener {
             resetHeaderHeight();
         }
     }
+    public void startRefresh() {
+       mPullRefreshing = true;
+            resetHeaderHeight();
 
+    }
     /**
      * stop load more, reset footer view.
      */
@@ -193,7 +197,9 @@ public class XListView extends ListView implements OnScrollListener {
             mFooterView.setState(XListViewFooter.STATE_NORMAL);
         }
     }
-
+    public void initF() {
+            mFooterView.setState(XListViewFooter.FRIST);
+    }
     /**
      * set last refresh time
      *

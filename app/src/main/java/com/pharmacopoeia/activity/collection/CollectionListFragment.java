@@ -76,7 +76,7 @@ public class CollectionListFragment extends BaseLazyFragment implements RefreshL
     @Override
     public void onLoadMore() {
         List<CollectionBean> l = adapter.getList();
-        getData(l.get(l.size() - 1).getVideoId());
+        getData(l.get(l.size() - 1).getItemId());
     }
 
     @Override

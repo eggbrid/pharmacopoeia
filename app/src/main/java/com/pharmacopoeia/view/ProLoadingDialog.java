@@ -2,7 +2,9 @@ package com.pharmacopoeia.view;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,8 +16,9 @@ import com.pharmacopoeia.R;
  */
 
 public class ProLoadingDialog extends Dialog {
-    private ProgressBar taiji;
+    private ImageView taiji;
     private TextView text;
+    AnimationDrawable ad;
     public ProLoadingDialog(Context context) {
         super(context, R.style.Dialog_Fullscreen);
     }
@@ -28,18 +31,25 @@ public class ProLoadingDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_proload);
-        taiji=(ProgressBar)findViewById(R.id.taiji);
+        taiji=(ImageView)findViewById(R.id.taiji);
+        //设置背景资源
+        taiji.setBackgroundResource(R.drawable.pro_animation);
+         ad = (AnimationDrawable) taiji.getBackground();
+        //开始执行动画
         text=(TextView)findViewById(R.id.text);
     }
 
     public void show(String s) {
         super.show();
         text.setText(s);
+        ad.start();
 
     }
 
     @Override
     public void dismiss() {
         super.dismiss();
+        ad.stop();
+
     }
 }

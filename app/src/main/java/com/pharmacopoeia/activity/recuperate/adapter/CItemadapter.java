@@ -1,6 +1,7 @@
 package com.pharmacopoeia.activity.recuperate.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,9 @@ public class CItemadapter extends PBaseAdapter<String, CItemadapter.ViewHolder> 
     private CItemadapter.OnValueChange onValueChange;
     public CItemadapter(Context context, List<String> list,CItemadapter.OnValueChange onValueChange,String mvalue,List<String> vlist) {
         super(context, list);
+        if(TextUtils.isEmpty(mvalue)){
+            mvalue="";
+        }
         value = new ArrayList<>();
         this.onValueChange=onValueChange;
         for (int j = 0; j <list.size(); j++) {
@@ -42,12 +46,12 @@ public class CItemadapter extends PBaseAdapter<String, CItemadapter.ViewHolder> 
     public View getView(final int i, View view, ViewGroup viewGroup, CItemadapter.ViewHolder viewHolder) {
         viewHolder.q.setText(list.get(i));
         viewHolder.q.setChecked(value.get(i));
-        viewHolder.q.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        viewHolder.q.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 for (int j = 0; j < value.size(); j++) {
                     if (i == j) {
-                        value.set(j, isChecked);
+                        value.set(j, !value.get(j));
                         onValueChange.onChange(value);
                     }
                 }

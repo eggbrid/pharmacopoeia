@@ -12,6 +12,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.pharmacopoeia.activity.health.ArticleActivity;
+import com.pharmacopoeia.activity.health.ShopActivity;
+import com.pharmacopoeia.activity.health.VideoDetailActivity;
+import com.pharmacopoeia.activity.main.MainActivity;
+import com.pharmacopoeia.bean.model.Item;
+import com.pharmacopoeia.util.IntentUtils;
+
 import cn.jpush.android.api.JPushInterface;
 
 //import cn.jpush.android.api.JPushInterface;
@@ -41,6 +48,28 @@ public class JpushReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
+            if (bundle.containsKey("type")) {
+                String type = bundle.getString("type");
+                if (type.equals("article")) {
+                    Intent intent2 = new Intent();
+                    intent2.putExtra("id",bundle.getString("contentid"));
+                    intent2.setClass(context, ArticleActivity.class);
+                    context.startActivity(intent2);
+                } else if (type.equals("video")) {
+                    intent.putExtra("authorId", bundle.getString("publishid"));
+                    intent.putExtra("videoId", bundle.getString("contentid"));
+                    intent.setClass(context, VideoDetailActivity.class);
+                    context.startActivity(intent);
+                } else if (type.equals("item")) {
+                    Intent intent1 = new Intent();
+                    intent1.putExtra("itemId",bundle.getString("contentid"));
+                    intent1.setClass(context, ShopActivity.class);
+                    context.startActivity(intent1);
+                }
+            } else {
+                IntentUtils.openActivity(context, MainActivity.class);
+            }
+
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG, "[MyReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));

@@ -21,6 +21,7 @@ import com.pharmacopoeia.R;
 import com.pharmacopoeia.TestData;
 import com.pharmacopoeia.activity.main.MainActivity;
 import com.pharmacopoeia.activity.main.adapter.MainSolarViewPagerFragment;
+import com.pharmacopoeia.base.BaseActivity;
 import com.pharmacopoeia.base.BaseLazyFragment;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.bean.model.HealthBean;
@@ -83,7 +84,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
         mPullRefreshListView.setPullLoadEnable(true);
         mPullRefreshListView.setPullRefreshEnable(true);
         mPullRefreshListView.setOnItemClickListener(this);
-
+        mPullRefreshListView.initF();
 
         String time;
         SharedPreferences sp = getActivity().getSharedPreferences("refresh_time", Context.MODE_PRIVATE);
@@ -230,6 +231,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
         mPullRefreshListView.setAdapter(healthAdapter);
         getDataLunBo(true);
         getData(true);
+        ((BaseActivity)getActivity()).showPross("正在加载中...");
 
     }
 
@@ -253,8 +255,10 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
     }
 
     private void getData(final boolean refre) {
+
         if (refre) {
             pageNum = 1;
+
         }
 
         Map<String, String> map = OkHttpUtil.getFromMap(mContext);
@@ -268,7 +272,6 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
                 List<HealthResponse> res = (ArrayList<HealthResponse>) o;
 
                 healthAdapter.setData(TestData.getHealthTimeBeanList(res), refre);
-                healthAdapter.notifyDataSetChanged();
                 healthAdapter.notifyDataSetChanged();
 
                 if (!refre) {
@@ -294,11 +297,15 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
                     mPullRefreshListView.setPullLoadEnable(true);
 
                 }
+                healthAdapter.notifyDataSetChanged();
+                ((BaseActivity)getActivity()).dissPross();
+
             }
 
             @Override
             public void onError(String s) {
-                if (!refre) {
+                ((BaseActivity)getActivity()).dissPross();
+if (!refre) {
                     mPullRefreshListView.stopLoadMore();
                     pageNum--;
                 } else {
