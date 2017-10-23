@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.base.BaseViewHolder;
 import com.pharmacopoeia.base.PBaseAdapter;
-import com.pharmacopoeia.bean.reponse.AliveListResponse;
+import com.pharmacopoeia.bean.reponse.VideoListResponse;
 import com.pharmacopoeia.bean.reponse.CarouselResponse;
 import com.pharmacopoeia.util.ImageLoaderUtil;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
@@ -25,20 +25,20 @@ import java.util.Map;
  * Created by xus on 2017/8/28.
  */
 
-public class OnLineAdapter extends PBaseAdapter<AliveListResponse, OnLineAdapter.ViewHolder> {
+public class OnLineAdapter extends PBaseAdapter<VideoListResponse, OnLineAdapter.ViewHolder> {
 
 
-    public OnLineAdapter(Context context, List<AliveListResponse> list) {
+    public OnLineAdapter(Context context, List<VideoListResponse> list) {
         super(context, list);
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup, ViewHolder viewHolder) {
-        AliveListResponse vr=list.get(i);
-        ImageLoaderUtil.getInstance().loadNomalImage(vr.getAlivePic(),viewHolder.image,R.drawable.gray_conner_btn_pcomment);
+        VideoListResponse vr=list.get(i);
+        ImageLoaderUtil.getInstance().loadNomalImage(vr.getVideoPic(),viewHolder.image,R.drawable.gray_conner_btn_pcomment);
         ImageLoaderUtil.getInstance().loadNomalImage("",viewHolder.avatar,R.drawable.default_avatar);
         viewHolder.name.setText(vr.getAuthorName());
-        viewHolder.title.setText(vr.getAliveTitle());
+        viewHolder.title.setText(vr.getVideoTitle());
         viewHolder.num.setText(vr.getPlayNum()+"人");
         return view;
     }

@@ -1,5 +1,6 @@
 package com.pharmacopoeia.bean.reponse;
 
+import com.pharmacopoeia.bean.model.CollectionBean;
 import com.pharmacopoeia.bean.model.Commentbean;
 import com.pharmacopoeia.bean.model.HealthContentArticleBean;
 import com.pharmacopoeia.bean.model.HealthContentShopBean;
@@ -30,24 +31,24 @@ public class VideoDetailResponse {
     private String createTime;
     private String lastTime;
 
-    private ArrayList<HealthContentArticleBean> healthContentArticleBeen;
-    private ArrayList<HealthContentShopBean> healthContentShopBeen;
+    private CollectionBean item;
+    private ArrayList<HealthContentShopBean> properties;
     private List<Commentbean> comments;
 
-    public ArrayList<HealthContentArticleBean> getHealthContentArticleBeen() {
-        return healthContentArticleBeen;
+    public CollectionBean getItem() {
+        return item;
     }
 
-    public void setHealthContentArticleBeen(ArrayList<HealthContentArticleBean> healthContentArticleBeen) {
-        this.healthContentArticleBeen = healthContentArticleBeen;
+    public void setItem(CollectionBean item) {
+        this.item = item;
     }
 
-    public ArrayList<HealthContentShopBean> getHealthContentShopBeen() {
-        return healthContentShopBeen;
+    public ArrayList<HealthContentShopBean> getProperties() {
+        return properties;
     }
 
-    public void setHealthContentShopBeen(ArrayList<HealthContentShopBean> healthContentShopBeen) {
-        this.healthContentShopBeen = healthContentShopBeen;
+    public void setProperties(ArrayList<HealthContentShopBean> properties) {
+        this.properties = properties;
     }
 
     public List<Commentbean> getComments() {

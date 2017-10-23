@@ -21,7 +21,9 @@ import com.pharmacopoeia.TestData;
 import com.pharmacopoeia.activity.main.ResetPasswordActivity;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.User;
+import com.pharmacopoeia.bean.model.CollectionBean;
 import com.pharmacopoeia.bean.model.Commentbean;
+import com.pharmacopoeia.bean.model.HealthContentShopBean;
 import com.pharmacopoeia.bean.model.Item;
 import com.pharmacopoeia.bean.model.VideoCommentModel;
 import com.pharmacopoeia.bean.model.VideoDetailModel;
@@ -167,12 +169,17 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
 
         switch (type) {
             case Item.ITEM:
+
+
                 Intent intent2 = new Intent();
                 intent2.setClass(VideoDetailActivity.this, ArticleActivity.class);
                 startActivity(intent2);
                 break;
             case Item.SHOP:
+                CollectionBean bean= (CollectionBean) videoDetailAdapter.getItem(position - 1).getObject();
+
                 Intent intent1 = new Intent();
+                intent1.putExtra("itemId",bean.getItemId());
                 intent1.setClass(VideoDetailActivity.this, ShopActivity.class);
                 startActivity(intent1);
                 break;
@@ -307,6 +314,7 @@ public class VideoDetailActivity extends CommentActivity implements View.OnClick
                 VideoDetailResponse res = (VideoDetailResponse) o;
                 if (res != null) {
                     list.setVisibility(View.VISIBLE);
+                    res.setItem(OkHttpUtil.getShopDetailResponse());
                     setData(res);
                 }
             }

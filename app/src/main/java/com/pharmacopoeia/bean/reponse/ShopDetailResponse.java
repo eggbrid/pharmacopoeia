@@ -32,6 +32,15 @@ public class ShopDetailResponse {
     private List<Commentbean> commentList;
     private String videoUrl;
     private String videoPic;
+    private String itemType;
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
 
     public String getVideoUrl() {
         return videoUrl;

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.base.BaseViewHolder;
+import com.pharmacopoeia.bean.model.CollectionBean;
 import com.pharmacopoeia.bean.model.Commentbean;
 import com.pharmacopoeia.bean.model.HealthContentArticleBean;
 import com.pharmacopoeia.bean.model.HealthContentShopBean;
@@ -68,22 +69,22 @@ public class VideoDetailAdapter extends BaseAdapter {
     public void addItems() {
         items = new ArrayList<>();
         if (videoDetailModel != null) {
-            if (videoDetailModel.getHealthContentArticleBeen() != null) {
-                int size1 = videoDetailModel.getHealthContentArticleBeen().size();
-                for (int i = 0; i < size1; i++) {
-                    Item item = new Item(Item.ITEM, null);
-                    item.setObject(videoDetailModel.getHealthContentArticleBeen().get(i));
-                    items.add(item);
-                }
-            }
-            if (videoDetailModel.getHealthContentShopBeen() != null) {
-                int size1 = videoDetailModel.getHealthContentShopBeen().size();
+            if (videoDetailModel.getItem() != null) {
+                int size1 = 1;
                 for (int i = 0; i < size1; i++) {
                     Item item = new Item(Item.SHOP, null);
-                    item.setObject(videoDetailModel.getHealthContentShopBeen().get(i));
+                    item.setObject(videoDetailModel.getItem());
                     items.add(item);
                 }
             }
+//            if (videoDetailModel.getProperties() != null) {
+//                int size1 = videoDetailModel.getProperties().size();
+//                for (int i = 0; i < size1; i++) {
+//                    Item item = new Item(Item.SHOP, null);
+//                    item.setObject(videoDetailModel.getProperties().get(i));
+//                    items.add(item);
+//                }
+//            }
             Item item1 = new Item(Item.COMMENTTITLE, null);
             item1.setObject(null);
             items.add(item1);
@@ -189,12 +190,12 @@ public class VideoDetailAdapter extends BaseAdapter {
                 setFlowlayout(viewContentHolder.tagFlowLayout, healthContentArticleBean.getTags());
                 break;
             case Item.SHOP:
-                HealthContentShopBean healthContentShopBean = (HealthContentShopBean) item.getObject();
-                ImageLoaderUtil.getInstance().loadNomalImage(healthContentShopBean.getShopUrl(), viewShopHolder.image);
-                viewShopHolder.textName.setText(healthContentShopBean.getShopName());
-                viewShopHolder.textMoney.setText(healthContentShopBean.getShopMoney());
-                viewShopHolder.textBuy.setText(healthContentShopBean.getShopBuys());
-                setFlowlayout(viewShopHolder.tagFlowLayout, healthContentShopBean.getList());
+                CollectionBean healthContentShopBean = (CollectionBean) item.getObject();
+                ImageLoaderUtil.getInstance().loadNomalImage(healthContentShopBean.getItemPic(), viewShopHolder.image);
+                viewShopHolder.textName.setText(healthContentShopBean.getItemName());
+                viewShopHolder.textMoney.setText(healthContentShopBean.getClickNum()+"人购买");
+                viewShopHolder.textBuy.setText(healthContentShopBean.getClickNum()+"人购买");
+                setFlowlayout(viewShopHolder.tagFlowLayout, healthContentShopBean.getTags());
                 break;
             case Item.COMMENT:
                 Commentbean shopCommentModel = (Commentbean) item.getObject();

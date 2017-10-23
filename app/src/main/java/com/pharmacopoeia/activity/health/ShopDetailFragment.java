@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.pharmacopoeia.APP;
 import com.pharmacopoeia.R;
+import com.pharmacopoeia.activity.health.adapter.ImageAdapter;
 import com.pharmacopoeia.base.BaseActivity;
 import com.pharmacopoeia.base.BaseLazyFragment;
 import com.pharmacopoeia.bean.cache.User;
@@ -47,9 +48,9 @@ public class ShopDetailFragment extends BaseLazyFragment {
     private CustomGridView grid_view;
     private ImageView shop_image, image_user, image_from, image_element, image_people, image_method;//商品照片,评论用户头像，处方来源,成分，适用人群,视频照片 食用方法
     private View health_shop_detail_from_fragment_item, health_shop_detail_method_fragment_item, health_shop_detail_element_fragment_item, health_shop_detail_people_fragment_item, health_shop_detail_video_fragment_item;//商品照片,评论用户头像，处方来源,成分，适用人群,视频照片 食用方法
+    private CustomListView bjp;
 
-
-    private TextView text_name, text_comment, time,p_info;//評論人,评论内容,时间
+    private TextView text_name, text_comment, time, p_info;//評論人,评论内容,时间
 
     private JCVideoPlayerStandard videoplayer;
     private ShopDetailMethodAdapter shopDetailMethodAdapter;
@@ -73,10 +74,11 @@ public class ShopDetailFragment extends BaseLazyFragment {
         image_from = (ImageView) mView.findViewById(R.id.image_from);
         image_element = (ImageView) mView.findViewById(R.id.image_element);
         image_people = (ImageView) mView.findViewById(R.id.image_people);
+        bjp = (CustomListView) mView.findViewById(R.id.bjp);
         shop_name = (TextView) mView.findViewById(R.id.shop_name);
         image_method = (ImageView) mView.findViewById(R.id.image_method);
         lin_com = mView.findViewById(R.id.lin_com);
-        p_info= (TextView) mView.findViewById(R.id.p_info);
+        p_info = (TextView) mView.findViewById(R.id.p_info);
         text_name = (TextView) mView.findViewById(R.id.text_name);
         text_comment = (TextView) mView.findViewById(R.id.text_comment);
         time = (TextView) mView.findViewById(R.id.time);
@@ -96,7 +98,7 @@ public class ShopDetailFragment extends BaseLazyFragment {
 
 
     private void getData() {
-        ((BaseActivity)getActivity()).showPross("正在加载商品详情");
+        ((BaseActivity) getActivity()).showPross("正在加载商品详情");
         Map<String, String> map = OkHttpUtil.getFromMap(mContext);
         if (APP.getInstance().getUser(mContext) != null) {
             User user = APP.getInstance().getUser(mContext);
@@ -107,7 +109,7 @@ public class ShopDetailFragment extends BaseLazyFragment {
         OkHttpUtil.doPost(getActivity(), UrlUtil.SHOPDETAIL, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
-                ((BaseActivity)getActivity()).dissPross();
+                ((BaseActivity) getActivity()).dissPross();
                 ShopDetailResponse res = (ShopDetailResponse) o;
                 if (res != null) {
                     scroll.setVisibility(View.VISIBLE);
@@ -118,8 +120,8 @@ public class ShopDetailFragment extends BaseLazyFragment {
 
             @Override
             public void onError(String s) {
-                ((BaseActivity)getActivity()).dissPross();
-                T.show(getActivity(),s);
+                ((BaseActivity) getActivity()).dissPross();
+                T.show(getActivity(), s);
             }
         }, ShopDetailResponse.class);
     }
@@ -145,8 +147,17 @@ public class ShopDetailFragment extends BaseLazyFragment {
         if (TextUtils.isEmpty(res.getPresSourcePic())) {
             health_shop_detail_from_fragment_item.setVisibility(View.GONE);
         } else {
-            health_shop_detail_from_fragment_item.setVisibility(View.VISIBLE);
-            ImageLoaderUtil.getInstance().loadNomalImage(res.getPresSourcePic(), image_from);
+            if ("1".equals(res.getItemType())) {
+                health_shop_detail_from_fragment_item.setVisibility(View.GONE);
+                if (!TextUtils.isEmpty(res.getPresSourcePic())) {
+                    ImageAdapter adapter = new ImageAdapter(getActivity(), res.getPresSourcePic().split(","));
+                    bjp.setAdapter(adapter);
+                }
+
+            } else {
+                health_shop_detail_from_fragment_item.setVisibility(View.VISIBLE);
+                ImageLoaderUtil.getInstance().loadNomalImage(res.getPresSourcePic(), image_from);
+            }
         }
         health_shop_detail_people_fragment_item = mView.findViewById(R.id.health_shop_detail_people_fragment_item);
         if (TextUtils.isEmpty(res.getConstituentPic())) {
@@ -233,7 +244,7 @@ public class ShopDetailFragment extends BaseLazyFragment {
             shopDetailExplainAdapter.notifyDataSetChanged();
             p_info.setVisibility(View.VISIBLE);
             list.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             p_info.setVisibility(View.GONE);
             list.setVisibility(View.GONE);
         }

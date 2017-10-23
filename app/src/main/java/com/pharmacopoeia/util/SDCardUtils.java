@@ -40,19 +40,31 @@ public class SDCardUtils
      * @return
      */
     public static String getSDCardPath() {
-        //return Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator;
-        File sdDir = null;
-        boolean sdCardExist = Environment.getExternalStorageState().equals(
-                Environment.MEDIA_MOUNTED);
-        if (sdCardExist) {
-//            sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
-            sdDir=   APP.getInstance().getExternalFilesDir("cache");
-        }
-        if (sdDir != null) {
-            return sdDir.toString();
 
+        String filePath = Environment.getExternalStorageDirectory() + "/Android/data/" + APP.getInstance().getPackageName() + "/cache/";
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File dir = APP.getInstance().getExternalFilesDir("cache");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            filePath=dir.getPath();
         }
-        return null;
+        //return Environment.getExternalStorageDirectory().getAbsolutePath()+ File.separator;
+//        File sdDir = new File(filePath);
+//        boolean sdCardExist = Environment.getExternalStorageState().equals(
+//                Environment.MEDIA_MOUNTED);
+//        if (sdCardExist) {
+////            sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
+//            sdDir=   APP.getInstance().getExternalFilesDir("cache");
+//        }
+//        if (sdDir != null) {
+//            return sdDir.toString();
+//
+//        }
+        return filePath
+                ;
     }
 
     /**

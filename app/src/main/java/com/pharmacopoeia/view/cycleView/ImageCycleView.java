@@ -133,7 +133,7 @@ public class ImageCycleView extends LinearLayout {
             int imagePadding = (int) (mScale * 5 + 0.5f);
             LayoutParams params = new LayoutParams(imageParams, imageParams);
             params.leftMargin = 10;
-            mImageView.setScaleType(ScaleType.CENTER_CROP);
+            mImageView.setScaleType(ScaleType.FIT_XY);
             mImageView.setLayoutParams(params);
             mImageView.setPadding(imagePadding, imagePadding, imagePadding, imagePadding);
 

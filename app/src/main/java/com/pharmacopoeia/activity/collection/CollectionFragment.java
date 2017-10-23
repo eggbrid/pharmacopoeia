@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -24,6 +25,7 @@ import com.pharmacopoeia.util.db.LiteOrmDBUtil;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
+import com.pharmacopoeia.view.GridDialog;
 import com.pharmacopoeia.view.PinnedSectionListView;
 import com.pharmacopoeia.view.blurbitmap.BlurredView;
 
@@ -40,7 +42,7 @@ public class CollectionFragment extends BaseLazyFragment {
     protected ViewPager viewPager;
     private RelativeLayout tab;
 //    String s[] = {"全部", "美颜", "疏肝", "养胃", "养气血", "滋补", "养生", "舒筋活骨", "补肾", "减肥", "降三高", "好睡眠", "通便", "好身材"};
-
+    private ImageView down;
     @Override
     protected View initViews(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.collection_fragment, container, false);
@@ -59,6 +61,7 @@ public class CollectionFragment extends BaseLazyFragment {
         FragmentPagerItems.Creator item = FragmentPagerItems.with(getActivity());
         viewpagertab = (SmartTabLayout) rootView.findViewById(R.id.viewpagertab);
         viewPager = (ViewPager) rootView.findViewById(R.id.view_pager);
+        down= (ImageView) rootView.findViewById(R.id.down);
         tab = (RelativeLayout) rootView.findViewById(R.id.tab);
         titleText.setText("典藏");
 
@@ -86,6 +89,13 @@ public class CollectionFragment extends BaseLazyFragment {
                 bundle.putString("title", "典藏说明");
                 bundle.putString("url", "file:///android_asset/dcsm.html");
                 IntentUtils.openActivity(getActivity(), WebActivity.class, bundle);
+            }
+        });
+        down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GridDialog dialog=new GridDialog(getActivity());
+                dialog.show(getActivity(),v);
             }
         });
         left.setVisibility(View.VISIBLE);

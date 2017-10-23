@@ -31,6 +31,15 @@ public class CollectionBean implements Serializable {
 //    private String properties;// null,
     private String createTime;//2017-08-28 02:15:42
     private String lastTime;//2017-08-29 00:10:11"
+    private String itemType;
+
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
 
     public String getItemId() {
         return itemId;

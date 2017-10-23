@@ -137,7 +137,7 @@
             android:layout_height="35dp"
             android:layout_marginRight="10dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/default_avatar" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/text_user"

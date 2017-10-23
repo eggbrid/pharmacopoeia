@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.os.Environment;
 import android.text.TextUtils;
 
 
@@ -108,7 +109,17 @@ public class APP extends Application {
     }
 
     public void initImageLoader() {
-        String filePath = "Android/data/com.com.pharmacopoeia/files/cache/img/";//Environment.getExternalStorageDirectory() + "/Android/data/" + instance.getPackageName() + "/cache/";
+        String filePath = Environment.getExternalStorageDirectory() + "/Android/data/" + this.getPackageName() + "/cache/";
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File dir = this.getExternalFilesDir("cache");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            filePath=dir.getPath();
+        }
+//        String filePath = "Android/data/com.com.pharmacopoeia/files/cache/img/";
         File cacheDir = StorageUtils.getOwnCacheDirectory(this, filePath);// 获取到缓存的目录地址
         ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(this);
         config.threadPriority(Thread.NORM_PRIORITY - 2);

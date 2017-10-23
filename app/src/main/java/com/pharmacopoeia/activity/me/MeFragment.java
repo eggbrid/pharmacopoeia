@@ -253,7 +253,8 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
                 update.setVisibility(View.VISIBLE);
                 name.setVisibility(View.VISIBLE);
                 name.setText(user.getName());
-                ImageLoaderUtil.getInstance().loadNomalImage(user.getAvatar(), avatar, R.drawable.me_defult_avatar);
+//                ImageLoaderUtil.getInstance().loadNomalImage(user.getAvatar(), avatar, R.drawable.me_defult_avatar);
+                avatar.setImageResource(R.drawable.me_defult_avatar);
 
             }
 
@@ -283,7 +284,8 @@ public class MeFragment extends BaseLazyFragment implements View.OnClickListener
                 update.setVisibility(View.VISIBLE);
                 name.setVisibility(View.VISIBLE);
                 name.setText(user.getName());
-                ImageLoaderUtil.getInstance().loadNomalImage(user.getAvatar(), avatar, R.drawable.me_defult_avatar);
+                avatar.setImageResource(R.drawable.me_defult_avatar);
+//                ImageLoaderUtil.getInstance().loadNomalImage(user.getAvatar(), avatar, R.drawable.me_defult_avatar);
             }
 
 

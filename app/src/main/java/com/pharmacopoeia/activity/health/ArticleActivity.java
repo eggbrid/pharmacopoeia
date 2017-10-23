@@ -239,7 +239,6 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
             // 页面开始加载
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                showPross("正在加载");
                 super.onPageStarted(view, url, favicon);
             }
 
@@ -305,6 +304,8 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
 
 
     public void getData() {
+        showPross("正在加载");
+
         Map<String, String> map = OkHttpUtil.getLoginFromMap(this);
         map.put("articleId", id);
         OkHttpUtil.doPost(this, UrlUtil.ARTICLEDETAIL, map, new CallBack() {

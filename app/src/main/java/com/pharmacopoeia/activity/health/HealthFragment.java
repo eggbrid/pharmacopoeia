@@ -56,6 +56,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
     private HealthAdapter healthAdapter;
     private boolean isRes = false;
 
+    private List<HealthResponse> res=new ArrayList<>();
     private VerticalViewPager verticalViewPager;
 
     /*========== 数据相关 ===========*/
@@ -185,7 +186,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
         if (healthAdapter.getItem(position - 1) == null) {
             return;
         }
-        Item item=healthAdapter.getItem(position - 1);
+        Item item = healthAdapter.getItem(position - 1);
         int type = item.type;
         HealthResponse healthContentVideoBean = (HealthResponse) item.getObject();
         switch (type) {
@@ -196,7 +197,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
 
             case Item.ITEM:
                 Intent intent2 = new Intent();
-                intent2.putExtra("id",healthContentVideoBean.getArticleId());
+                intent2.putExtra("id", healthContentVideoBean.getArticleId());
                 intent2.setClass(getContext(), ArticleActivity.class);
                 startActivity(intent2);
                 break;
@@ -208,8 +209,8 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
             case Item.VIDEO:
                 Intent intent = new Intent();
 
-                intent.putExtra("authorId",healthContentVideoBean.getAuthorId());
-                intent.putExtra("videoId",healthContentVideoBean.getVideoId());
+                intent.putExtra("authorId", healthContentVideoBean.getAuthorId());
+                intent.putExtra("videoId", healthContentVideoBean.getVideoId());
 
                 intent.setClass(getContext(), VideoDetailActivity.class);
                 startActivity(intent);
@@ -217,7 +218,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
 
             case Item.SHOP:
                 Intent intent1 = new Intent();
-                intent1.putExtra("itemId",healthContentVideoBean.getItemId());
+                intent1.putExtra("itemId", healthContentVideoBean.getItemId());
                 intent1.setClass(getContext(), ShopActivity.class);
                 startActivity(intent1);
                 break;
@@ -231,7 +232,7 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
         mPullRefreshListView.setAdapter(healthAdapter);
         getDataLunBo(true);
         getData(true);
-        ((BaseActivity)getActivity()).showPross("正在加载中...");
+        ((BaseActivity) getActivity()).showPross("正在加载中...");
 
     }
 
@@ -243,10 +244,11 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
         OkHttpUtil.doGet(getActivity(), UrlUtil.CAROUSEL, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
-                List<CarouselResponse> list=(ArrayList<CarouselResponse>)o;
+                List<CarouselResponse> list = (ArrayList<CarouselResponse>) o;
                 healthAdapter.setList(list);
                 healthAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onError(String s) {
 
@@ -269,43 +271,47 @@ public class HealthFragment extends BaseLazyFragment implements AdapterView.OnIt
             public void onSuccess(Object o) {
 
 
-                List<HealthResponse> res = (ArrayList<HealthResponse>) o;
+                List<HealthResponse> ress = (ArrayList<HealthResponse>) o;
+                if (refre) {
+                    res.clear();
+                }
+                res.addAll(ress);
 
-                healthAdapter.setData(TestData.getHealthTimeBeanList(res), refre);
+                healthAdapter.setData(TestData.getHealthTimeBeanList(res), true);
                 healthAdapter.notifyDataSetChanged();
 
                 if (!refre) {
                     mPullRefreshListView.stopLoadMore();
-                    if (res == null) {
+                    if (ress == null) {
                         mPullRefreshListView.setPullLoadEnable(false);
-                    } else if (res.size() == 0) {
+                    } else if (ress.size() == 0) {
                         mPullRefreshListView.setPullLoadEnable(false);
                     }
                 } else {
                     mPullRefreshListView.stopRefresh();
                 }
 
-                if(res!=null&&res.size()<5){
+                if (ress != null && ress.size() < 20) {
                     mPullRefreshListView.stopLoadMore();
                     mPullRefreshListView.setPullLoadEnable(false);
-                    if(OkHttpUtil.getHomeBottomModel()!=null) {
+                    if (OkHttpUtil.getHomeBottomModel() != null) {
                         mPullRefreshListView.setBottom(OkHttpUtil.getHomeBottomModel().getBottomPic());
-                        SharedUtil.saveString("app_bottom_pic",OkHttpUtil.getHomeBottomModel().getBottomPic());
+                        SharedUtil.saveString("app_bottom_pic", OkHttpUtil.getHomeBottomModel().getBottomPic());
 
                     }
-                }else{
+                } else {
                     mPullRefreshListView.setPullLoadEnable(true);
 
                 }
                 healthAdapter.notifyDataSetChanged();
-                ((BaseActivity)getActivity()).dissPross();
+                ((BaseActivity) getActivity()).dissPross();
 
             }
 
             @Override
             public void onError(String s) {
-                ((BaseActivity)getActivity()).dissPross();
-if (!refre) {
+                ((BaseActivity) getActivity()).dissPross();
+                if (!refre) {
                     mPullRefreshListView.stopLoadMore();
                     pageNum--;
                 } else {

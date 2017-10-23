@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.pharmacopoeia.APP;
 import com.pharmacopoeia.R;
-import com.pharmacopoeia.activity.me.adapter.VideoAdapter;
+import com.pharmacopoeia.activity.health.adapter.OnLineAdapter;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.bean.reponse.CarouselResponse;
@@ -36,7 +36,7 @@ import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
 public class OnLineVideoActivity extends CommentActivity implements RefreshListener {
     protected GridViewWithHeaderAndFooter list;
-    private VideoAdapter adapter;
+    private OnLineAdapter adapter;
     private List<VideoListResponse> lists = new ArrayList<>();
     private ImageCycleView m_image_cycle;
     private ImageView image;
@@ -71,7 +71,7 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
         avatar = (ImageView) view.findViewById(R.id.avatar);
         name = (TextView) view.findViewById(R.id.name);
         num = (TextView) view.findViewById(R.id.num);
-        adapter = new VideoAdapter(this, lists);
+        adapter = new OnLineAdapter(this, lists);
         list.addHeaderView(view);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -175,7 +175,7 @@ public class OnLineVideoActivity extends CommentActivity implements RefreshListe
     private void getDataLunBo() {
 
         Map<String, String> map = OkHttpUtil.getFromMap(this);
-        OkHttpUtil.doGet(this, UrlUtil.CAROUSEL, map, new CallBack() {
+        OkHttpUtil.doGet(this, UrlUtil.OPEN2, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
                 List<CarouselResponse> list = (ArrayList<CarouselResponse>) o;

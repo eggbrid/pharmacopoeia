@@ -2,7 +2,10 @@ package com.pharmacopoeia.util;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.text.TextUtils;
+
+import com.pharmacopoeia.APP;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +19,7 @@ import java.math.BigDecimal;
 public class FileUtil {
 
     public static String getCachePath() {
+
         return SDCardUtils.getSDCardPath();
     }
 
@@ -29,7 +33,17 @@ public class FileUtil {
 
     public static String getCacheSize() {
         String size = "0k";
-        size = getFormatSize(getFolderSize(new File("Android/data/com.com.pharmacopoeia/files/cache/img/")));
+        String filePath = Environment.getExternalStorageDirectory() + "/Android/data/" + APP.getInstance().getPackageName() + "/cache/";
+
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File dir = APP.getInstance().getExternalFilesDir("cache");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            filePath=dir.getPath();
+        }
+        size = getFormatSize(getFolderSize(new File(filePath)));
         return size;
     }
 

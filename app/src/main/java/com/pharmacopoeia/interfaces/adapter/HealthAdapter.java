@@ -1,6 +1,7 @@
 package com.pharmacopoeia.interfaces.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.TestData;
 import com.pharmacopoeia.activity.WebViewActivity;
+import com.pharmacopoeia.activity.health.ArticleActivity;
 import com.pharmacopoeia.activity.health.OnLineVideoActivity;
 import com.pharmacopoeia.activity.health.RecuperateActivity;
 import com.pharmacopoeia.activity.main.ActivitiesActivity;
@@ -359,8 +361,10 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
                 viewVideoHolder.textVideoName.setText(healthContentVideoBean.getVideoTitle());
 
                 viewVideoHolder.textUser.setText(healthContentVideoBean.getAuthorName());
-                ImageLoaderUtil.getInstance().loadNomalImage("", viewVideoHolder.image);
-                viewVideoHolder.playNum.setText(healthContentVideoBean.getPlayNum() + "次播放");
+//                ImageLoaderUtil.getInstance().loadNomalImage("", viewVideoHolder.image);
+                viewVideoHolder.image.setImageResource(R.mipmap.ic_launcher);
+                viewVideoHolder.playNum.setText(healthContentVideoBean.getPlayNum() + "次" +
+                        "播放");
                 viewVideoHolder.collectNum.setText(healthContentVideoBean.getCollectNum());
                 viewVideoHolder.commentNum.setText(healthContentVideoBean.getCommentNum());
                 viewVideoHolder.shareNum.setText(healthContentVideoBean.getShareNum());
@@ -494,6 +498,13 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
 
             @Override
             public void onImageClick(int position, View imageView) {
+                if (position==0){
+
+                    Intent intent2 = new Intent();
+                    intent2.putExtra("id", "10057");
+                    intent2.setClass(context, ArticleActivity.class);
+                    context.startActivity(intent2);
+                }
             }
         });
         mImageCycle.startImageCycle();

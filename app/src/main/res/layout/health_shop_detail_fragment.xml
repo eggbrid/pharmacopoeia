@@ -19,20 +19,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-android:paddingTop="@dimen/width_40px"
+                android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/width_40px"
                 android:paddingLeft="@dimen/width_80px"
                 android:paddingRight="@dimen/width_80px"
-                android:layout_height="wrap_content">
+                android:paddingTop="@dimen/width_40px">
 
 
                 <ImageView
                     android:id="@+id/image"
-                    android:adjustViewBounds="true"
                     android:layout_width="match_parent"
-                    android:scaleType="fitCenter"
+                    android:layout_height="@dimen/width_400px"
                     android:layout_centerVertical="true"
-                    android:layout_height="@dimen/width_400px" />
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter" />
 
 
             </RelativeLayout>
@@ -135,36 +135,43 @@ android:paddingTop="@dimen/width_40px"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="0dp"></com.pharmacopoeia.view.CustomListView>
 
+            <com.pharmacopoeia.view.CustomListView
+                android:id="@+id/bjp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
 
             <include
                 android:id="@+id/health_shop_detail_from_fragment_item"
-                android:visibility="gone"
+                layout="@layout/health_shop_detail_from_fragment_item"
 
-                layout="@layout/health_shop_detail_from_fragment_item" />
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/health_shop_detail_method_fragment_item"
-                android:visibility="gone"
+                layout="@layout/health_shop_detail_method_fragment_item"
 
-                layout="@layout/health_shop_detail_method_fragment_item" />
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/health_shop_detail_element_fragment_item"
-                android:visibility="gone"
+                layout="@layout/health_shop_detail_element_fragment_item"
 
-                layout="@layout/health_shop_detail_element_fragment_item" />
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/health_shop_detail_people_fragment_item"
-                android:visibility="gone"
+                layout="@layout/health_shop_detail_people_fragment_item"
 
-                layout="@layout/health_shop_detail_people_fragment_item" />
+                android:visibility="gone" />
 
             <include
                 android:id="@+id/health_shop_detail_video_fragment_item"
-                android:visibility="gone"
+                layout="@layout/health_shop_detail_video_fragment_item"
 
-                layout="@layout/health_shop_detail_video_fragment_item" />
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

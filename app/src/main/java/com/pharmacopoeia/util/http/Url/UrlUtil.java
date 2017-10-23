@@ -38,6 +38,8 @@ public class UrlUtil {
     public static String ACTIVITY = getUrl() + "trt_service/getFileListByType/3";//活动
     public static String CAROUSEL = getUrl() + "trt_service/getFileListByType/1";//轮播图
     public static String OPEN = getUrl() + "trt_service/getFileListByType/9";//开平
+    public static String OPEN2 = getUrl() + "trt_service/getFileListByType/10";//开平
+
 
     public static String USERINFO = getUrl() + "trt_service/user/userinfo/get";//获取用户信息
     public static String UPDATEUSERINFO = getUrl() + "trt_service/user/userinfo/perfect";//修改用户信息
