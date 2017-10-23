@@ -229,6 +229,8 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
                     viewHolderImageCycleView.day = (TextView) view.findViewById(R.id.day);
                     viewHolderImageCycleView.bad = (TextView) view.findViewById(R.id.bad);
                     viewHolderImageCycleView.good = (TextView) view.findViewById(R.id.good);
+                    viewHolderImageCycleView.goodBadDesc = (TextView) view.findViewById(R.id.good_bad_desc);
+
 
                     view.setTag(viewHolderImageCycleView);// 将vh存储到行的Tag中
                     break;
@@ -304,6 +306,7 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
                 if (homeBottomModel != null) {
                     viewHolderImageCycleView.bad.setText(homeBottomModel.getBadevent());
                     viewHolderImageCycleView.good.setText(homeBottomModel.getGoodevent());
+                    viewHolderImageCycleView.goodBadDesc.setText(homeBottomModel.getGoodBadDesc());
                 }
                 viewHolderImageCycleView.nlday.setText(lunar1.toString());
                 viewHolderImageCycleView.year.setText(DateUtil.getInstance().simSMM_SYY(new Date()));
@@ -528,7 +531,7 @@ public class HealthAdapter extends BaseAdapter implements PinnedSectionListView.
         RelativeLayout recuperate;
         TextView nlday, year, nlyear, day;
 
-        private TextView bad, good;
+        private TextView bad, good,goodBadDesc;
     }
 
 }

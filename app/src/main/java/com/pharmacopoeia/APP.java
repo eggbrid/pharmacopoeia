@@ -20,6 +20,7 @@ import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.pharmacopoeia.activity.main.LoginActivity;
 import com.pharmacopoeia.activity.main.MainActivity;
 import com.pharmacopoeia.bean.cache.User;
+import com.pharmacopoeia.util.CrashHandler;
 import com.pharmacopoeia.util.db.DBUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 
@@ -70,6 +71,7 @@ public class APP extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        CrashHandler.getInstance().init(this);
         app = this;
         OkHttpUtil.initHttpUtil();
         int pid = android.os.Process.myPid();
@@ -89,6 +91,11 @@ public class APP extends Application {
     }
 
     private void initTypeface() {
+
+
+
+
+
 //        try {
 //            Field field = Typeface.class.getDeclaredField("SERIF");
 //            field.setAccessible(true);

@@ -8,6 +8,15 @@ public class HomeBottomModel {
     private String goodevent;
     private String badevent;
     private String bottomPic;
+    private String   goodBadDesc;
+
+    public String getGoodBadDesc() {
+        return goodBadDesc;
+    }
+
+    public void setGoodBadDesc(String goodBadDesc) {
+        this.goodBadDesc = goodBadDesc;
+    }
 
     public String getGoodevent() {
         return goodevent;

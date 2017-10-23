@@ -20,7 +20,7 @@ android {
                         //此处全部存放debug的key，包括以后的IP
                         hostIP: "http://123.56.216.53:8080/",
                         //hostIP       : "http://120.27.40.138:20080/",
-                        name  : "debug",
+                        name : "debug",
                         JPUSH_PKGNAME : "com.pharmacopoeia",
                         JPUSH_APPKEY : "1df7b5699f09794d27508ee6", //JPush上注册的包名对应的appkey.
                         JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.

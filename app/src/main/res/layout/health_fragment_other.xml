@@ -340,6 +340,20 @@
                     android:textSize="@dimen/text_24px" />
             </LinearLayout>
         </LinearLayout>
+
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/good_bad_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0.5dp"
+        android:paddingBottom="@dimen/width_10px"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/width_20px"
+        android:lineSpacingExtra="6dp"
+        android:paddingRight="@dimen/width_20px"
+        android:textColor="@color/c_5b6567"
+        android:textSize="@dimen/text_24px" />
 </LinearLayout>

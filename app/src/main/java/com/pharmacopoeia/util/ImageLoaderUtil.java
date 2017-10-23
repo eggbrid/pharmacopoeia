@@ -45,9 +45,9 @@ public class ImageLoaderUtil {
         DisplayImageOptions deOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .displayer(new CircleBitmapDisplayer())
                 .build();
         ImageLoader.getInstance().displayImage(url, imageView, deOptions,imageLoadingListener);
@@ -59,9 +59,9 @@ public class ImageLoaderUtil {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .displayer(new CircleBitmapDisplayer())
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
         ImageLoader.getInstance().displayImage(url, imageView, deOptions);
     }
@@ -73,9 +73,9 @@ public class ImageLoaderUtil {
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .displayer(new RoundedBitmapDisplayer(c))
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
         ImageLoader.getInstance().displayImage(url, imageView, deOptions);
     }
@@ -86,9 +86,9 @@ public class ImageLoaderUtil {
         DisplayImageOptions deOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
         ImageLoader.getInstance().displayImage(url, imageView, deOptions);
     }
@@ -98,9 +98,10 @@ public class ImageLoaderUtil {
         DisplayImageOptions deOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
         ImageLoader.getInstance().displayImage(url, imageView, deOptions);
     }
@@ -109,9 +110,9 @@ public class ImageLoaderUtil {
         DisplayImageOptions deOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
         ImageLoader.getInstance().displayImage(url, imageView, deOptions,imageLoadingListener);
     }
@@ -122,9 +123,9 @@ public class ImageLoaderUtil {
         DisplayImageOptions deOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
 
         ImageLoader.getInstance().displayImage(url, imageView, deOptions);
@@ -137,9 +138,9 @@ public class ImageLoaderUtil {
         DisplayImageOptions deOptions = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
-                .showImageOnFail(R.drawable.d00000)
-                .showImageForEmptyUri(R.drawable.d00000)
-                .showImageOnLoading(R.drawable.d00000)
+                .showImageOnFail(R.drawable.d_loading)
+                .showImageForEmptyUri(R.drawable.d_loading)
+                .showImageOnLoading(R.drawable.d_loading)
                 .build();
 
         ImageLoader.getInstance().displayImage(url, imageView, deOptions);

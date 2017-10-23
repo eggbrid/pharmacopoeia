@@ -1,10 +1,13 @@
 package com.pharmacopoeia.activity.recuperate;
 
+import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.pharmacopoeia.R;
+import com.pharmacopoeia.activity.health.ShopActivity;
 import com.pharmacopoeia.activity.recuperate.adapter.SysmptomResultAdapter;
 import com.pharmacopoeia.activity.recuperate.adapter.SysmptomResultReaseAdapter;
 import com.pharmacopoeia.base.CommentActivity;
@@ -69,6 +72,18 @@ public class SymptomResultActivity extends CommentActivity {
         list.setAdapter(sysmptomResultReaseAdapter);
 
         customGridView.setAdapter(sysmptomResultAdapter);
+        customGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(sysmptomResultAdapter.getList().size()<=position||position<0){
+                    return;
+                }
+                Intent intent1 = new Intent();
+                intent1.putExtra("itemId",sysmptomResultAdapter.getList().get(position).getItemId());
+                intent1.setClass(SymptomResultActivity.this, ShopActivity.class);
+                startActivity(intent1);
+            }
+        });
         if (isHistoty) {
             geHisData();
         } else {

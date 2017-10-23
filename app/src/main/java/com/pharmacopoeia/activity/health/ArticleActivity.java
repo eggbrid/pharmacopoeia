@@ -1,5 +1,6 @@
 package com.pharmacopoeia.activity.health;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.text.TextUtils;
@@ -15,6 +16,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -89,56 +91,60 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
 
     @Override
     public void initView() throws Exception {
-        id = getIntent().getStringExtra("id");
-        web = (WebView) findViewById(R.id.web);
-        left1 = (ImageButton) findViewById(R.id.left);
-        left1.setOnClickListener(ArticleActivity.this);
-        right1 = (ImageButton) findViewById(R.id.right);
-        right1.setOnClickListener(ArticleActivity.this);
-        right2 = (ImageButton) findViewById(R.id.right2);
-        right2.setOnClickListener(ArticleActivity.this);
-        flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
-        apply = (CustomListView) findViewById(R.id.apply);
-        comment = (CustomListView) findViewById(R.id.comment);
-        title = (TextView) findViewById(R.id.title);
-        name = (TextView) findViewById(R.id.name);
-        num = (TextView) findViewById(R.id.num);
-        scrollView = (ScrollView) findViewById(R.id.scrollView);
-        no_data = (ImageView) findViewById(R.id.no_data);
-        String url = SharedUtil.getString("app_bottom_pic", "");
-        ImageLoaderUtil.getInstance().loadNomalImage(url, no_data, R.drawable.no_more);
-        send_button = (Button) findViewById(R.id.send_button);
-        ed_comment = (EditText) findViewById(R.id.ed_comment);
-        send_button.setOnClickListener(this);
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
+        try {
+            id = getIntent().getStringExtra("id");
+            web = (WebView) findViewById(R.id.web);
+            left1 = (ImageButton) findViewById(R.id.left);
+            left1.setOnClickListener(ArticleActivity.this);
+            right1 = (ImageButton) findViewById(R.id.right);
+            right1.setOnClickListener(ArticleActivity.this);
+            right2 = (ImageButton) findViewById(R.id.right2);
+            right2.setOnClickListener(ArticleActivity.this);
+            flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
+            apply = (CustomListView) findViewById(R.id.apply);
+            comment = (CustomListView) findViewById(R.id.comment);
+            title = (TextView) findViewById(R.id.title);
+            name = (TextView) findViewById(R.id.name);
+            num = (TextView) findViewById(R.id.num);
+            scrollView = (ScrollView) findViewById(R.id.scrollView);
+            no_data = (ImageView) findViewById(R.id.no_data);
+            String url = SharedUtil.getString("app_bottom_pic", "");
+            ImageLoaderUtil.getInstance().loadNomalImage(url, no_data, R.drawable.no_more);
+            send_button = (Button) findViewById(R.id.send_button);
+            ed_comment = (EditText) findViewById(R.id.ed_comment);
+            send_button.setOnClickListener(this);
+            scrollView.setOnTouchListener(new View.OnTouchListener() {
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // TODO Auto-generated method stub
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_MOVE: {
-                        break;
-                    }
-                    case MotionEvent.ACTION_DOWN: {
-                        break;
-                    }
-                    case MotionEvent.ACTION_UP: {
-                        //当文本的measureheight 等于scroll滚动的长度+scroll的height
-                        if (scrollView.getChildAt(0).getMeasuredHeight() <= scrollView.getScrollY() + scrollView.getHeight()) {
-                            if (hasMore) {
-                                LoadMore();
-                            } else {
-                                no_data.setVisibility(View.VISIBLE);
-                            }
-                        } else {
-
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // TODO Auto-generated method stub
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_MOVE: {
+                            break;
                         }
-                        break;
+                        case MotionEvent.ACTION_DOWN: {
+                            break;
+                        }
+                        case MotionEvent.ACTION_UP: {
+                            //当文本的measureheight 等于scroll滚动的长度+scroll的height
+                            if (scrollView.getChildAt(0).getMeasuredHeight() <= scrollView.getScrollY() + scrollView.getHeight()) {
+                                if (hasMore) {
+                                    LoadMore();
+                                } else {
+                                    no_data.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+
+                            }
+                            break;
+                        }
                     }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        } catch (Exception e) {
+            T.show(this, e.toString());
+        }
 
 
         getData();
@@ -149,38 +155,53 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
     }
 
     private void initData() {
-        ArrayList<String> Strings = new ArrayList<String>();
-        Collections.addAll(Strings, acticleDetailResponse.getTags().split(","));
-        flowLayout.setAdapter(new TagAdapter<String>(Strings) {
-            @Override
-            public View getView(FlowLayout parent, int position, String s) {
-                TextView tv = (TextView) LayoutInflater.from(ArticleActivity.this).inflate(R.layout.view_flowlayout_item, null);
-                tv.setText(s);
-                return tv;
-            }
-        });
-        initWebviewString(acticleDetailResponse.getArticleContent());
-        if(collectionBean!=null){
-            lists.add(collectionBean);
-        }
-        adapter = new CollectionAdapter(this, lists);
-        apply.setAdapter(adapter);
-        adapterComment = new CommentAdapter(ArticleActivity.this, list);
-        comment.setAdapter(adapterComment);
-        title.setText(acticleDetailResponse.getArticleTitle());
-        name.setText(acticleDetailResponse.getAuthorName());
-        num.setText(acticleDetailResponse.getArticleView());
 
-        right1.setImageResource("true".equals(acticleDetailResponse.getCollection()) ? R.drawable.shoucang_nomal : R.drawable.shoucang);
+        try {
+            ArrayList<String> Strings = new ArrayList<String>();
+            Collections.addAll(Strings, acticleDetailResponse.getTags().split(","));
+            flowLayout.setAdapter(new TagAdapter<String>(Strings) {
+                @Override
+                public View getView(FlowLayout parent, int position, String s) {
+                    TextView tv = (TextView) LayoutInflater.from(ArticleActivity.this).inflate(R.layout.view_flowlayout_item, null);
+                    tv.setText(s);
+                    return tv;
+                }
+            });
+            initWebviewString(acticleDetailResponse.getArticleContent());
+            if (collectionBean != null) {
+                lists.add(collectionBean);
+            }
+            adapter = new CollectionAdapter(this, lists);
+            apply.setAdapter(adapter);
+            apply.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (position>=lists.size()||position<0){
+                        return;
+                    }
+
+                    Intent intent1 = new Intent();
+                    intent1.putExtra("itemId",lists.get(position).getItemId());
+                    intent1.setClass(ArticleActivity.this, ShopActivity.class);
+                    startActivity(intent1);
+                }
+            });
+            adapterComment = new CommentAdapter(ArticleActivity.this, list);
+            comment.setAdapter(adapterComment);
+            title.setText(acticleDetailResponse.getArticleTitle());
+            name.setText(acticleDetailResponse.getAuthorName());
+            num.setText(acticleDetailResponse.getArticleView());
+
+            right1.setImageResource("true".equals(acticleDetailResponse.getCollection()) ? R.drawable.shoucang_nomal : R.drawable.shoucang);
+        } catch (Exception e) {
+            T.show(this, e.toString());
+        }
 
         getData(id, "0");
     }
 
     private void initWebviewString(String html) {
-        web.addJavascriptInterface(new JavascriptHandler(), "android");
-
         WebSettings webSettings = web.getSettings();
-
         webSettings.setJavaScriptEnabled(true);
         // 设置可以访问文件
         webSettings.setAllowFileAccess(true);
@@ -191,12 +212,11 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         // 设置出现缩放工具
         webSettings.setBuiltInZoomControls(false);
         webSettings.setDefaultFontSize(16);
-//
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            web.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        } else {
-            web.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            web.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+//        } else {
+//            web.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+//        }
 //
 //        String css = "<style type=\"text/css\"> img {" +
 //                "width:90%;" +
@@ -244,44 +264,6 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
 
         });
 
-        // 设置WebChromeClient
-        web.setWebChromeClient(new WebChromeClient() {
-            @Override
-            // 处理javascript中的alert
-            public boolean onJsAlert(WebView view, String url, String message, final JsResult result) {
-                return super.onJsAlert(view, url, message, result);
-            }
-
-            ;
-
-            @Override
-            // 处理javascript中的confirm
-            public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
-                return super.onJsConfirm(view, url, message, result);
-            }
-
-            ;
-
-            @Override
-            // 处理javascript中的prompt
-            public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
-                return super.onJsPrompt(view, url, message, defaultValue, result);
-            }
-
-            ;
-
-            // 设置网页加载的进度条
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-            }
-
-            // 设置程序的Title
-            @Override
-            public void onReceivedTitle(WebView view, String title) {
-                super.onReceivedTitle(view, title);
-            }
-        });
         web.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -321,20 +303,6 @@ public class ArticleActivity extends CommentActivity implements View.OnClickList
         }
     }
 
-    class JavascriptHandler {
-        @JavascriptInterface
-        public void getContent(String htmlContent) {
-            L.d("html content:" + htmlContent);
-        }
-
-        public boolean canBack() {
-            if (web.canGoBack()) {
-                web.goBack();
-                return false;
-            }
-            return true;
-        }
-    }
 
     public void getData() {
         Map<String, String> map = OkHttpUtil.getLoginFromMap(this);

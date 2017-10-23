@@ -257,7 +257,12 @@ public class OkHttpUtil {
                     }
                     homeBottomModel.setGoodevent(jsonObject.get("goodevent").getAsString());
                 }
-
+                if (jsonObject.has("goodBadDesc")) {
+                    if (homeBottomModel == null) {
+                        homeBottomModel = new HomeBottomModel();
+                    }
+                    homeBottomModel.setGoodBadDesc(jsonObject.get("goodBadDesc").getAsString());
+                }
                 if (jsonObject.has("item")) {
                         shopDetailResponse =new Gson().fromJson(jsonObject.get("item").toString(), CollectionBean.class);
                 }

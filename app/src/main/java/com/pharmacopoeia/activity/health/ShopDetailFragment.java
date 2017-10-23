@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.pharmacopoeia.APP;
 import com.pharmacopoeia.R;
+import com.pharmacopoeia.base.BaseActivity;
 import com.pharmacopoeia.base.BaseLazyFragment;
 import com.pharmacopoeia.bean.cache.User;
 import com.pharmacopoeia.bean.model.Commentbean;
@@ -21,6 +22,7 @@ import com.pharmacopoeia.bean.reponse.VideoDetailResponse;
 import com.pharmacopoeia.interfaces.adapter.ShopDetailExplainAdapter;
 import com.pharmacopoeia.interfaces.adapter.ShopDetailMethodAdapter;
 import com.pharmacopoeia.util.ImageLoaderUtil;
+import com.pharmacopoeia.util.T;
 import com.pharmacopoeia.util.http.Url.UrlUtil;
 import com.pharmacopoeia.util.http.okhttp.OkHttpUtil;
 import com.pharmacopoeia.util.http.okhttp.interfaces.CallBack;
@@ -94,6 +96,7 @@ public class ShopDetailFragment extends BaseLazyFragment {
 
 
     private void getData() {
+        ((BaseActivity)getActivity()).showPross("正在加载商品详情");
         Map<String, String> map = OkHttpUtil.getFromMap(mContext);
         if (APP.getInstance().getUser(mContext) != null) {
             User user = APP.getInstance().getUser(mContext);
@@ -104,6 +107,7 @@ public class ShopDetailFragment extends BaseLazyFragment {
         OkHttpUtil.doPost(getActivity(), UrlUtil.SHOPDETAIL, map, new CallBack() {
             @Override
             public void onSuccess(Object o) {
+                ((BaseActivity)getActivity()).dissPross();
                 ShopDetailResponse res = (ShopDetailResponse) o;
                 if (res != null) {
                     scroll.setVisibility(View.VISIBLE);
@@ -114,6 +118,8 @@ public class ShopDetailFragment extends BaseLazyFragment {
 
             @Override
             public void onError(String s) {
+                ((BaseActivity)getActivity()).dissPross();
+                T.show(getActivity(),s);
             }
         }, ShopDetailResponse.class);
     }
