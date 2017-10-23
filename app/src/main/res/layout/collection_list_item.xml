@@ -17,12 +17,14 @@
         android:layout_width="@dimen/width_234px"
         android:layout_centerVertical="true"
         android:layout_height="@dimen/width_180px"
-        android:scaleType="fitXY" />
+        android:scaleType="fitCenter" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/image"
+        android:layout_marginTop="@dimen/text_24px"
+        android:layout_marginBottom="@dimen/text_24px"
         android:paddingBottom="@dimen/text_24px"
         android:paddingLeft="@dimen/text_24px">
 

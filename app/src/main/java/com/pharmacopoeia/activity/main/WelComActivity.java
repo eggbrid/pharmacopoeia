@@ -86,8 +86,8 @@ public class WelComActivity extends CommentActivity {
     }
 
     private void redirectTo() {
-        Setting setting = DBUtil.getInstance(this).getSetting();
-        if (setting != null && setting.getIsfrist() == 1) {
+//        Setting setting = DBUtil.getInstance(this).getSetting();
+//        if (setting != null && setting.getIsfrist() == 1) {
             //非第一次
 //            if (setting.getIsLogin()==1) {
             //已登录
@@ -99,10 +99,10 @@ public class WelComActivity extends CommentActivity {
 //                startActivity(intent);
 //                finish();
 //            }
-        } else {
-            IntentUtils.openActivity(this, NewFirstActivity.class);
-            finish();
-        }
+//        } else {
+//            IntentUtils.openActivity(this, NewFirstActivity.class);
+//            finish();
+//        }
     }
 
     @PermissionGrant(AUDIO)
