@@ -130,5 +130,4 @@ public class CollectionFragment extends BaseLazyFragment {
             }
         }, ShopType.class);
     }
-
 }
