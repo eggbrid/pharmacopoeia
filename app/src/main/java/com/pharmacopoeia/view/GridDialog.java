@@ -129,9 +129,9 @@ public class GridDialog extends Dialog implements View.OnClickListener {
             TextView item = (TextView) convertView.findViewById(R.id.item);
             item.setText(list.get(position).getCateName());
             if (select==position){
-                item.setTextColor(context.getResources().getColor(R.color.c_3db584));
+                item.setTextColor(context.getResources().getColor(R.color.c_20Af78));
             }else{
-                item.setTextColor(context.getResources().getColor(R.color.c_3c3c3c));
+                item.setTextColor(context.getResources().getColor(R.color.c_333333));
             }
             return convertView;
         }

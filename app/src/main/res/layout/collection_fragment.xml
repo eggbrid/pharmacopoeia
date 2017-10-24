@@ -94,9 +94,9 @@
              <ImageView
                  android:id="@+id/down"
                  android:src="@drawable/icon_down"
-                 android:padding="@dimen/width_20px"
+                 android:padding="@dimen/width_16px"
                  android:layout_alignParentRight="true"
-                 android:layout_width="@dimen/width_80px"
+                 android:layout_width="@dimen/width_60px"
                  android:layout_height="@dimen/width_90px" />
              <View
                  android:background="@color/line"

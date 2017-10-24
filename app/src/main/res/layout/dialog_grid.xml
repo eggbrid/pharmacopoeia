@@ -18,8 +18,8 @@
         android:layout_marginLeft="@dimen/width_20px"
         android:layout_marginRight="@dimen/width_20px"
         android:layout_below="@+id/close"
-        android:horizontalSpacing="@dimen/width_10px"
-        android:verticalSpacing="@dimen/width_10px"
+        android:horizontalSpacing="@dimen/width_20px"
+        android:verticalSpacing="@dimen/width_20px"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="4"></GridView>
