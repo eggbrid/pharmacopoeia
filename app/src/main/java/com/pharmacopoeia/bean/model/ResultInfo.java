@@ -7,14 +7,7 @@ package com.pharmacopoeia.bean.model;
 public class ResultInfo {
     private String id;
     private String name;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private String content;
 
     public String getName() {
         return name;
@@ -22,5 +15,21 @@ public class ResultInfo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

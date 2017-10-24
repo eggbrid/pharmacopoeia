@@ -65,7 +65,7 @@ public class CollectionFragment extends BaseLazyFragment {
         tab = (RelativeLayout) rootView.findViewById(R.id.tab);
         titleText.setText("典藏");
 
-        List<ShopType> list = LiteOrmDBUtil.getInstance(getActivity()).getQueryAll(ShopType.class);
+      final   List<ShopType> list = LiteOrmDBUtil.getInstance(getActivity()).getQueryAll(ShopType.class);
         for (int i = 0; i < list.size(); i++) {
             Bundle args =new Bundle();
             args.putString("id",list.get(i).getCateId());
@@ -94,8 +94,14 @@ public class CollectionFragment extends BaseLazyFragment {
         down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GridDialog dialog=new GridDialog(getActivity());
+                GridDialog dialog=new GridDialog(getActivity(),list,viewPager.getCurrentItem());
                 dialog.show(getActivity(),v);
+                dialog.setOnPhotoClickListener(new GridDialog.OnTabItemClickListener() {
+                    @Override
+                    public void onTabItemClick(int pos) {
+                        viewPager.setCurrentItem(pos);
+                    }
+                });
             }
         });
         left.setVisibility(View.VISIBLE);

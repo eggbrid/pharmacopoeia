@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -27,7 +28,7 @@ public class ShopActivity extends CommentActivity implements View.OnClickListene
     protected ViewPager viewPager;
     String s[] = {"详情", "评价", "应用"};
     private FragmentPagerItemAdapter adapter;
-    private TextView left;
+    private RelativeLayout relative;
     private Class fragments[] = {ShopDetailFragment.class, ShopCommentFragment.class, ShopApplyFragment.class};
 
     public String itemId;
@@ -39,8 +40,8 @@ public class ShopActivity extends CommentActivity implements View.OnClickListene
 
     @Override
     public void initView() throws Exception {
-        left = (TextView) findViewById(R.id.left);
-        left.setOnClickListener(this);
+        relative = (RelativeLayout) findViewById(R.id.relative);
+        relative.setOnClickListener(this);
         viewPager = (ViewPager) findViewById(R.id.vPager);
 
         Intent intent = getIntent();
@@ -66,7 +67,7 @@ public class ShopActivity extends CommentActivity implements View.OnClickListene
         super.onClick(view);
         int id = view.getId();
         switch (id) {
-            case R.id.left:
+            case R.id.relative:
                 finish();
                 break;
         }

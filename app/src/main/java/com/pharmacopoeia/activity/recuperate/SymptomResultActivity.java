@@ -62,6 +62,7 @@ public class SymptomResultActivity extends CommentActivity {
         setCommentTitleView("您的症状为");
         customGridView = (CustomGridView) findViewById(R.id.grid_view);
         text_name = (TextView) findViewById(R.id.text_name);
+        text_symptom = (TextView) findViewById(R.id.text_symptom);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
         list = (CustomListView) findViewById(R.id.list);
 
@@ -139,6 +140,7 @@ public class SymptomResultActivity extends CommentActivity {
         if (systemResultResponse.getResultInfo() != null) {
             scrollView.setVisibility(View.VISIBLE);
             text_name.setText(systemResultResponse.getResultInfo().getName());
+            text_symptom.setText(systemResultResponse.getResultInfo().getContent());
             setCommentTitleView("您的症状为" + systemResultResponse.getResultInfo().getName());
         } else {
             scrollView.setVisibility(View.GONE);

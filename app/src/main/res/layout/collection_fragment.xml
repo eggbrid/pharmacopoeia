@@ -89,12 +89,10 @@
                  android:src="@drawable/zz"
                  android:scaleType="fitXY"
                  android:layout_toLeftOf="@+id/down"
-                 android:layout_alignParentRight="true"
                  android:layout_marginBottom="1dp"
                  android:layout_height="match_parent" />
              <ImageView
                  android:id="@+id/down"
-                 android:visibility="gone"
                  android:src="@drawable/icon_down"
                  android:padding="@dimen/width_20px"
                  android:layout_alignParentRight="true"
