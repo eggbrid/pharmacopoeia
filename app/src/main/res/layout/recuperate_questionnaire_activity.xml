@@ -34,13 +34,14 @@
                 android:layout_height="wrap_content"
                 android:background="@color/app_green"
                 android:padding="@dimen/width_40px"
-                android:text="以下问题请根据你最新的身体感受回答，孕妇以及16岁以下人群不建议使用本测试题"
+                android:text="以下问题请根据你最新的身体感受回答，孕妇以及16岁以下人群不建议使用本测试题/n同仁堂药典所提供的药品信息、问卷信息仅供参考，不可替代医务人员的建议。"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_28px" />
 
             <com.pharmacopoeia.view.CustomListView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
+                android:paddingBottom="60dp"
                 android:layout_height="match_parent"></com.pharmacopoeia.view.CustomListView>
         </LinearLayout>
 

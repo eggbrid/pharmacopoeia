@@ -66,6 +66,10 @@ public class CollectionFragment extends BaseLazyFragment {
         titleText.setText("典藏");
 
       final   List<ShopType> list = LiteOrmDBUtil.getInstance(getActivity()).getQueryAll(ShopType.class);
+        ShopType st=new ShopType();
+        st.setCateId("");
+        st.setCateName("全部");
+        list.add(0,st);
         for (int i = 0; i < list.size(); i++) {
             Bundle args =new Bundle();
             args.putString("id",list.get(i).getCateId());
@@ -105,14 +109,14 @@ public class CollectionFragment extends BaseLazyFragment {
             }
         });
         left.setVisibility(View.VISIBLE);
-        right.setVisibility(View.INVISIBLE);
-//        right.setImageResource(R.drawable.sousuo);
-//        right.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                IntentUtils.openActivity(getActivity(), SearchCollectionActivity.class);
-//            }
-//        });
+        right.setVisibility(View.VISIBLE);
+        right.setImageResource(R.drawable.sousuo);
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentUtils.openActivity(getActivity(), SearchCollectionActivity.class);
+            }
+        });
     }
 
     public void getData() {

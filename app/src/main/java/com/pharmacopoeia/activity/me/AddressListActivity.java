@@ -1,5 +1,6 @@
 package com.pharmacopoeia.activity.me;
 
+import android.content.res.AssetManager;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -14,14 +15,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pharmacopoeia.R;
 import com.pharmacopoeia.activity.me.adapter.AddressListAdapter;
-import com.pharmacopoeia.base.BaseActivity;
 import com.pharmacopoeia.base.CommentActivity;
 import com.pharmacopoeia.bean.cache.TKAddress;
 import com.pharmacopoeia.util.db.LiteOrmDBUtil;
 import com.pharmacopoeia.view.PImageButton;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,15 +83,30 @@ public class AddressListActivity extends CommentActivity {
         getData();
     }
 
-    public String inputStream2String(InputStream in) throws IOException {
-        StringBuffer out = new StringBuffer();
-        byte[] b = new byte[4096];
-        for (int n; (n = in.read(b)) != -1; ) {
-            out.append(new String(b, 0, n));
-        }
-        return out.toString();
-    }
+//    public String inputStream2String(InputStream in) throws IOException {
+//        StringBuffer out = new StringBuffer();
+//        byte[] b = new byte[4096];
+//        for (int n; (n = in.read(b)) != -1; ) {
+//            out.append(new String(b, 0, n));
+//        }
+//        return out.toString();
+//    }
+    public String getJson(String fileName) {
 
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            AssetManager assetManager = AddressListActivity.this.getAssets();
+            BufferedReader bf = new BufferedReader(new InputStreamReader(
+                    assetManager.open(fileName)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -116,8 +132,8 @@ public class AddressListActivity extends CommentActivity {
                 try {
                     lists = LiteOrmDBUtil.getInstance(AddressListActivity.this).getQueryAll(TKAddress.class);
                     if (lists == null || lists.size() <= 0) {
-                        String cityString = null;
-                        cityString = inputStream2String(AddressListActivity.this.getResources().getAssets().open("tk.json"));
+                        String cityString =getJson("tk.txt");
+//                        cityString = inputStream2String(AddressListActivity.this.getResources().getAssets().open("tk.txt"));
                         Gson gson = new Gson();
                         lists = gson.fromJson(cityString,
                                 new TypeToken<List<TKAddress>>() {

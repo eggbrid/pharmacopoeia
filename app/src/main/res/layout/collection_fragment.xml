@@ -10,24 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:orientation="vertical"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/tr">
+
                 <View
-                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:background="@color/line"
-                    />
-
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/line" />
 
 
                 <TextView
@@ -35,8 +35,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="@dimen/text_32px"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_32px" />
+
                 <com.pharmacopoeia.view.PImageButton
                     android:id="@+id/left"
                     android:layout_width="90dp"
@@ -46,6 +47,7 @@
                     android:padding="8dp"
                     android:scaleType="centerInside"
                     android:visibility="invisible" />
+
                 <com.pharmacopoeia.view.PImageButton
                     android:id="@+id/right"
                     android:layout_width="45dp"
@@ -57,53 +59,58 @@
                     android:visibility="invisible" />
             </RelativeLayout>
         </LinearLayout>
-         <RelativeLayout
-             android:id="@+id/tab"
-             android:layout_width="match_parent"
-             android:layout_height="@dimen/width_90px"
-             >
-        <com.ogaclejapan.smarttablayout.SmartTabLayout
-            android:id="@+id/viewpagertab"
-            android:layout_toLeftOf="@+id/down"
+
+        <RelativeLayout
+            android:id="@+id/tab"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/width_90px"
-            android:paddingBottom="0dp"
-            app:stl_customTabTextLayoutId="@layout/home_custom_tab"
-            app:stl_customTabTextViewId="@+id/custom_text"
-            app:stl_defaultTabTextColor="@color/line"
-            app:stl_dividerColor="@color/line"
-            app:stl_dividerThickness="0dp"
-            app:stl_indicatorColor="@color/app_green"
-            app:stl_indicatorCornerRadius="1.5dp"
-            app:stl_indicatorInterpolation="smart"
-            app:stl_indicatorWidth="50dp"
-            app:stl_indicatorWithoutPadding="false"
-            app:stl_underlineThickness="1dp"
-            app:stl_defaultTabTextHorizontalPadding="16dp"
-            app:stl_underlineColor="@color/line"
-            app:stl_indicatorThickness="2dp"
-            app:stl_distributeEvenly="false"
-            />
-             <ImageView
-                 android:layout_width="wrap_content"
-                 android:src="@drawable/zz"
-                 android:scaleType="fitXY"
-                 android:layout_toLeftOf="@+id/down"
-                 android:layout_marginBottom="1dp"
-                 android:layout_height="match_parent" />
-             <ImageView
-                 android:id="@+id/down"
-                 android:src="@drawable/icon_down"
-                 android:padding="@dimen/width_16px"
-                 android:layout_alignParentRight="true"
-                 android:layout_width="@dimen/width_60px"
-                 android:layout_height="@dimen/width_90px" />
-             <View
-                 android:background="@color/line"
-                 android:layout_alignParentBottom="true"
-                 android:layout_width="match_parent"
-                 android:layout_height="1dp"/>
-         </RelativeLayout>
+            android:layout_height="@dimen/width_90px">
+
+            <com.ogaclejapan.smarttablayout.SmartTabLayout
+                android:id="@+id/viewpagertab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/width_90px"
+                android:layout_toLeftOf="@+id/down"
+                android:paddingBottom="0dp"
+                app:stl_customTabTextLayoutId="@layout/home_custom_tab"
+                app:stl_customTabTextViewId="@+id/custom_text"
+                app:stl_defaultTabTextColor="@color/line"
+                app:stl_defaultTabTextHorizontalPadding="16dp"
+                app:stl_distributeEvenly="false"
+                app:stl_dividerColor="@color/line"
+                app:stl_dividerThickness="0dp"
+                app:stl_indicatorColor="@color/app_green"
+                app:stl_indicatorCornerRadius="1.5dp"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorThickness="2dp"
+                app:stl_indicatorWidth="50dp"
+                app:stl_indicatorWithoutPadding="false"
+                app:stl_underlineColor="@color/line"
+                app:stl_underlineThickness="1dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="@dimen/width_30px"
+                android:scaleType="fitXY"
+                android:src="@drawable/zz" />
+
+            <ImageView
+                android:id="@+id/down"
+                android:layout_width="@dimen/width_60px"
+                android:layout_height="@dimen/width_90px"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/width_16px"
+                android:src="@drawable/icon_down" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/line" />
+        </RelativeLayout>
+
         <android.support.v4.view.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"

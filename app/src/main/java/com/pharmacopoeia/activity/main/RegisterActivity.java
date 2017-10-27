@@ -210,7 +210,7 @@ public class RegisterActivity extends CommentActivity {
                 //注册协议
                 Bundle bundle = new Bundle();
                 bundle.putString("title", "注册协议");
-                bundle.putString("url", "file:///android_asset/zcxy.html");
+                bundle.putString("url", "file:///android_asset/fwtk.html");
 
                 IntentUtils.openActivity(this, WebActivity.class, bundle);
 

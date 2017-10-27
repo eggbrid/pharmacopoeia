@@ -3,11 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <RadioButton
         android:id="@+id/q"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/width_10px"
+        android:paddingLeft="@dimen/width_10px"
+        android:paddingTop="@dimen/width_16px"
+        android:paddingBottom="@dimen/width_16px"
+
+        android:background="@null"
+        android:button="@null"
+        android:drawableLeft="@drawable/p_redio"
+        android:drawablePadding="@dimen/width_30px"
+        android:gravity="center_vertical"
         android:textColor="@color/c_333333" />
 
 </LinearLayout>

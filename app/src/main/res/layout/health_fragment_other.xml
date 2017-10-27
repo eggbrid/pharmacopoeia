@@ -89,7 +89,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="2"
-                    android:text="测出你的症状\n告诉你健康吃啥"
+                    android:text="测出你的症状\n告诉你养生吃啥"
                     android:textColor="@color/c_5b6567"
 
                     android:textSize="@dimen/text_24px" />

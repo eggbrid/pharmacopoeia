@@ -31,14 +31,15 @@
             <com.pharmacopoeia.view.CustomGridView
                 android:id="@+id/normal_disease"
                 android:layout_width="match_parent"
-                android:layout_marginLeft="@dimen/width_20px"
+                android:layout_marginLeft="@dimen/width_60px"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/width_20px"
+                android:layout_marginTop="@dimen/width_50px"
+                android:scrollbars="none"
                 android:listSelector="@color/tr"
                 android:numColumns="3"
-                android:layout_marginRight="@dimen/width_20px"
-
-                android:verticalSpacing="@dimen/width_20px" />
+                android:horizontalSpacing="@dimen/width_80px"
+                android:layout_marginRight="@dimen/width_60px"
+                android:verticalSpacing="@dimen/width_40px"/>
 
 
             <TextView
@@ -55,14 +56,16 @@
             <com.pharmacopoeia.view.CustomGridView
                 android:id="@+id/female_maintenance"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/width_60px"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/width_20px"
-                android:layout_marginLeft="@dimen/width_20px"
-                android:layout_marginRight="@dimen/width_20px"
-                android:listSelector="@color/tr"
+                android:scrollbars="none"
 
+                android:layout_marginTop="@dimen/width_50px"
+                android:listSelector="@color/tr"
                 android:numColumns="3"
-                android:verticalSpacing="@dimen/width_20px" />
+                android:horizontalSpacing="@dimen/width_80px"
+                android:layout_marginRight="@dimen/width_60px"
+                android:verticalSpacing="@dimen/width_40px"/>
 
 
 
@@ -80,13 +83,16 @@
             <com.pharmacopoeia.view.CustomGridView
                 android:id="@+id/child_maintenance"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/width_60px"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/width_20px"
-
+                android:layout_marginTop="@dimen/width_50px"
                 android:listSelector="@color/tr"
-android:layout_marginRight="@dimen/width_20px"
+                android:scrollbars="none"
+
                 android:numColumns="3"
-                android:verticalSpacing="@dimen/width_20px" />
+                android:horizontalSpacing="@dimen/width_80px"
+                android:layout_marginRight="@dimen/width_60px"
+                android:verticalSpacing="@dimen/width_40px" />
 
         </LinearLayout>
 

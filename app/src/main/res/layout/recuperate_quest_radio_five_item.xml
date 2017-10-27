@@ -16,6 +16,5 @@
      android:layout_width="match_parent"
      android:listSelector="@null"
      android:divider="@color/tr"
-     android:dividerHeight="5dp"
      android:layout_height="wrap_content"/>
 </LinearLayout>
